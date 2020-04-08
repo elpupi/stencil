@@ -8,7 +8,7 @@
         "url": "https://github.com/milottit"
     },
     "repository": {
-        "url": "https://github.com/stencil-components/browser-util.git"
+        "url": "https://github.com/milottit/stencil.git"
     },
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -17,7 +17,7 @@
     "types": "dist/types/index.d.ts",
     "collection": "dist/collection/collection-manifest.json",
     "collection:main": "dist/collection/index.js",
-    "unpkg": "dist/stencil-components.js",
+    "unpkg": "dist/upradata.js",
     "files": [
         "dist/",
         "loader/"
