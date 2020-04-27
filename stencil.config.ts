@@ -7,6 +7,8 @@ export const config: Config = {
     plugins: [
         sass()
     ],
+    globalStyle: 'src/global/global.scss',
+    globalScript: 'src/global/global.ts',
     outputTargets: [
         {
             type: 'dist',
@@ -19,5 +21,8 @@ export const config: Config = {
             type: 'www',
             serviceWorker: null // disable service workers
         }
+    ],
+    copy: [
+        { src: 'fonts/*.woff2', dest: 'static/fonts', warn: true }
     ]
 };

@@ -1,0 +1,44 @@
+@font-face {
+	font-family: "FuturaPT";
+	font-style: normal;
+	font-weight: 300;
+	src: url("/static/fonts/futuraPT-300.woff2") format("woff2");
+	unicode-range: "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F";
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "FuturaPT";
+	font-style: normal;
+	font-weight: 400;
+	src: url("/static/fonts/futuraPT-400.woff2") format("woff2");
+	unicode-range: "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F";
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "FuturaPT";
+	font-style: normal;
+	font-weight: 500;
+	src: url("/static/fonts/futuraPT-500.woff2") format("woff2");
+	unicode-range: "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F";
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "FuturaPT";
+	font-style: normal;
+	font-weight: 600;
+	src: url("/static/fonts/futuraPT-600.woff2") format("woff2");
+	unicode-range: "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F";
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "FuturaPT";
+	font-style: normal;
+	font-weight: 700;
+	src: url("/static/fonts/futuraPT-700.woff2") format("woff2");
+	unicode-range: "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F";
+	font-display: swap;
+}

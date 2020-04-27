@@ -1,0 +1,22 @@
+mt-list-item {
+	> [slot="title"],
+	> .title {
+		font-size: var(--mt-h4, 13px);
+		color: var(--mt-grey-middle, #787878);
+	}
+
+	> [slot="description"],
+	> .description {
+		font-size: var(--mt-h4, 13px);
+		font-weight: 300;
+		line-height: 19px;
+		color: var(--mt-grey-light, #6b6b6b);
+	}
+
+	@media screen and (max-width: 640px) {
+		> [slot="description"],
+		> .description {
+			font-size: var(--mt-h4-sm, 12px);
+		}
+	}
+}

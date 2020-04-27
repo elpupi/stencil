@@ -1,0 +1,24 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+/* slot[name="title"] { // it is working, but it is better to put it in a global css because of FOUC (light DOM rendered eagerly)
+	font-size: var(--mt-h4, 13px);
+	color: var(--mt-grey-middle, #787878);
+}
+
+slot[name="description"] {
+	font-size: var(--mt-h4, 13px);
+	font-weight: 300;
+	line-height: 19px;
+	color: var(--mt-grey-light, #6b6b6b);
+} 
+
+@media screen and (max-width: 640px) {
+	slot[name="description"] {
+		font-size: var(--mt-h4-sm, 12px);
+	}
+}*/

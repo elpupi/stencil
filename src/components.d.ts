@@ -6,37 +6,223 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MtBlog {
+    }
+    interface MtBlogAlinea {
+        "description": string;
+        "letter": string;
+    }
+    interface MtBlogBlock {
+    }
+    interface MtBlogSection {
+        "content": string;
+        "text": string;
+    }
+    interface MtBlogSubsection {
+        "description": string;
+        "header": string;
+        "nb": string | number;
+    }
+    interface MtBlogTitle {
+        "content": string;
+        "header": string;
+        "text": string;
+    }
+    interface MtCompactList {
+        "header": string;
+        "image": string;
+        "items": string;
+    }
+    interface MtListItem {
+        "description": string;
+        "header": string;
+    }
     interface MtSwitchButton {
         "leftText": string;
         "rightText": string;
     }
+    interface MtTildaAccordeon {
+    }
+    interface MtTildaAccordeonContent {
+    }
+    interface MtTildaAccordeonHeader {
+    }
+    interface MtTildaAccordeonItem {
+    }
 }
 declare global {
+    interface HTMLMtBlogElement extends Components.MtBlog, HTMLStencilElement {
+    }
+    var HTMLMtBlogElement: {
+        prototype: HTMLMtBlogElement;
+        new (): HTMLMtBlogElement;
+    };
+    interface HTMLMtBlogAlineaElement extends Components.MtBlogAlinea, HTMLStencilElement {
+    }
+    var HTMLMtBlogAlineaElement: {
+        prototype: HTMLMtBlogAlineaElement;
+        new (): HTMLMtBlogAlineaElement;
+    };
+    interface HTMLMtBlogBlockElement extends Components.MtBlogBlock, HTMLStencilElement {
+    }
+    var HTMLMtBlogBlockElement: {
+        prototype: HTMLMtBlogBlockElement;
+        new (): HTMLMtBlogBlockElement;
+    };
+    interface HTMLMtBlogSectionElement extends Components.MtBlogSection, HTMLStencilElement {
+    }
+    var HTMLMtBlogSectionElement: {
+        prototype: HTMLMtBlogSectionElement;
+        new (): HTMLMtBlogSectionElement;
+    };
+    interface HTMLMtBlogSubsectionElement extends Components.MtBlogSubsection, HTMLStencilElement {
+    }
+    var HTMLMtBlogSubsectionElement: {
+        prototype: HTMLMtBlogSubsectionElement;
+        new (): HTMLMtBlogSubsectionElement;
+    };
+    interface HTMLMtBlogTitleElement extends Components.MtBlogTitle, HTMLStencilElement {
+    }
+    var HTMLMtBlogTitleElement: {
+        prototype: HTMLMtBlogTitleElement;
+        new (): HTMLMtBlogTitleElement;
+    };
+    interface HTMLMtCompactListElement extends Components.MtCompactList, HTMLStencilElement {
+    }
+    var HTMLMtCompactListElement: {
+        prototype: HTMLMtCompactListElement;
+        new (): HTMLMtCompactListElement;
+    };
+    interface HTMLMtListItemElement extends Components.MtListItem, HTMLStencilElement {
+    }
+    var HTMLMtListItemElement: {
+        prototype: HTMLMtListItemElement;
+        new (): HTMLMtListItemElement;
+    };
     interface HTMLMtSwitchButtonElement extends Components.MtSwitchButton, HTMLStencilElement {
     }
     var HTMLMtSwitchButtonElement: {
         prototype: HTMLMtSwitchButtonElement;
         new (): HTMLMtSwitchButtonElement;
     };
+    interface HTMLMtTildaAccordeonElement extends Components.MtTildaAccordeon, HTMLStencilElement {
+    }
+    var HTMLMtTildaAccordeonElement: {
+        prototype: HTMLMtTildaAccordeonElement;
+        new (): HTMLMtTildaAccordeonElement;
+    };
+    interface HTMLMtTildaAccordeonContentElement extends Components.MtTildaAccordeonContent, HTMLStencilElement {
+    }
+    var HTMLMtTildaAccordeonContentElement: {
+        prototype: HTMLMtTildaAccordeonContentElement;
+        new (): HTMLMtTildaAccordeonContentElement;
+    };
+    interface HTMLMtTildaAccordeonHeaderElement extends Components.MtTildaAccordeonHeader, HTMLStencilElement {
+    }
+    var HTMLMtTildaAccordeonHeaderElement: {
+        prototype: HTMLMtTildaAccordeonHeaderElement;
+        new (): HTMLMtTildaAccordeonHeaderElement;
+    };
+    interface HTMLMtTildaAccordeonItemElement extends Components.MtTildaAccordeonItem, HTMLStencilElement {
+    }
+    var HTMLMtTildaAccordeonItemElement: {
+        prototype: HTMLMtTildaAccordeonItemElement;
+        new (): HTMLMtTildaAccordeonItemElement;
+    };
     interface HTMLElementTagNameMap {
+        "mt-blog": HTMLMtBlogElement;
+        "mt-blog-alinea": HTMLMtBlogAlineaElement;
+        "mt-blog-block": HTMLMtBlogBlockElement;
+        "mt-blog-section": HTMLMtBlogSectionElement;
+        "mt-blog-subsection": HTMLMtBlogSubsectionElement;
+        "mt-blog-title": HTMLMtBlogTitleElement;
+        "mt-compact-list": HTMLMtCompactListElement;
+        "mt-list-item": HTMLMtListItemElement;
         "mt-switch-button": HTMLMtSwitchButtonElement;
+        "mt-tilda-accordeon": HTMLMtTildaAccordeonElement;
+        "mt-tilda-accordeon-content": HTMLMtTildaAccordeonContentElement;
+        "mt-tilda-accordeon-header": HTMLMtTildaAccordeonHeaderElement;
+        "mt-tilda-accordeon-item": HTMLMtTildaAccordeonItemElement;
     }
 }
 declare namespace LocalJSX {
+    interface MtBlog {
+    }
+    interface MtBlogAlinea {
+        "description"?: string;
+        "letter"?: string;
+    }
+    interface MtBlogBlock {
+    }
+    interface MtBlogSection {
+        "content"?: string;
+        "text"?: string;
+    }
+    interface MtBlogSubsection {
+        "description"?: string;
+        "header"?: string;
+        "nb"?: string | number;
+    }
+    interface MtBlogTitle {
+        "content"?: string;
+        "header"?: string;
+        "text"?: string;
+    }
+    interface MtCompactList {
+        "header"?: string;
+        "image"?: string;
+        "items"?: string;
+    }
+    interface MtListItem {
+        "description"?: string;
+        "header"?: string;
+    }
     interface MtSwitchButton {
         "leftText"?: string;
         "onSwitch-change"?: (event: CustomEvent<boolean>) => void;
         "rightText"?: string;
     }
+    interface MtTildaAccordeon {
+    }
+    interface MtTildaAccordeonContent {
+    }
+    interface MtTildaAccordeonHeader {
+    }
+    interface MtTildaAccordeonItem {
+    }
     interface IntrinsicElements {
+        "mt-blog": MtBlog;
+        "mt-blog-alinea": MtBlogAlinea;
+        "mt-blog-block": MtBlogBlock;
+        "mt-blog-section": MtBlogSection;
+        "mt-blog-subsection": MtBlogSubsection;
+        "mt-blog-title": MtBlogTitle;
+        "mt-compact-list": MtCompactList;
+        "mt-list-item": MtListItem;
         "mt-switch-button": MtSwitchButton;
+        "mt-tilda-accordeon": MtTildaAccordeon;
+        "mt-tilda-accordeon-content": MtTildaAccordeonContent;
+        "mt-tilda-accordeon-header": MtTildaAccordeonHeader;
+        "mt-tilda-accordeon-item": MtTildaAccordeonItem;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "mt-blog": LocalJSX.MtBlog & JSXBase.HTMLAttributes<HTMLMtBlogElement>;
+            "mt-blog-alinea": LocalJSX.MtBlogAlinea & JSXBase.HTMLAttributes<HTMLMtBlogAlineaElement>;
+            "mt-blog-block": LocalJSX.MtBlogBlock & JSXBase.HTMLAttributes<HTMLMtBlogBlockElement>;
+            "mt-blog-section": LocalJSX.MtBlogSection & JSXBase.HTMLAttributes<HTMLMtBlogSectionElement>;
+            "mt-blog-subsection": LocalJSX.MtBlogSubsection & JSXBase.HTMLAttributes<HTMLMtBlogSubsectionElement>;
+            "mt-blog-title": LocalJSX.MtBlogTitle & JSXBase.HTMLAttributes<HTMLMtBlogTitleElement>;
+            "mt-compact-list": LocalJSX.MtCompactList & JSXBase.HTMLAttributes<HTMLMtCompactListElement>;
+            "mt-list-item": LocalJSX.MtListItem & JSXBase.HTMLAttributes<HTMLMtListItemElement>;
             "mt-switch-button": LocalJSX.MtSwitchButton & JSXBase.HTMLAttributes<HTMLMtSwitchButtonElement>;
+            "mt-tilda-accordeon": LocalJSX.MtTildaAccordeon & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonElement>;
+            "mt-tilda-accordeon-content": LocalJSX.MtTildaAccordeonContent & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonContentElement>;
+            "mt-tilda-accordeon-header": LocalJSX.MtTildaAccordeonHeader & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonHeaderElement>;
+            "mt-tilda-accordeon-item": LocalJSX.MtTildaAccordeonItem & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonItemElement>;
         }
     }
 }

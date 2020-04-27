@@ -1,11 +1,14 @@
-import { Component, ComponentInterface, Host, Prop, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, ComponentInterface, h, Host, Prop, State, Event, Element, EventEmitter } from '@stencil/core';
 
 @Component({
     tag: 'mt-switch-button',
     styleUrl: 'switch-button.scss',
-    shadow: true,
+    shadow: false,
+    scoped: true
 })
 export class SwitchButton implements ComponentInterface {
+    @Element() host: HTMLElement;
+
     @Prop() leftText: string = 'On';
     @Prop() rightText: string = 'Off';
     @State() active: boolean = false;
@@ -24,8 +27,14 @@ export class SwitchButton implements ComponentInterface {
     }
 
     render() {
+        if (this.active)
+            this.host.classList.add('active');
+        else
+            this.host.classList.remove('active');
+
+        //  className={this.host.classList.toString()}
         return (
-            <Host className={this.active ? 'active' : ''}>
+            <Host>
                 <span class="label left">{this.leftText}</span>
 
                 <div class="button" onClick={() => this.onClick()}>

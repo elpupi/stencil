@@ -32,11 +32,22 @@
         "npm-publish": "npm run build && npm publish --access public"
     },
     "devDependencies": {
-        "@stencil/core": "^1.12.3",
+        "@rollup/plugin-node-resolve": "^7.1.3",
+        "@stencil/core": "^1.12.6",
         "@stencil/sass": "^1.3.1",
         "@types/jest": "^25.2.1",
-        "jest": "^25.2.7",
+        "jest": "^25.4.0",
+        "puppeteer": "^3.0.1",
         "typescript": "^3.8.3"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "@duetds/components": "^4.1.1"
+    },
+    "local": {
+        "dependencies": {
+            "flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
+            "@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1"
+        }
+    }
 }

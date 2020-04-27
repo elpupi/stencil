@@ -1,0 +1,6 @@
+@import "./mt-blog-mixin";
+
+mt-blog-subsection,
+.mt-blog-subsection {
+	@include mt-blog-subsection();
+}

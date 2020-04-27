@@ -2,18 +2,255 @@
 <html dir="ltr" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
 
     <script type="module" src="/build/upradata.esm.js"></script>
     <script nomodule src="/build/upradata.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="/build/upradata.css" />
 </head>
 
 <body>
-
     <mt-switch-button left-text="Happy" right-text="Excited"></mt-switch-button>
+
+    <mt-compact-list>
+        <h4 slot="title">Analytics</h4>
+        <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+        <mt-list-item>
+            <h4 slot="title">Google Analytics</h4>
+            <p slot="description">Personal Data: Cookies; Usage Data</p>
+        </mt-list-item>
+
+        <mt-list-item>
+            <h4 slot="title">Contact form</h4>
+            <p slot="description">Personal Data: email address; first name; last name</p>
+        </mt-list-item>
+
+        <mt-list-item>
+            <h4 slot="title">Mailing list or newsletter</h4>
+            <p slot="description">Personal Data: email address; first name</p>
+        </mt-list-item>
+    </mt-compact-list>
+
+    <mt-compact-list id="list$" header="Analytics" image="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" items='[
+                {"title":"Google Analytics", "description":"Personal Data: Cookies; Usage Data"},
+                {"title":"Contact form", "description":"Personal Data: email address; first name; last name"},
+                {"title":"Mailing list or newsletter", "description":"Personal Data: email address; first name"}
+            ]'>
+    </mt-compact-list>
+
+    <script>
+        setTimeout(() => {
+            const list$ = document.getElementById("list$");
+            list$.items = [
+                { title: "Bonjour", description: "Que du bla bla" },
+                { title: "Allons-y", description: "Tu dis que de la merde" },
+                { title: "Le truc de ouf", description: "Allez, dégage un petit coup" },
+            ];
+        }, 3000);
+    </script>
+
+    <style>
+        .mt-grid-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            max-width: 1600px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .mt-grid-list {
+                display: flex;
+                flex-direction: column;
+                align-items: left;
+            }
+        }
+
+        .t668__content {
+            /* to open the accordeon for testing */
+            display: block;
+        }
+
+        .t-popup__container {
+            max-height: 90vh;
+        }
+    </style>
+
+    <style>
+        .policy-short {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .policy-short .mt-list-container {
+            padding: 0 70px;
+            background-color: white;
+        }
+
+        .policy-short .mt-popup-footer {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        @media screen and (max-width: 640px) {
+
+
+            /***OVERIDE **/
+
+            .policy-short #rec109079659 .t-popup__container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow-y: scroll;
+                top: 52%;
+            }
+
+            .policy-short .mt-short-policy-loaded {
+                max-height: 85vh;
+            }
+
+
+            .policy-short .mt-intro {
+                padding: 40px 6% 20px 30px;
+            }
+
+
+            .policy-short .policy-short .mt-list-container {
+                padding: 0;
+            }
+
+            .mt-popup-footer {
+                padding: 0 20px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
+    <mt-blog class="policy-short">
+        <mt-blog-block>
+            <div>
+                <h2 class="mt-title">Privacy Policy of Digital Upra-Data website: <b>digital.upradata.com</b></h2>
+                <p><em>Effective Date: March 18, 2019</em></p>
+                <blockquote>
+                    <p>Among the types of Personal Data that this Application collects, by itself or through third parties,
+                        there are: first name; last name; email address; Cookies; Usage Data.
+                    </p>
+                </blockquote>
+            </div>
+        </mt-blog-block>
+
+        <mt-tilda-accordeon style="width:80%; max-width: 1600px; min-width: 400px">
+
+            <mt-tilda-accordeon-item>
+                <mt-tilda-accordeon-header>1. Personal Data collected</mt-tilda-accordeon-header>
+                <mt-tilda-accordeon-content>
+
+                    <div class="mt-text mt-section">
+                        <p>Personal Data are collected for the following purposes and are using the
+                            following services:</p>
+                    </div>
+
+                    <div class="mt-grid-list mt-section">
+                        <mt-compact-list>
+                            <h4 slot="title">Analytics</h4>
+                            <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                            <mt-list-item>
+                                <h4 slot="title">Google Analytics</h4>
+                                <p slot="description">Personal Data: Cookies; Usage Data</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Contact form</h4>
+                                <p slot="description">Personal Data: email address; first name; last name</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Mailing list or newsletter</h4>
+                                <p slot="description">Personal Data: email address; first name</p>
+                            </mt-list-item>
+                        </mt-compact-list>
+
+                        <mt-compact-list>
+                            <h4 slot="title">Analytics</h4>
+                            <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                            <mt-list-item>
+                                <h4 slot="title">Google Analytics</h4>
+                                <p slot="description">Personal Data: Cookies; Usage Data</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Contact form</h4>
+                                <p slot="description">Personal Data: email address; first name; last name</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Mailing list or newsletter</h4>
+                                <p slot="description">Personal Data: email address; first name</p>
+                            </mt-list-item>
+                        </mt-compact-list>
+
+                        <mt-compact-list>
+                            <h4 slot="title">Analytics</h4>
+                            <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                            <mt-list-item>
+                                <h4 slot="title">Google Analytics</h4>
+                                <p slot="description">Personal Data: Cookies; Usage Data</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Contact form</h4>
+                                <p slot="description">Personal Data: email address; first name; last name</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Mailing list or newsletter</h4>
+                                <p slot="description">Personal Data: email address; first name</p>
+                            </mt-list-item>
+                        </mt-compact-list>
+                    </div>
+                </mt-tilda-accordeon-content>
+            </mt-tilda-accordeon-item>
+
+            <mt-tilda-accordeon-item>
+                <mt-tilda-accordeon-header>2. Contact information</mt-tilda-accordeon-header>
+                <mt-tilda-accordeon-content>
+                    <mt-compact-list>
+                        <h4 slot="title">Analytics</h4>
+                        <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                        <mt-list-item>
+                            <h4 slot="title">Google Analytics</h4>
+                            <p slot="description">Personal Data: Cookies; Usage Data</p>
+                        </mt-list-item>
+
+                        <mt-list-item>
+                            <h4 slot="title">Contact form</h4>
+                            <p slot="description">Personal Data: email address; first name; last name</p>
+                        </mt-list-item>
+
+                        <mt-list-item>
+                            <h4 slot="title">Mailing list or newsletter</h4>
+                            <p slot="description">Personal Data: email address; first name</p>
+                        </mt-list-item>
+                    </mt-compact-list>
+                </mt-tilda-accordeon-content>
+            </mt-tilda-accordeon-item>
+
+        </mt-tilda-accordeon>
+
+        <mt-blog-alinea>
+            <span slot="letter" class="mt-alinea-title">Ciao les amis :)</span>
+            <span slot="description" class="mt-alinea-description">Putain de description</span>
+        </mt-blog-alinea>
+    </mt-blog>
 
 </body>
 
