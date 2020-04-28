@@ -1,0 +1,38 @@
+<mt-compact-list>
+    <h4 slot="title">Analytics</h4>
+    <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+    <mt-list-item>
+        <h4 slot="title">Google Analytics</h4>
+        <p slot="description">Personal Data: Cookies; Usage Data</p>
+    </mt-list-item>
+
+    <mt-list-item>
+        <h4 slot="title">Contact form</h4>
+        <p slot="description">Personal Data: email address; first name; last name</p>
+    </mt-list-item>
+
+    <mt-list-item>
+        <h4 slot="title">Mailing list or newsletter</h4>
+        <p slot="description">Personal Data: email address; first name</p>
+    </mt-list-item>
+</mt-compact-list>
+
+<mt-compact-list id="list" header="Analytics" image="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" items='[
+                {"title":"Google Analytics", "description":"Personal Data: Cookies; Usage Data"},
+                {"title":"Contact form", "description":"Personal Data: email address; first name; last name"},
+                {"title":"Mailing list or newsletter", "description":"Personal Data: email address; first name"}
+            ]'>
+</mt-compact-list>
+
+<script>
+    setTimeout(() => {
+        console.log('AACACAC')
+        const list = document.getElementById("list");
+        list.items = [
+            { title: "Bonjour", description: "Que du bla bla" },
+            { title: "Allons-y", description: "Tu dis que de la merde" },
+            { title: "Le truc de ouf", description: "Allez, dégage un petit coup" },
+        ];
+    }, 3000);
+</script>

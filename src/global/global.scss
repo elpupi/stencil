@@ -1,14 +1,1 @@
-@import "./tilda.global";
-@import "./tilda.blocks";
-@import "../fonts/font";
 @import "../components";
-
-html {
-	font-family: "FuturaPT", Arial, sans-serif;
-	font-size: 100%;
-}
-
-body {
-	font-size: 1em;
-	font-family: inherit;
-}
