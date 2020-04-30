@@ -6,14 +6,12 @@ import { Component, Host, Prop, h } from '@stencil/core';
     shadow: false
 })
 export class MtBlogTitle {
-    @Prop() header: string;
-    @Prop() text: string;
     @Prop() content: string;
 
     render() {
         return (
             <Host>
-                {this.header || this.text || this.content}
+                {this.content}
                 <slot></slot>
             </Host>
         );

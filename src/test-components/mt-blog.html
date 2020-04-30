@@ -1,10 +1,12 @@
 <style>
     .mt-grid-list {
-        display: flex;
+        display: flex !important;
         flex-wrap: wrap;
         justify-content: space-between;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        row-gap: 60px;
+        column-gap: 110px;
         max-width: 1600px;
     }
 
@@ -79,29 +81,129 @@
 
 <mt-blog class="policy-short">
     <mt-blog-block>
-        <div>
-            <h2 class="mt-title">Privacy Policy of Digital Upra-Data website: <b>digital.upradata.com</b></h2>
-            <p><em>Effective Date: March 18, 2019</em></p>
-            <blockquote>
-                <p>Among the types of Personal Data that this Application collects, by itself or through third parties,
-                    there are: first name; last name; email address; Cookies; Usage Data.
-                </p>
-            </blockquote>
-        </div>
+        <h2 class="mt-title">Privacy Policy of Digital Upra-Data website: <b>digital.upradata.com</b></h2>
+        <p><em>Effective Date: March 18, 2019</em></p>
+        <blockquote>
+            <p>Among the types of Personal Data that this Application collects, by itself or through third parties,
+                there are: first name; last name; email address; Cookies; Usage Data.
+            </p>
+        </blockquote>
     </mt-blog-block>
 
-    <mt-tilda-accordeon style="width:80%; max-width: 1600px; min-width: 400px">
+    <mt-blog-block>
+        <mt-blog-title>Privacy Policy of Digital Upra-Data website: <b>digital.upradata.com</b></mt-blog-title>
+        <p><em>Effective Date: March 18, 2019</em></p>
+        <blockquote>
+            <p>Among the types of Personal Data that this Application collects, by itself or through third parties,
+                there are: first name; last name; email address; Cookies; Usage Data.
+            </p>
+        </blockquote>
+        <mt-blog-section>Une petite section</mt-blog-section>
+        <mt-blog-section>
+            <p>Une deuxième section</p>
+            <mt-blog-subsection>
+                <span slot="nb">1.</span>
+                <span slot="title">Le titre</span>
+                <span slot="description">Le bla bla habituel qui continue le bla bla de tout à l'heure. Among the types of Personal Data
+                    that this Application collects, by itself or through third parties,
+                    there are: first name; last name; email address; Cookies; Usage Data.
+                </span>
+            </mt-blog-subsection>
+            <mt-blog-alinea>
+                <span slot="letter">a.</span>
+                <span slot="description">Le bla bla habituel qui continue le bla bla de tout à l'heure. Among the types of Personal Data
+                    that this Application collects, by itself or through third parties,
+                    there are: first name; last name; email address; Cookies; Usage Data.
+                </span>
+            </mt-blog-alinea>
+        </mt-blog-section>
+    </mt-blog-block>
+</mt-blog>
 
-        <mt-tilda-accordeon-item>
-            <mt-tilda-accordeon-header>1. Personal Data collected</mt-tilda-accordeon-header>
-            <mt-tilda-accordeon-content>
+<mt-block-title>
+    <h3>Gros titre</h3>
+</mt-block-title>
 
-                <div class="mt-text mt-section">
-                    <p>Personal Data are collected for the following purposes and are using the
-                        following services:</p>
-                </div>
+<mt-blog>
+    <mt-tilda-accordeon-block>
+        <mt-tilda-accordeon>
 
-                <div class="mt-grid-list mt-section">
+            <mt-tilda-accordeon-item>
+                <mt-tilda-accordeon-header>1. Personal Data collected</mt-tilda-accordeon-header>
+                <mt-tilda-accordeon-content>
+
+                    <div class="mt-text mt-section">
+                        <p>Personal Data are collected for the following purposes and are using the
+                            following services:</p>
+                    </div>
+
+                    <div class="mt-grid-list mt-section">
+                        <mt-compact-list>
+                            <h4 slot="title">Analytics</h4>
+                            <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                            <mt-list-item>
+                                <h4 slot="title">Google Analytics</h4>
+                                <p slot="description">Personal Data: Cookies; Usage Data</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Contact form</h4>
+                                <p slot="description">Personal Data: email address; first name; last name</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Mailing list or newsletter</h4>
+                                <p slot="description">Personal Data: email address; first name</p>
+                            </mt-list-item>
+                        </mt-compact-list>
+
+                        <mt-compact-list>
+                            <h4 slot="title">Analytics</h4>
+                            <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                            <mt-list-item>
+                                <h4 slot="title">Google Analytics</h4>
+                                <p slot="description">Personal Data: Cookies; Usage Data</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Contact form</h4>
+                                <p slot="description">Personal Data: email address; first name; last name</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Mailing list or newsletter</h4>
+                                <p slot="description">Personal Data: email address; first name</p>
+                            </mt-list-item>
+                        </mt-compact-list>
+
+                        <mt-compact-list>
+                            <h4 slot="title">Analytics</h4>
+                            <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+
+                            <mt-list-item>
+                                <h4 slot="title">Google Analytics</h4>
+                                <p slot="description">Personal Data: Cookies; Usage Data</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Contact form</h4>
+                                <p slot="description">Personal Data: email address; first name; last name</p>
+                            </mt-list-item>
+
+                            <mt-list-item>
+                                <h4 slot="title">Mailing list or newsletter</h4>
+                                <p slot="description">Personal Data: email address; first name</p>
+                            </mt-list-item>
+                        </mt-compact-list>
+                    </div>
+                </mt-tilda-accordeon-content>
+            </mt-tilda-accordeon-item>
+
+            <mt-tilda-accordeon-item>
+                <mt-tilda-accordeon-header>2. Contact information</mt-tilda-accordeon-header>
+                <mt-tilda-accordeon-content>
                     <mt-compact-list>
                         <h4 slot="title">Analytics</h4>
                         <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
@@ -121,79 +223,12 @@
                             <p slot="description">Personal Data: email address; first name</p>
                         </mt-list-item>
                     </mt-compact-list>
+                </mt-tilda-accordeon-content>
+            </mt-tilda-accordeon-item>
 
-                    <mt-compact-list>
-                        <h4 slot="title">Analytics</h4>
-                        <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
+        </mt-tilda-accordeon>
 
-                        <mt-list-item>
-                            <h4 slot="title">Google Analytics</h4>
-                            <p slot="description">Personal Data: Cookies; Usage Data</p>
-                        </mt-list-item>
+    </mt-tilda-accordeon-block>
 
-                        <mt-list-item>
-                            <h4 slot="title">Contact form</h4>
-                            <p slot="description">Personal Data: email address; first name; last name</p>
-                        </mt-list-item>
 
-                        <mt-list-item>
-                            <h4 slot="title">Mailing list or newsletter</h4>
-                            <p slot="description">Personal Data: email address; first name</p>
-                        </mt-list-item>
-                    </mt-compact-list>
-
-                    <mt-compact-list>
-                        <h4 slot="title">Analytics</h4>
-                        <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
-
-                        <mt-list-item>
-                            <h4 slot="title">Google Analytics</h4>
-                            <p slot="description">Personal Data: Cookies; Usage Data</p>
-                        </mt-list-item>
-
-                        <mt-list-item>
-                            <h4 slot="title">Contact form</h4>
-                            <p slot="description">Personal Data: email address; first name; last name</p>
-                        </mt-list-item>
-
-                        <mt-list-item>
-                            <h4 slot="title">Mailing list or newsletter</h4>
-                            <p slot="description">Personal Data: email address; first name</p>
-                        </mt-list-item>
-                    </mt-compact-list>
-                </div>
-            </mt-tilda-accordeon-content>
-        </mt-tilda-accordeon-item>
-
-        <mt-tilda-accordeon-item>
-            <mt-tilda-accordeon-header>2. Contact information</mt-tilda-accordeon-header>
-            <mt-tilda-accordeon-content>
-                <mt-compact-list>
-                    <h4 slot="title">Analytics</h4>
-                    <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
-
-                    <mt-list-item>
-                        <h4 slot="title">Google Analytics</h4>
-                        <p slot="description">Personal Data: Cookies; Usage Data</p>
-                    </mt-list-item>
-
-                    <mt-list-item>
-                        <h4 slot="title">Contact form</h4>
-                        <p slot="description">Personal Data: email address; first name; last name</p>
-                    </mt-list-item>
-
-                    <mt-list-item>
-                        <h4 slot="title">Mailing list or newsletter</h4>
-                        <p slot="description">Personal Data: email address; first name</p>
-                    </mt-list-item>
-                </mt-compact-list>
-            </mt-tilda-accordeon-content>
-        </mt-tilda-accordeon-item>
-
-    </mt-tilda-accordeon>
-
-    <mt-blog-alinea>
-        <span slot="letter" class="mt-alinea-title">Ciao les amis :)</span>
-        <span slot="description" class="mt-alinea-description">Putain de description</span>
-    </mt-blog-alinea>
 </mt-blog>

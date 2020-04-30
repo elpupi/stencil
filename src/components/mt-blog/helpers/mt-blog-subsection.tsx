@@ -12,7 +12,7 @@ export class MtBlogSubsection {
 
     render() {
         return (
-            <Host>
+            <Host class="mt-blog-p">
                 {this.nb && <span class="mt-subsection-number">{this.nb}</span>}
                 <slot name="nb"></slot>
 

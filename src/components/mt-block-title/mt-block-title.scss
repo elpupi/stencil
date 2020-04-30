@@ -1,0 +1,23 @@
+:host {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 210px;
+	background-color: #3586fc;
+	color: #ffffff;
+	text-align: center;
+	font-size: 42px;
+
+	@media screen and (max-width: 1199px) {
+		font-size: 38px;
+	}
+
+	@media screen and (max-width: 959px) {
+		height: 170px;
+	}
+
+	@media screen and (max-width: 639px) {
+		height: 140px;
+		font-size: 30px;
+	}
+}

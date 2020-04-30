@@ -1,6 +1,5 @@
-@import "./mt-blog-mixin";
+@use "./mt-blog-mixin" as *;
 
-mt-blog-section,
-.mt-blog-section {
-	@include mt-blog-section();
+mt-blog-section {
+    @include mt-blog-section();
 }

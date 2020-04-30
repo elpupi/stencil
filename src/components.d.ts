@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MtBlockTitle {
+        "content": string;
+    }
     interface MtBlog {
     }
     interface MtBlogAlinea {
@@ -16,7 +19,6 @@ export namespace Components {
     }
     interface MtBlogSection {
         "content": string;
-        "text": string;
     }
     interface MtBlogSubsection {
         "description": string;
@@ -25,8 +27,6 @@ export namespace Components {
     }
     interface MtBlogTitle {
         "content": string;
-        "header": string;
-        "text": string;
     }
     interface MtCompactList {
         "header": string;
@@ -49,8 +49,16 @@ export namespace Components {
     }
     interface MtTildaAccordeonItem {
     }
+    interface TildaAccordeonBlock {
+    }
 }
 declare global {
+    interface HTMLMtBlockTitleElement extends Components.MtBlockTitle, HTMLStencilElement {
+    }
+    var HTMLMtBlockTitleElement: {
+        prototype: HTMLMtBlockTitleElement;
+        new (): HTMLMtBlockTitleElement;
+    };
     interface HTMLMtBlogElement extends Components.MtBlog, HTMLStencilElement {
     }
     var HTMLMtBlogElement: {
@@ -129,7 +137,14 @@ declare global {
         prototype: HTMLMtTildaAccordeonItemElement;
         new (): HTMLMtTildaAccordeonItemElement;
     };
+    interface HTMLTildaAccordeonBlockElement extends Components.TildaAccordeonBlock, HTMLStencilElement {
+    }
+    var HTMLTildaAccordeonBlockElement: {
+        prototype: HTMLTildaAccordeonBlockElement;
+        new (): HTMLTildaAccordeonBlockElement;
+    };
     interface HTMLElementTagNameMap {
+        "mt-block-title": HTMLMtBlockTitleElement;
         "mt-blog": HTMLMtBlogElement;
         "mt-blog-alinea": HTMLMtBlogAlineaElement;
         "mt-blog-block": HTMLMtBlogBlockElement;
@@ -143,9 +158,13 @@ declare global {
         "mt-tilda-accordeon-content": HTMLMtTildaAccordeonContentElement;
         "mt-tilda-accordeon-header": HTMLMtTildaAccordeonHeaderElement;
         "mt-tilda-accordeon-item": HTMLMtTildaAccordeonItemElement;
+        "tilda-accordeon-block": HTMLTildaAccordeonBlockElement;
     }
 }
 declare namespace LocalJSX {
+    interface MtBlockTitle {
+        "content"?: string;
+    }
     interface MtBlog {
     }
     interface MtBlogAlinea {
@@ -156,7 +175,6 @@ declare namespace LocalJSX {
     }
     interface MtBlogSection {
         "content"?: string;
-        "text"?: string;
     }
     interface MtBlogSubsection {
         "description"?: string;
@@ -165,8 +183,6 @@ declare namespace LocalJSX {
     }
     interface MtBlogTitle {
         "content"?: string;
-        "header"?: string;
-        "text"?: string;
     }
     interface MtCompactList {
         "header"?: string;
@@ -190,7 +206,10 @@ declare namespace LocalJSX {
     }
     interface MtTildaAccordeonItem {
     }
+    interface TildaAccordeonBlock {
+    }
     interface IntrinsicElements {
+        "mt-block-title": MtBlockTitle;
         "mt-blog": MtBlog;
         "mt-blog-alinea": MtBlogAlinea;
         "mt-blog-block": MtBlogBlock;
@@ -204,12 +223,14 @@ declare namespace LocalJSX {
         "mt-tilda-accordeon-content": MtTildaAccordeonContent;
         "mt-tilda-accordeon-header": MtTildaAccordeonHeader;
         "mt-tilda-accordeon-item": MtTildaAccordeonItem;
+        "tilda-accordeon-block": TildaAccordeonBlock;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "mt-block-title": LocalJSX.MtBlockTitle & JSXBase.HTMLAttributes<HTMLMtBlockTitleElement>;
             "mt-blog": LocalJSX.MtBlog & JSXBase.HTMLAttributes<HTMLMtBlogElement>;
             "mt-blog-alinea": LocalJSX.MtBlogAlinea & JSXBase.HTMLAttributes<HTMLMtBlogAlineaElement>;
             "mt-blog-block": LocalJSX.MtBlogBlock & JSXBase.HTMLAttributes<HTMLMtBlogBlockElement>;
@@ -223,6 +244,7 @@ declare module "@stencil/core" {
             "mt-tilda-accordeon-content": LocalJSX.MtTildaAccordeonContent & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonContentElement>;
             "mt-tilda-accordeon-header": LocalJSX.MtTildaAccordeonHeader & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonHeaderElement>;
             "mt-tilda-accordeon-item": LocalJSX.MtTildaAccordeonItem & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonItemElement>;
+            "tilda-accordeon-block": LocalJSX.TildaAccordeonBlock & JSXBase.HTMLAttributes<HTMLTildaAccordeonBlockElement>;
         }
     }
 }

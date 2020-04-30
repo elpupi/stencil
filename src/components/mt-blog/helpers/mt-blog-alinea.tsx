@@ -11,8 +11,8 @@ export class MtBlogAlinea {
 
     render() {
         return (
-            <Host >
-                {this.letter && <span class="mt-alinea-title">{this.letter}</span>}
+            <Host class="mt-blog-p">
+                {this.letter && <span class="mt-alinea-letter">{this.letter}</span>}
                 <slot name="letter"></slot>
                 {this.description && <span class="mt-linea-description">{this.description}</span>}
                 <slot name="description"></slot>

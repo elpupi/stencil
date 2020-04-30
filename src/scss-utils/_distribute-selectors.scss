@@ -1,0 +1,25 @@
+@use "./list";
+@use "../../bower_components/SassyLists/dist/SassyLists" as sasslist;
+
+@function distribute-selectors($operator, $list-of-selectors) {
+    $selector: "";
+
+    @if (list.length($list-of-selectors) == 1) {
+        @return list.nth($list-of-selectors, 1);
+    }
+
+    $first-selectors: list.nth($list-of-selectors, 1);
+    $rest: distribute-selectors($operator, list.sl-slice($list-of-selectors, $start: 2));
+
+    @each $s1 in $first-selectors {
+        @each $s2 in $rest {
+            $s: $s1 + $operator + $s2;
+            $selector: if($selector== "", $s, $selector + "," + $s);
+        }
+    }
+
+    @return $selector;
+}
+
+/* $ss: distribute-selectors("+", (".m1", ".m2") (a, span));
+@debug $ss; */

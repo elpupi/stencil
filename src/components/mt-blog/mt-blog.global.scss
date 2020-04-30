@@ -1,5 +1,5 @@
 @use "./mt-blog.mixin" as *;
 
-mt-blog {
+.mt-blog {
     @include mt-blog();
 }
