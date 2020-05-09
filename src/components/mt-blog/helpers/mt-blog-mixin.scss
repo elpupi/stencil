@@ -12,7 +12,8 @@
     }
 
     .mt-subsection-title,
-    [class*="subsection"] > [slot="title"] {
+    [class*="subsection"] > [slot="title"],
+    [class*="subsection"] > [slot="header"] {
         font-weight: 600;
     }
 
@@ -33,7 +34,7 @@
 }
 
 @mixin mt-blog-title() {
-    display: block;
+    display: inline;
     font-size: 20px;
     font-weight: 500;
     color: #949494;

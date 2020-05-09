@@ -11,7 +11,7 @@ export class MtBlogTitle {
     render() {
         return (
             <Host>
-                {this.content}
+                {this.content && <h2 innerHTML={this.content}></h2>}
                 <slot></slot>
             </Host>
         );

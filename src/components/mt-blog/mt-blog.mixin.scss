@@ -2,6 +2,7 @@
 @use "../../scss-utils/mt";
 
 @mixin mt-blog() {
+    display: block;
     font-size: 16px;
     line-height: 1.7;
     font-weight: 300;

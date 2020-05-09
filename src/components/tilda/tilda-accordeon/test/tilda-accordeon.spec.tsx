@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { TildaAccordeon } from '../tilda-accordeon';
+import { MtTildaAccordeon } from '../tilda-accordeon';
 
 describe('tilda-accordeon', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [TildaAccordeon],
+      components: [MtTildaAccordeon],
       html: `<tilda-accordeon></tilda-accordeon>`,
     });
     expect(page.root).toEqualHtml(`

@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { TildaAccordeonHeader } from '../tilda-accordeon-header';
+import { MtTildaAccordeonHeader } from '../tilda-accordeon-header';
 
 describe('tilda-accordeon-header', () => {
     it('renders', async () => {
         const page = await newSpecPage({
-            components: [ TildaAccordeonHeader ],
+            components: [ MtTildaAccordeonHeader ],
             html: `<tilda-accordeon-header></tilda-accordeon-header>`,
         });
         expect(page.root).toEqualHtml(`

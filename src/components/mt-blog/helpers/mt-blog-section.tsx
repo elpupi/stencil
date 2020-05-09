@@ -10,8 +10,7 @@ export class MtBlogSection {
 
     render() {
         return (
-            <Host class="mt-blog-p">
-                {this.content}
+            <Host class="mt-blog-p" innerHTML={this.content}>
                 <slot></slot>
             </Host>
         );

@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { ListItem } from '../list-item';
+import { MtListItem } from '../list-item';
 
 describe('mt-list-item', () => {
     it('renders', async () => {
         const page = await newSpecPage({
-            components: [ ListItem ],
+            components: [ MtListItem ],
             html: `<mt-list-item></mt-list-item>`,
         });
         expect(page.root).toEqualHtml(`

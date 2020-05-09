@@ -3,9 +3,12 @@ dependencies:
 devDependencies:
   '@rollup/plugin-node-resolve': 7.1.3
   '@stencil/core': 1.12.6
+  '@stencil/postcss': 1.0.1_@stencil+core@1.12.6
   '@stencil/sass': 1.3.1_@stencil+core@1.12.6
+  '@types/autoprefixer': 9.7.2
   '@types/jest': 25.2.1
   '@types/node': 13.13.2
+  autoprefixer: 9.7.6
   dart-sass: 1.25.0
   jest: 25.4.0
   puppeteer: 3.0.1
@@ -514,6 +517,15 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-fOHG9x92wxlQOlp9YRouLlejFShtfvZEx4LFjNi7bqTX/nHTetdv3Ir+J+SanebjBuJgKiAmLIwXviQ0Geq23w==
+  /@stencil/postcss/1.0.1_@stencil+core@1.12.6:
+    dependencies:
+      '@stencil/core': 1.12.6
+      postcss: 7.0.29
+    dev: true
+    peerDependencies:
+      '@stencil/core': ^1.0.2
+    resolution:
+      integrity: sha512-+QOLwdiMSeE6XbvjOM8bfMIX6E6L4DFLmnp0wZqCj4O/PVkNfEQA6IXZgd6F+OIfZ1wBy/dxR4Jvtwfo+QXa2g==
   /@stencil/sass/1.3.1_@stencil+core@1.12.6:
     dependencies:
       '@stencil/core': 1.12.6
@@ -522,6 +534,13 @@ packages:
       '@stencil/core': ^1.0.2
     resolution:
       integrity: sha512-5qsEyhLGTywpG4zlWv6eBhhj/z2Z37nbUGa87Ak0KqfsEiclJCYRA/AMM9FiN1jHfBvr968G4zE8rNlYmiPLsQ==
+  /@types/autoprefixer/9.7.2:
+    dependencies:
+      '@types/browserslist': 4.8.0
+      postcss: 7.0.29
+    dev: true
+    resolution:
+      integrity: sha512-QX7U7YW3zX3ex6MECtWO9folTGsXeP4b8bSjTq3I1ODM+H+sFHwGKuof+T+qBcDClGlCGtDb3SVfiTVfmcxw4g==
   /@types/babel__core/7.1.7:
     dependencies:
       '@babel/parser': 7.9.4
@@ -551,6 +570,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-74fNdUGrWsgIB/V9kTO5FGHPWYY6Eqn+3Z7L6Hc4e/BxjYV7puvBqp5HwsVYYfLm6iURYBNCx4Ut37OF9yitCw==
+  /@types/browserslist/4.8.0:
+    dev: true
+    resolution:
+      integrity: sha512-4PyO9OM08APvxxo1NmQyQKlJdowPCOQIy5D/NLO3aO0vGC57wsMptvGp3b8IbYnupFZr92l1dlVief1JvS6STQ==
   /@types/color-name/1.1.1:
     dev: true
     resolution:
@@ -853,6 +876,21 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+  /autoprefixer/9.7.6:
+    dependencies:
+      browserslist: 4.12.0
+      caniuse-lite: 1.0.30001050
+      chalk: 2.4.2
+      normalize-range: 0.1.2
+      num2fraction: 1.2.2
+      postcss: 7.0.29
+      postcss-value-parser: 4.1.0
+    dev: true
+    engines:
+      node: '>=6.0.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-F7cYpbN7uVVhACZTeeIeealwdGM6wMtfWARVLTy5xmKtgVdBNJvbDRoCK3YO1orcs7gv/KwYlb3iXwu9Ug9BkQ==
   /aws-sign2/0.7.0:
     dev: true
     resolution:
@@ -1016,6 +1054,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-exDi1BYWB/6raKHmDTCicQfTkqwN5fioMFV4j8BsfMU4R2DK/QfZfK7kOVkmWCNANf0snkBzqGqAJBao9gZMdQ==
+  /browserslist/4.12.0:
+    dependencies:
+      caniuse-lite: 1.0.30001050
+      electron-to-chromium: 1.3.427
+      node-releases: 1.1.53
+      pkg-up: 2.0.0
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-UH2GkcEDSI0k/lRkuDSzFl9ZZ87skSy9w2XAn1MsZnL+4c4rqbBd3e82UWHbYDpztABrPBhZsTEeuxVfHppqDg==
   /bser/2.1.1:
     dependencies:
       node-int64: 0.4.0
@@ -1085,6 +1133,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
+  /caniuse-lite/1.0.30001050:
+    dev: true
+    resolution:
+      integrity: sha512-OvGZqalCwmapci76ISq5q4kuAskb1ebqF3FEQBv1LE1kWht0pojlDDqzFlmk5jgYkuZN7MNZ1n+ULwe/7MaDNQ==
   /capture-exit/2.0.0:
     dependencies:
       rsvp: 4.8.5
@@ -1452,6 +1504,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-OoOpBOVDUyh4dMVkt1SThoSamMk=
+  /electron-to-chromium/1.3.427:
+    dev: true
+    resolution:
+      integrity: sha512-/rG5G7Opcw68/Yrb4qYkz07h3bESVRJjUl4X/FrKLXzoUJleKm6D7K7rTTz8V5LUWnd+BbTOyxJX2XprRqHD8A==
   /emoji-regex/8.0.0:
     dev: true
     resolution:
@@ -1843,6 +1899,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
+  /find-up/2.1.0:
+    dependencies:
+      locate-path: 2.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-RdG35QbHF93UgndaK3eSCjwMV6c=
   /find-up/4.1.0:
     dependencies:
       locate-path: 5.0.0
@@ -3069,6 +3133,15 @@ packages:
     dev: true
     resolution:
       integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
+  /locate-path/2.0.0:
+    dependencies:
+      p-locate: 2.0.0
+      path-exists: 3.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-K1aLJl7slExtnA3pw9u7ygNUzY4=
   /locate-path/5.0.0:
     dependencies:
       p-locate: 4.1.0
@@ -3288,6 +3361,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-SVfQ/wMw+DesunOm5cKqr6yDcvUTDl/yc97ybGHMrteNEY6oekXpNpS3lZwgLlwz0FLgHoiW28ZpmBHUDg37cw==
+  /node-releases/1.1.53:
+    dev: true
+    resolution:
+      integrity: sha512-wp8zyQVwef2hpZ/dJH7SfSrIPD6YoJz6BDQDpGEkcA0s3LpAQoxBIYmfIq6QAhC1DhwsyCgTaTTcONwX8qzCuQ==
   /normalize-package-data/2.5.0:
     dependencies:
       hosted-git-info: 2.8.8
@@ -3311,6 +3388,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
+  /normalize-range/0.1.2:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=
   /npm-run-path/2.0.2:
     dependencies:
       path-key: 2.0.1
@@ -3327,6 +3410,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==
+  /num2fraction/1.2.2:
+    dev: true
+    resolution:
+      integrity: sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=
   /number-is-nan/1.0.1:
     dev: true
     engines:
@@ -3430,6 +3517,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-vpm09aKwq6H9phqRQzecoDpD8TmVyGw70qmWlyq5onxY7tqyTTFVvxMykxQSQKILBSFlbXpypIw2T1Ml7+DDtw==
+  /p-limit/1.3.0:
+    dependencies:
+      p-try: 1.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-vvcXsLAJ9Dr5rQOPk7toZQZJApBl2K4J6dANSsEuh6QI41JYcsS/qhTGa9ErIUUgK3WNQoJYvylxvjqmiqEA9Q==
   /p-limit/2.3.0:
     dependencies:
       p-try: 2.2.0
@@ -3438,6 +3533,14 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==
+  /p-locate/2.0.0:
+    dependencies:
+      p-limit: 1.3.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-IKAQOyIqcMj9OcwuWAaA893l7EM=
   /p-locate/4.1.0:
     dependencies:
       p-limit: 2.3.0
@@ -3446,6 +3549,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==
+  /p-try/1.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-y8ec26+P1CKOE/Yh8rGiN8GyB7M=
   /p-try/2.2.0:
     dev: true
     engines:
@@ -3473,6 +3582,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
+  /path-exists/3.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-zg6+ql94yxiSXqfYENe1mwEP1RU=
   /path-exists/4.0.0:
     dev: true
     engines:
@@ -3535,6 +3650,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
+  /pkg-up/2.0.0:
+    dependencies:
+      find-up: 2.1.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-yBmscoBZpGHKscOImivjxJoATX8=
   /pluralize/1.2.1:
     dev: true
     resolution:
@@ -3549,6 +3672,20 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
+  /postcss-value-parser/4.1.0:
+    dev: true
+    resolution:
+      integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
+  /postcss/7.0.29:
+    dependencies:
+      chalk: 2.4.2
+      source-map: 0.6.1
+      supports-color: 6.1.0
+    dev: true
+    engines:
+      node: '>=6.0.0'
+    resolution:
+      integrity: sha512-ba0ApvR3LxGvRMMiUa9n0WR4HjzcYm7tS+ht4/2Nd0NLtHpPIH77fuB9Xh1/yJVz9O/E/95Y/dn8ygWsyffXtw==
   /prelude-ls/1.1.2:
     dev: true
     engines:
@@ -4296,6 +4433,14 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
+  /supports-color/6.1.0:
+    dependencies:
+      has-flag: 3.0.0
+    dev: true
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
   /supports-color/7.1.0:
     dependencies:
       has-flag: 4.0.0
@@ -4785,9 +4930,12 @@ specifiers:
   '@duetds/components': ^4.1.1
   '@rollup/plugin-node-resolve': ^7.1.3
   '@stencil/core': ^1.12.6
+  '@stencil/postcss': ^1.0.1
   '@stencil/sass': ^1.3.1
+  '@types/autoprefixer': ^9.7.2
   '@types/jest': ^25.2.1
   '@types/node': ^13.13.2
+  autoprefixer: ^9.7.6
   dart-sass: ^1.25.0
   jest: ^25.4.0
   puppeteer: ^3.0.1

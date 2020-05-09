@@ -12,7 +12,7 @@ export class MtBlockTitle {
     render() {
         return (
             <Host>
-                {this.content && <h3>{this.content}</h3>}
+                {this.content && <h3 innerHTML={this.content}></h3>}
                 <slot></slot>
             </Host>
         );

@@ -7,7 +7,7 @@ import { Component, ComponentInterface, h, Prop, Host } from '@stencil/core';
     shadow: false,
     scoped: true
 })
-export class ListItem implements ComponentInterface {
+export class MtListItem implements ComponentInterface {
     @Prop() header: string;
     @Prop() description: string;
 
@@ -16,6 +16,7 @@ export class ListItem implements ComponentInterface {
             <Host>
                 {this.header && <span class="title">{this.header}</span>}
                 <slot name="title"></slot>
+                <slot name="header"></slot> {/* synonym */}
                 {this.description && <span class="description">{this.description}</span>}
                 <slot name="description"></slot>
             </Host>

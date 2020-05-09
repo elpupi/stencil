@@ -6,7 +6,7 @@ import { Component, ComponentInterface, h } from '@stencil/core';
     shadow: false,
     scoped: true
 })
-export class TildaAccordeonHeader implements ComponentInterface {
+export class MtTildaAccordeonHeader implements ComponentInterface {
 
     render() {
         return (

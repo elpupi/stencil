@@ -1,5 +1,5 @@
 import { Component, ComponentInterface, Prop, Watch, h, Host } from '@stencil/core';
-import { ListItem } from './list-item/list-item';
+import { MtListItem } from './list-item/list-item';
 
 
 @Component({
@@ -8,12 +8,12 @@ import { ListItem } from './list-item/list-item';
     shadow: false,
     scoped: true
 })
-export class CompactList implements ComponentInterface {
+export class MtCompactList implements ComponentInterface {
     @Prop() header: string;
     @Prop() image: string;
     @Prop() items: string;
 
-    listItems: ListItem[];
+    listItems: MtListItem[];
 
 
     componentWillLoad() {
@@ -21,7 +21,7 @@ export class CompactList implements ComponentInterface {
     }
 
     @Watch('items')
-    itemsChanged(newValue: string | ListItem[]) {
+    itemsChanged(newValue: string | MtListItem[]) {
         this.listItems = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     }
 
@@ -34,6 +34,7 @@ export class CompactList implements ComponentInterface {
 
                 <div class="block">
                     <slot name="title"></slot>
+                    <slot name="header"></slot> {/* synonym */}
                     {this.header && <h4 class="title">{this.header}</h4>}
 
                     <ul class="list">

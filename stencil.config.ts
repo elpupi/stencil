@@ -1,11 +1,23 @@
-import { Config, Build } from '@stencil/core';
+import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { postcss } from '@stencil/postcss';
+import autoprefixer from 'autoprefixer';
 
 export const config: Config = {
     namespace: 'upradata',
     taskQueue: 'async',
     plugins: [
-        sass()
+        sass(),
+        postcss({
+            /* injectGlobalPaths: [ // The injectGlobalPaths config is an array of paths that automatically get added as @import declarations to all components.
+                'src/globals/variables.pcss',
+                'src/globals/mixins.pcss'
+            ], */
+            plugins: [ autoprefixer(/* {
+                browsers: [ 'last 6 versions' ],
+                cascade: false
+            } */) ]
+        })
     ],
     globalStyle: 'src/global/global.scss',
     globalScript: 'src/global/global.ts',

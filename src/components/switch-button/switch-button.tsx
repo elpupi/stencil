@@ -6,7 +6,7 @@ import { Component, ComponentInterface, h, Host, Prop, State, Event, Element, Ev
     shadow: false,
     scoped: true
 })
-export class SwitchButton implements ComponentInterface {
+export class MtSwitchButton implements ComponentInterface {
     @Element() host: HTMLElement;
 
     @Prop() leftText: string = 'On';

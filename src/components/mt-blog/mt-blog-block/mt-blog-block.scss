@@ -1,20 +1,20 @@
 mt-blog-block {
-	display: block;
-	padding: 120px 15% 140px;
+    display: block;
+    padding: 120px 15% 140px;
 }
 
-mt-tilda-accordeon mt-blog-block {
-	padding: 40px 15% 30px;
+[class*="popup"] mt-blog-block {
+    padding: 40px 15% 30px;
 }
 
 @media (max-width: 950px) {
-	mt-blog-block {
-		padding: 70px 8% 140px;
-	}
+    mt-blog-block {
+        padding: 70px 8% 140px;
+    }
 }
 
 @media screen and (max-width: 640px) {
-	mt-blog-block {
-		padding: 40px 6% 20px 30px;
-	}
+    [class*="popup"] mt-blog-block {
+        padding: 40px 6% 20px 30px;
+    }
 }

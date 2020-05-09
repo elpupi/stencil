@@ -6,7 +6,7 @@ import { Component, Host, h } from '@stencil/core';
     shadow: false,
     scoped: true
 })
-export class TildaAccordeonBlock {
+export class MtTildaAccordeonBlock {
 
     render() {
         return (

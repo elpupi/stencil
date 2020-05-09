@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CompactList } from '../compact-list';
+import { MtCompactList } from '../compact-list';
 
 describe('mt-compact-list', () => {
     it('renders', async () => {
         const page = await newSpecPage({
-            components: [ CompactList ],
+            components: [ MtCompactList ],
             html: `<mt-compact-list></mt-compact-list>`,
         });
         expect(page.root).toEqualHtml(`

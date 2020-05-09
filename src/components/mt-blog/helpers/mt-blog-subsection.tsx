@@ -19,6 +19,7 @@ export class MtBlogSubsection {
                 <div class="mt-subsection-content">
                     {this.header && <span class="mt-subsection-title">{this.header}</span>}
                     <slot name="title"></slot>
+                    <slot name="header"></slot> {/* synonym */}
 
                     {this.description && <span class="mt-subsection-description">{this.description}</span>}
                     <slot name="description"></slot>

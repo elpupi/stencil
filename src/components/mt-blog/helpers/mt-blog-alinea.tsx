@@ -6,7 +6,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
     shadow: false
 })
 export class MtBlogAlinea {
-    @Prop() letter: string;
+    @Prop() letter: string | number;
     @Prop() description: string;
 
     render() {
