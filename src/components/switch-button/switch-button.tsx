@@ -35,13 +35,15 @@ export class MtSwitchButton implements ComponentInterface {
         //  className={this.host.classList.toString()}
         return (
             <Host>
-                <span class="label left">{this.leftText}</span>
+                {this.leftText && <span class="label left">{this.leftText}</span>}
+                <slot name="left"></slot>
 
                 <div class="button" onClick={() => this.onClick()}>
                     <div class="button__switch"></div>
                 </div>
 
-                <span class="label right">{this.rightText}</span>
+                {this.rightText && <span class="label right">{this.rightText}</span>}
+                <slot name="right"></slot>
             </Host>
         );
     }

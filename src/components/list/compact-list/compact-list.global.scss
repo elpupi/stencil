@@ -1,4 +1,6 @@
 mt-compact-list {
+    // it is here because inside the shadow dom, there is a FOUC (light DOM rendered eagerly)
+
     > [slot="image"],
     > .image {
         display: block;
@@ -14,11 +16,5 @@ mt-compact-list {
         color: var(--mt-grey-middle, #3f3f3f);
         font-size: var(--mt-h4, 13px);
         margin-left: 20px;
-    }
-}
-
-@media screen and (max-width: 640px) {
-    mt-compact-list + mt-compact-list {
-        margin-top: 20px;
     }
 }

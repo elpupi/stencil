@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { MtListItem, } from "./components/list/compact-list/list-item/list-item";
+import { BreakPoint, } from "./responsive";
 import { MtTildaShortPolicyItem, } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
 import { MtTildaAccordeonItem, } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
 export namespace Components {
@@ -33,11 +35,11 @@ export namespace Components {
     interface MtCompactList {
         "header": string;
         "image": string;
-        "items": string;
+        "items": MtListItem[];
     }
     interface MtGrid {
         "columnGap": string;
-        "gridTemplateComumns": string;
+        "gridTemplateColumns": string;
         "maxWidth": string;
         "rowGap": string;
     }
@@ -45,12 +47,19 @@ export namespace Components {
         "description": string;
         "header": string;
     }
+    interface MtResponsive {
+    }
+    interface MtServices {
+        "breakpoints": BreakPoint[];
+    }
     interface MtSwitchButton {
         "leftText": string;
         "rightText": string;
     }
     interface MtTest {
+        "array": any[];
         "content": string;
+        "width": string;
     }
     interface MtTildaAccordeon {
     }
@@ -149,6 +158,18 @@ declare global {
         prototype: HTMLMtListItemElement;
         new (): HTMLMtListItemElement;
     };
+    interface HTMLMtResponsiveElement extends Components.MtResponsive, HTMLStencilElement {
+    }
+    var HTMLMtResponsiveElement: {
+        prototype: HTMLMtResponsiveElement;
+        new (): HTMLMtResponsiveElement;
+    };
+    interface HTMLMtServicesElement extends Components.MtServices, HTMLStencilElement {
+    }
+    var HTMLMtServicesElement: {
+        prototype: HTMLMtServicesElement;
+        new (): HTMLMtServicesElement;
+    };
     interface HTMLMtSwitchButtonElement extends Components.MtSwitchButton, HTMLStencilElement {
     }
     var HTMLMtSwitchButtonElement: {
@@ -220,6 +241,8 @@ declare global {
         "mt-compact-list": HTMLMtCompactListElement;
         "mt-grid": HTMLMtGridElement;
         "mt-list-item": HTMLMtListItemElement;
+        "mt-responsive": HTMLMtResponsiveElement;
+        "mt-services": HTMLMtServicesElement;
         "mt-switch-button": HTMLMtSwitchButtonElement;
         "mt-test": HTMLMtTestElement;
         "mt-tilda-accordeon": HTMLMtTildaAccordeonElement;
@@ -258,11 +281,11 @@ declare namespace LocalJSX {
     interface MtCompactList {
         "header"?: string;
         "image"?: string;
-        "items"?: string;
+        "items"?: MtListItem[];
     }
     interface MtGrid {
         "columnGap"?: string;
-        "gridTemplateComumns"?: string;
+        "gridTemplateColumns"?: string;
         "maxWidth"?: string;
         "rowGap"?: string;
     }
@@ -270,13 +293,20 @@ declare namespace LocalJSX {
         "description"?: string;
         "header"?: string;
     }
+    interface MtResponsive {
+    }
+    interface MtServices {
+        "breakpoints"?: BreakPoint[];
+    }
     interface MtSwitchButton {
         "leftText"?: string;
         "onSwitch-change"?: (event: CustomEvent<boolean>) => void;
         "rightText"?: string;
     }
     interface MtTest {
+        "array"?: any[];
         "content"?: string;
+        "width"?: string;
     }
     interface MtTildaAccordeon {
     }
@@ -322,6 +352,8 @@ declare namespace LocalJSX {
         "mt-compact-list": MtCompactList;
         "mt-grid": MtGrid;
         "mt-list-item": MtListItem;
+        "mt-responsive": MtResponsive;
+        "mt-services": MtServices;
         "mt-switch-button": MtSwitchButton;
         "mt-test": MtTest;
         "mt-tilda-accordeon": MtTildaAccordeon;
@@ -348,6 +380,8 @@ declare module "@stencil/core" {
             "mt-compact-list": LocalJSX.MtCompactList & JSXBase.HTMLAttributes<HTMLMtCompactListElement>;
             "mt-grid": LocalJSX.MtGrid & JSXBase.HTMLAttributes<HTMLMtGridElement>;
             "mt-list-item": LocalJSX.MtListItem & JSXBase.HTMLAttributes<HTMLMtListItemElement>;
+            "mt-responsive": LocalJSX.MtResponsive & JSXBase.HTMLAttributes<HTMLMtResponsiveElement>;
+            "mt-services": LocalJSX.MtServices & JSXBase.HTMLAttributes<HTMLMtServicesElement>;
             "mt-switch-button": LocalJSX.MtSwitchButton & JSXBase.HTMLAttributes<HTMLMtSwitchButtonElement>;
             "mt-test": LocalJSX.MtTest & JSXBase.HTMLAttributes<HTMLMtTestElement>;
             "mt-tilda-accordeon": LocalJSX.MtTildaAccordeon & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonElement>;

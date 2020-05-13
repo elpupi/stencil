@@ -11,18 +11,17 @@ import { MtListItem } from './list-item/list-item';
 export class MtCompactList implements ComponentInterface {
     @Prop() header: string;
     @Prop() image: string;
-    @Prop() items: string;
-
-    listItems: MtListItem[];
+    @Prop({ attribute: 'items' }) items: MtListItem[] = [];
 
 
     componentWillLoad() {
         this.itemsChanged(this.items);
     }
 
+
     @Watch('items')
     itemsChanged(newValue: string | MtListItem[]) {
-        this.listItems = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
+        this.items = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     }
 
 
@@ -43,7 +42,7 @@ export class MtCompactList implements ComponentInterface {
                             <slot ></slot>
                         </li>
 
-                        {this.listItems && this.listItems.map(item =>
+                        {this.items && this.items.map(item =>
                             <mt-list-item>
                                 <h4 slot="title">{item.header}</h4>
                                 <p slot="description">{item.description}</p>

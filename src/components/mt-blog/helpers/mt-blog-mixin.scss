@@ -45,7 +45,12 @@
         font-weight: 600;
     }
 
-    @media screen and (max-width: 640px) {
+    /* @media screen and (max-width: 640px) {
+        font-size: 17px;
+        margin-bottom: 25px;
+    } */
+
+    .lt-sm & {
         font-size: 17px;
         margin-bottom: 25px;
     }

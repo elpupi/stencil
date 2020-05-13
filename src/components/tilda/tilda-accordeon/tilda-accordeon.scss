@@ -2,7 +2,7 @@
     display: block;
 }
 
-@media screen and (max-width: 640px) {
+.lt-sm :host {
     .t-container {
         display: flex;
         flex-direction: column;

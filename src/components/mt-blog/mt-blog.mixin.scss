@@ -92,27 +92,25 @@
             margin-top: 10px;
         }
     }
+}
 
-    @media (max-width: 640px) {
-        blockquote.mt-tag {
-            font-size: 12px;
-        }
+.lt-sm :host {
+    blockquote.mt-tag {
+        font-size: 12px;
     }
 
-    @media (max-width: 1200px) {
-        blockquote.mt-tag {
-            font-size: 14px;
-        }
+    em {
+        font-size: 14px;
     }
 
-    @media screen and (max-width: 640px) {
-        em {
-            font-size: 14px;
-        }
+    blockquote {
+        font-size: 14px;
+        margin: 20px 0;
+    }
+}
 
-        blockquote {
-            font-size: 14px;
-            margin: 20px 0;
-        }
+.lt-md :host {
+    blockquote.mt-tag {
+        font-size: 14px;
     }
 }

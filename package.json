@@ -28,33 +28,43 @@
         "start": "stencil build --dev --watch --serve --no-open",
         "test": "stencil test --spec --e2e",
         "test.watch": "stencil test --spec --e2e --watchAll",
+        "test:non-components": "npx jest --verbose false --config jest-ut.config.js",
         "generate": "stencil generate",
         "github-push": "npm run build && npm version patch && git push && git push --tags",
-        "npm-publish": "npm run build && npm publish --access public"
+        "npm-publish": "npm run build && npm publish --access public",
+        "watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
     },
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^7.1.3",
-        "@stencil/core": "^1.12.6",
+        "@stencil/core": "^1.12.7",
         "@stencil/postcss": "^1.0.1",
         "@stencil/sass": "^1.3.1",
         "@types/autoprefixer": "^9.7.2",
-        "@types/jest": "^25.2.1",
+        "@types/jest": "^24.9.0",
         "@types/node": "^13.13.2",
+        "@types/resize-observer-browser": "^0.1.3",
         "autoprefixer": "^9.7.6",
         "dart-sass": "^1.25.0",
-        "jest": "^25.4.0",
+        "jest": "^24.9.0",
+        "jest-environment-node": "^26.0.1",
+        "nodemon": "^2.0.3",
         "puppeteer": "^3.0.1",
+        "rollup-plugin-includepaths": "^0.2.3",
         "sass-lint": "^1.13.1",
+        "ts-jest": "^25.5.1",
+        "tsconfig-paths": "^3.9.0",
         "typescript": "^3.8.3"
     },
     "license": "MIT",
     "dependencies": {
-        "@duetds/components": "^4.1.1"
+        "@duetds/components": "^4.1.1",
+        "rxjs": "^6.5.5"
     },
     "local": {
         "dependencies": {
             "flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
-            "@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1"
+            "@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
+            "@upradata/util": "link:/home/milottit/Libraries/Util/util@1.0.24"
         }
     }
 }

@@ -1,23 +1,4 @@
 <style>
-    .mt-grid-list {
-        display: flex !important;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        row-gap: 60px;
-        column-gap: 110px;
-        max-width: 1600px;
-    }
-
-    @media screen and (max-width: 700px) {
-        .mt-grid-list {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-        }
-    }
-
     /* to open the accordeon for testing */
     .t668__content {
         display: block;
@@ -138,7 +119,7 @@
                                 following services:</p>
                         </div>
 
-                        <div class="mt-grid-list mt-section">
+                        <mt-grid class="mt-p" row-gap="60px; lt-sm: 20px">
                             <mt-compact-list>
                                 <h4 slot="title">Analytics</h4>
                                 <img slot="image" src="https://static.tildacdn.com/tild3962-3839-4462-a631-393666336331/stat.svg" />
@@ -198,7 +179,7 @@
                                     <p slot="description">Personal Data: email address; first name</p>
                                 </mt-list-item>
                             </mt-compact-list>
-                        </div>
+                        </mt-grid>
                     </mt-tilda-accordeon-content>
                 </mt-tilda-accordeon-item>
 

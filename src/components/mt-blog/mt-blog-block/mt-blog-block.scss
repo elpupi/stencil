@@ -7,13 +7,13 @@ mt-blog-block {
     padding: 40px 15% 30px;
 }
 
-@media (max-width: 950px) {
+.lt-md :host {
     mt-blog-block {
         padding: 70px 8% 140px;
     }
 }
 
-@media screen and (max-width: 640px) {
+.lt-sm :host {
     [class*="popup"] mt-blog-block {
         padding: 40px 6% 20px 30px;
     }

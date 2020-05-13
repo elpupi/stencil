@@ -6,7 +6,7 @@
     padding-left: 70px;
 }
 
-@media screen and (max-width: 640px) {
+.lt-sm :host {
     .t-name_xl {
         font-size: 16px;
     }

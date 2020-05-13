@@ -3,10 +3,22 @@ import { sass } from '@stencil/sass';
 import { postcss } from '@stencil/postcss';
 import autoprefixer from 'autoprefixer';
 
+/* import includePaths from 'rollup-plugin-includepaths';
+
+const includePathOptions = {
+    include: {
+        '@upradata/util': 'node_modules/@upradata/util/lib-esm/index.js'
+    },
+    // paths: [ 'src/lib', 'src/other' ],
+    external: [],
+    extensions: [ '.mjs', '.js', '.json', '.html' ]
+}; */
+
 export const config: Config = {
     namespace: 'upradata',
     taskQueue: 'async',
     plugins: [
+        // includePaths(includePathOptions),
         sass(),
         postcss({
             /* injectGlobalPaths: [ // The injectGlobalPaths config is an array of paths that automatically get added as @import declarations to all components.
@@ -19,6 +31,11 @@ export const config: Config = {
             } */) ]
         })
     ],
+    commonjs: {
+        namedExports: {
+            '../../Util/util/node_modules/.pnpm/registry.npmjs.org/ts-util-is/1.1.3/node_modules/ts-util-is/dist/index.js': [ 'isUndefined', 'isNull' ]
+        }
+    },
     globalStyle: 'src/global/global.scss',
     globalScript: 'src/global/global.ts',
     outputTargets: [

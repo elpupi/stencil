@@ -1,4 +1,5 @@
 mt-list-item {
+    // it is here because inside the shadow dom, there is a FOUC (light DOM rendered eagerly)
     > [slot="title"],
     > [slot="header"],
     > .title {
@@ -13,11 +14,11 @@ mt-list-item {
         line-height: 19px;
         color: var(--mt-grey-light, #6b6b6b);
     }
+}
 
-    @media screen and (max-width: 640px) {
-        > [slot="description"],
-        > .description {
-            font-size: var(--mt-h4-sm, 12px);
-        }
+.lt-sm mt-lits-item {
+    > [slot="description"],
+    > .description {
+        font-size: var(--mt-h4-sm, 12px);
     }
 }

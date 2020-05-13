@@ -1,4 +1,7 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, Element, State } from '@stencil/core';
+import { services$ } from '../../util/services';
+
+type CSSStyle = { [ K in keyof CSSStyleDeclaration ]: CSSStyleDeclaration[ K ] extends string ? CSSStyleDeclaration[ K ] : never };
 
 @Component({
     tag: 'mt-grid',
@@ -10,13 +13,39 @@ export class MtGrid {
     @Prop() rowGap: string = '60px';
     @Prop() columnGap: string = '110px';
     @Prop() maxWidth: string = '1600px';
-    @Prop() gridTemplateComumns: string = 'repeat(auto-fit, minmax(200px, 1fr))';
+    @Prop() gridTemplateColumns: string = 'repeat(auto-fit, minmax(200px, 1fr))';
+    @Element() element: HTMLElement;
+
+    @State() style: Partial<CSSStyle> = {};
+
+
+    @Watch('rowGap')
+    @Watch('columnGap')
+    @Watch('maxWidth')
+    @Watch('gridTemplateColumns')
+    async propChanged(_newV, _oldV, propName: string) {
+        const { responsiveProp } = await services$;
+
+        responsiveProp.add<string>(this.element, propName, this[ propName ], (prop, value, _bp) => {
+            this.style = { ... this.style, [ prop ]: value };
+        });
+    }
+
+
+    componentWillLoad() {
+        this.propChanged(undefined, undefined, 'rowGap');
+        this.propChanged(undefined, undefined, 'columnGap');
+        this.propChanged(undefined, undefined, 'maxWidth');
+        this.propChanged(undefined, undefined, 'gridTemplateColumns');
+    }
+
+
 
     render() {
-        const { rowGap, columnGap, maxWidth, gridTemplateComumns } = this;
+        // const { rowGap, columnGap, maxWidth, gridTemplateColumns } = this;
 
         return (
-            <Host style={{ rowGap: rowGap, columnGap, maxWidth, gridTemplateComumns }}>
+            <Host style={this.style}>
                 <slot></slot>
             </Host>
         );

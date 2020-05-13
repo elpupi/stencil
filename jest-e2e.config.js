@@ -1,0 +1,4 @@
+module.exports = {
+    ...require('./jest-config/jest-common.config'),
+    testRegex: `${process.cwd()}/e2e/.+\\.spec\\.ts`,
+};
