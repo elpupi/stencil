@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, Prop, Watch, h, Host } from '@stencil/core';
+import { Component, ComponentInterface, Prop, Watch, h, Host, State } from '@stencil/core';
 import { MtListItem } from './list-item/list-item';
 
 
@@ -11,7 +11,9 @@ import { MtListItem } from './list-item/list-item';
 export class MtCompactList implements ComponentInterface {
     @Prop() header: string;
     @Prop() image: string;
-    @Prop({ attribute: 'items' }) items: MtListItem[] = [];
+    @Prop() items: string;
+
+    @State() listItems: MtListItem[];
 
 
     componentWillLoad() {
@@ -21,7 +23,7 @@ export class MtCompactList implements ComponentInterface {
 
     @Watch('items')
     itemsChanged(newValue: string | MtListItem[]) {
-        this.items = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
+        this.listItems = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     }
 
 
@@ -31,7 +33,7 @@ export class MtCompactList implements ComponentInterface {
                 <slot name="image"></slot>
                 {this.image && <img class="image" src={this.image} />}
 
-                <div class="block">
+                <div class="list-block">
                     <slot name="title"></slot>
                     <slot name="header"></slot> {/* synonym */}
                     {this.header && <h4 class="title">{this.header}</h4>}
@@ -42,7 +44,7 @@ export class MtCompactList implements ComponentInterface {
                             <slot ></slot>
                         </li>
 
-                        {this.items && this.items.map(item =>
+                        {this.listItems && this.listItems.map(item =>
                             <mt-list-item>
                                 <h4 slot="title">{item.header}</h4>
                                 <p slot="description">{item.description}</p>

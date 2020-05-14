@@ -5,7 +5,6 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MtListItem, } from "./components/list/compact-list/list-item/list-item";
 import { BreakPoint, } from "./responsive";
 import { MtTildaShortPolicyItem, } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
 import { MtTildaAccordeonItem, } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
@@ -35,7 +34,7 @@ export namespace Components {
     interface MtCompactList {
         "header": string;
         "image": string;
-        "items": MtListItem[];
+        "items": string;
     }
     interface MtGrid {
         "columnGap": string;
@@ -51,6 +50,7 @@ export namespace Components {
     }
     interface MtServices {
         "breakpoints": BreakPoint[];
+        "responsive": boolean;
     }
     interface MtSwitchButton {
         "leftText": string;
@@ -281,7 +281,7 @@ declare namespace LocalJSX {
     interface MtCompactList {
         "header"?: string;
         "image"?: string;
-        "items"?: MtListItem[];
+        "items"?: string;
     }
     interface MtGrid {
         "columnGap"?: string;
@@ -297,6 +297,7 @@ declare namespace LocalJSX {
     }
     interface MtServices {
         "breakpoints"?: BreakPoint[];
+        "responsive"?: boolean;
     }
     interface MtSwitchButton {
         "leftText"?: string;

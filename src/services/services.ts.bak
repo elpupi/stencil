@@ -1,15 +1,12 @@
-import { isMobile as isMobileService, BreakPoint, LAYOUT_BREAKPOINTS, MediaQuery, BreakpointObserver, AddResponsiveClasses, ResponsiveProp } from '../responsive';
+/* import { isMobile as isMobileService, BreakPoint, LAYOUT_BREAKPOINTS, MediaQuery, BreakpointObserver, AddResponsiveClasses, ResponsiveProp } from '../responsive';
 import { assignRecursive, AssignOptions } from '@upradata/util';
 import { EVENTS, dispatchCustomEvent } from './custom-events';
 import { ReplaySubject } from 'rxjs';
+import { ResponsiveServices } from '../responsive/services';
+
 
 export class MT {
-    isMobile: boolean = undefined;
-    breakpoints: BreakPoint[] = undefined;
-    mediaQuery: MediaQuery = undefined;
-    breakpointObserver: BreakpointObserver = undefined;
-    addResponsiveClasses: AddResponsiveClasses = undefined;
-    responsiveProp: ResponsiveProp = undefined;
+    responsive: ResponsiveServices;
 }
 
 
@@ -81,3 +78,4 @@ export const services$ = new Promise<MT>((res, _rej) => {
 
 
 export const servicesObs$ = loaded$.asObservable();
+ */

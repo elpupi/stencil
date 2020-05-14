@@ -3,15 +3,16 @@
 }
 
 // slot[name="image"]
-::slotted([slot="image"]),
+/* ::slotted([slot="image"]),
 .image {
     display: block;
     width: 30px;
     height: 30px;
     flex-shrink: 0;
-}
+} */
 
-// slot[name="title"]
+slot[name="title"],
+slot[name="header"],
 ::slotted([slot="title"]),
 ::slotted([slot="header"]),
 .title {

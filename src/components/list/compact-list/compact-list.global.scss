@@ -9,12 +9,12 @@ mt-compact-list {
         flex-shrink: 0;
     }
 
-    [class*="mt-compact-list"] > [slot="title"],
-    [class*="mt-compact-list"] > [slot="header"],
-    [class*="mt-compact-list"] > .title {
+    /* .list-block > [slot="title"],
+    .list-block > [slot="header"],
+    .list-block > .title {
         display: block;
         color: var(--mt-grey-middle, #3f3f3f);
         font-size: var(--mt-h4, 13px);
         margin-left: 20px;
-    }
+    } */
 }

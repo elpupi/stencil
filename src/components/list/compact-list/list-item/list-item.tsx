@@ -17,6 +17,7 @@ export class MtListItem implements ComponentInterface {
                 {this.header && <span class="title">{this.header}</span>}
                 <slot name="title"></slot>
                 <slot name="header"></slot> {/* synonym */}
+                
                 {this.description && <span class="description">{this.description}</span>}
                 <slot name="description"></slot>
             </Host>

@@ -56,7 +56,7 @@ export class MtTildaShortPolicy {
                                                 <h4 slot="title">{catItem.header}</h4>
                                                 <img slot="image" src={catItem.image} />
 
-                                                {catItem.items.map(item =>
+                                                {catItem.listItems.map(item =>
                                                     <mt-list-item>
                                                         <h4 slot="title">{item.header}</h4>
                                                         <p slot="description">{item.description}</p>

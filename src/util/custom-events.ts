@@ -8,5 +8,6 @@ export const dispatchCustomEvent = (eventName: string, options: { element?: Even
 
 
 export const EVENTS = {
-    SERVICE_LOADED: 'mt-service-loaded'
+    SERVICES_LOADED: 'mt-services-loaded',
+    SERVICE_LOADED: (name: string) => `mt-services-loaded/${name}`
 };
