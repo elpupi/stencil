@@ -9,6 +9,10 @@ import { BreakPoint, } from "./responsive";
 import { MtTildaShortPolicyItem, } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
 import { MtTildaAccordeonItem, } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
 export namespace Components {
+    interface ElTest {
+        "array": any[];
+        "prop": string;
+    }
     interface MtBlockTitle {
         "content": string;
     }
@@ -98,6 +102,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLElTestElement extends Components.ElTest, HTMLStencilElement {
+    }
+    var HTMLElTestElement: {
+        prototype: HTMLElTestElement;
+        new (): HTMLElTestElement;
+    };
     interface HTMLMtBlockTitleElement extends Components.MtBlockTitle, HTMLStencilElement {
     }
     var HTMLMtBlockTitleElement: {
@@ -231,6 +241,7 @@ declare global {
         new (): HTMLTildaAccordeonBlockElement;
     };
     interface HTMLElementTagNameMap {
+        "el-test": HTMLElTestElement;
         "mt-block-title": HTMLMtBlockTitleElement;
         "mt-blog": HTMLMtBlogElement;
         "mt-blog-alinea": HTMLMtBlogAlineaElement;
@@ -256,6 +267,10 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface ElTest {
+        "array"?: any[];
+        "prop"?: string;
+    }
     interface MtBlockTitle {
         "content"?: string;
     }
@@ -343,6 +358,7 @@ declare namespace LocalJSX {
     interface TildaAccordeonBlock {
     }
     interface IntrinsicElements {
+        "el-test": ElTest;
         "mt-block-title": MtBlockTitle;
         "mt-blog": MtBlog;
         "mt-blog-alinea": MtBlogAlinea;
@@ -371,6 +387,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "el-test": LocalJSX.ElTest & JSXBase.HTMLAttributes<HTMLElTestElement>;
             "mt-block-title": LocalJSX.MtBlockTitle & JSXBase.HTMLAttributes<HTMLMtBlockTitleElement>;
             "mt-blog": LocalJSX.MtBlog & JSXBase.HTMLAttributes<HTMLMtBlogElement>;
             "mt-blog-alinea": LocalJSX.MtBlogAlinea & JSXBase.HTMLAttributes<HTMLMtBlogAlineaElement>;

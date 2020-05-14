@@ -30,15 +30,16 @@ export class MtTest {
 
 
     @Watch('array')
-    watchArray(newValue: any, _oldValue: any, propName: string) {
+    watchArray(newValue: any) {
         this.array = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
-        console.log({ array: this.array, propName });
+        console.log({ array: this.array, propName: 'width' });
     }
 
     componentWillLoad() {
-        console.log({ 'willLoad': this.content });
+        console.log('willLoad', { content: this.content });
         this.contentChanged(this.content, this.content, 'content');
         this.widthChanged();
+        this.watchArray(this.array);
     }
     componentDidLoad() {
         console.log({ 'didLoad': this.content });
