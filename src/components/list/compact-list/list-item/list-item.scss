@@ -21,7 +21,7 @@
     color: var(--mt-grey-light, #6b6b6b);
 }
 
-@media screen and (max-width: 640px) {
+.lt-sm {
     ::slotted([slot="description"]),
     .description {
         font-size: var(--mt-h4-sm, 12px);

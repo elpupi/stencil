@@ -17,6 +17,8 @@ const includePathOptions = {
 export const config: Config = {
     namespace: 'upradata',
     taskQueue: 'async',
+    excludeUnusedDependencies: true,
+    buildEs5: false,
     plugins: [
         // includePaths(includePathOptions),
         sass(),

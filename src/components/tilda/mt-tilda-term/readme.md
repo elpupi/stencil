@@ -9,6 +9,7 @@
 
 | Property | Attribute | Description | Type                     | Default     |
 | -------- | --------- | ----------- | ------------------------ | ----------- |
+| `footer` | `footer`  |             | `string`                 | `undefined` |
 | `header` | `header`  |             | `string`                 | `undefined` |
 | `intro`  | `intro`   |             | `string`                 | `undefined` |
 | `items`  | --        |             | `MtTildaAccordeonItem[]` | `[]`        |

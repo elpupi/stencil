@@ -1,8 +1,8 @@
-import { EVENTS, dispatchCustomEvent } from '../util/custom-events';
+import { EVENTS } from '../util/custom-events';
 import { ReplaySubject } from 'rxjs';
 import { LoadServices, MtServices, MtServicesConfig, Service, LoadServicesModule } from './types';
 import { entries, ObjectOf, assignRecursive, AssignOptions } from '@upradata/util';
-
+import { dispatchCustomEvent } from '@upradata/browser-util';
 
 export let services: MtServices = {} as any;
 const loaded$ = new ReplaySubject<void>(1);
