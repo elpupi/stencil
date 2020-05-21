@@ -1,6 +1,8 @@
 import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { BreakPoint, LAYOUT_BREAKPOINTS/* , isMobile, MediaQuery, BreakpointObserver, AddResponsiveClasses, ResponsiveProp */ } from '../../responsive';
 import { MtServicesConfig } from '../../services';
+import { EVENTS } from '../../util/custom-events';
+
 // import { MTServices } from './mt';
 
 // const isPrimitive = (v: any) => [ 'string', 'boolean', 'number' ].some(type => typeof v === type);
@@ -18,17 +20,7 @@ export class MtServices {
     @Prop({ attribute: 'breakpoints' }) breakpoints: BreakPoint[] = LAYOUT_BREAKPOINTS;
     @Prop() responsive: boolean = true;
 
-    /* @Watch('isMobile')
-    @Watch('breakpoints')
-    @Watch('mediaQuery')
-    @Watch('breakpointObserver')
-    @Watch('responsiveClasses')
-    @Watch('responsiveProps')
-    watchBreakpoints(newValue: any, oldValue: any, propName: keyof MtServices) {
-        this[ propName ] = typeof oldValue === 'object' && typeof newValue !== 'object' ? JSON.parse(newValue) : newValue;
-         if (newValue)
-             this.enableService(propName);
-    } */
+
 
     @Watch('breakpoints')
     watchBreakpoints(newValue: BreakPoint[] | string) {
@@ -38,13 +30,19 @@ export class MtServices {
     componentWillLoad() {
         this.watchBreakpoints(this.breakpoints);
         import('../../services/load-services').then(({ loadServices }) => {
-            const config: Partial<MtServicesConfig> = {
+            const config: MtServicesConfig = {
                 services: {
-                    responsive: { breakpoints: this.breakpoints }
+                    responsive: {
+                        loadServicesModule: import('../../responsive/services'),
+                        config: { breakpoints: this.breakpoints }
+                    }
                 },
-                include: {
-                    responsive: this.responsive
-                }
+                windowGlobal: 'mt',
+                include: undefined,
+                exclude: undefined,
+                dispatchEvents: true,
+                servicesLoadedEventName: EVENTS.SERVICES_LOADED,
+                serviceLoadedEventName: EVENTS.SERVICE_LOADED
             };
 
             loadServices(config);
