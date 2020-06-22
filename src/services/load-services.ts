@@ -1,7 +1,7 @@
 import { ReplaySubject } from 'rxjs';
 import { MtServicesConfig, MtServices } from './types';
 import { loadServices as load } from '@upradata/browser-util';
-import { Function1 } from '@upradata/util/lib-esm';
+import { Function1 } from '@upradata/util';
 
 
 const loaded$ = new ReplaySubject<MtServices>(1);

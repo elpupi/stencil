@@ -36,7 +36,6 @@ Type: `Promise<void>`
 - [mt-blog](../../mt-blog)
 - [mt-blog-block](../../mt-blog/mt-blog-block)
 - [mt-blog-title](../../mt-blog/helpers)
-- [mt-tilda-rec](../mt-tilda-rec)
 - [mt-tilda-accordeon](../tilda-accordeon)
 - [mt-tilda-accordeon-item](../tilda-accordeon/tilda-accordeon-item)
 - [mt-tilda-accordeon-header](../tilda-accordeon/tilda-accordeon-header)
@@ -50,7 +49,6 @@ graph TD;
   mt-tilda-short-policy --> mt-blog
   mt-tilda-short-policy --> mt-blog-block
   mt-tilda-short-policy --> mt-blog-title
-  mt-tilda-short-policy --> mt-tilda-rec
   mt-tilda-short-policy --> mt-tilda-accordeon
   mt-tilda-short-policy --> mt-tilda-accordeon-item
   mt-tilda-short-policy --> mt-tilda-accordeon-header

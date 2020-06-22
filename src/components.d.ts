@@ -5,9 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { BreakPoint, } from "./responsive";
-import { MtTildaShortPolicyItem, } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
-import { MtTildaAccordeonItem, } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
+import { BreakPoint } from "./responsive";
+import { InitBlock } from "./components/tilda/util/init-block";
+import { MtTildaShortPolicyItem } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
+import { MtTildaAccordeonItem } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
 export namespace Components {
     interface ElTest {
         "array": any[];
@@ -66,28 +67,32 @@ export namespace Components {
         "width": string;
     }
     interface MtTildaAccordeon {
+        "init": (force?: boolean) => Promise<void>;
+        "noShadow": boolean;
+    }
+    interface MtTildaAccordeonBlock {
     }
     interface MtTildaAccordeonContent {
-    }
-    interface MtTildaAccordeonHeader {
+        "content": string;
+        "header": string;
     }
     interface MtTildaAccordeonItem {
         "content": string;
         "header": string;
     }
     interface MtTildaRec {
+        "auto": boolean;
         "blockid": string;
-        "init": boolean;
+        "initBlock": (force?: boolean) => Promise<void>;
         "recid": string;
+        "tildaBlock"?: InitBlock | InitBlock[];
     }
     interface MtTildaShortPolicy {
         "addItem": (item: MtTildaShortPolicyItem) => Promise<void>;
         "date": string;
         "footer": string;
-        "header": {
-            title: string;
-            company: string;
-        };
+        "header": { title: string; company: string; };
+        "init": () => Promise<void>;
         "intro": string;
         "items": MtTildaShortPolicyItem[];
     }
@@ -95,10 +100,9 @@ export namespace Components {
         "addItem": (item: MtTildaAccordeonItem) => Promise<void>;
         "footer": string;
         "header": string;
+        "init": (force?: boolean) => Promise<void>;
         "intro": string;
         "items": MtTildaAccordeonItem[];
-    }
-    interface TildaAccordeonBlock {
     }
 }
 declare global {
@@ -198,17 +202,17 @@ declare global {
         prototype: HTMLMtTildaAccordeonElement;
         new (): HTMLMtTildaAccordeonElement;
     };
+    interface HTMLMtTildaAccordeonBlockElement extends Components.MtTildaAccordeonBlock, HTMLStencilElement {
+    }
+    var HTMLMtTildaAccordeonBlockElement: {
+        prototype: HTMLMtTildaAccordeonBlockElement;
+        new (): HTMLMtTildaAccordeonBlockElement;
+    };
     interface HTMLMtTildaAccordeonContentElement extends Components.MtTildaAccordeonContent, HTMLStencilElement {
     }
     var HTMLMtTildaAccordeonContentElement: {
         prototype: HTMLMtTildaAccordeonContentElement;
         new (): HTMLMtTildaAccordeonContentElement;
-    };
-    interface HTMLMtTildaAccordeonHeaderElement extends Components.MtTildaAccordeonHeader, HTMLStencilElement {
-    }
-    var HTMLMtTildaAccordeonHeaderElement: {
-        prototype: HTMLMtTildaAccordeonHeaderElement;
-        new (): HTMLMtTildaAccordeonHeaderElement;
     };
     interface HTMLMtTildaAccordeonItemElement extends Components.MtTildaAccordeonItem, HTMLStencilElement {
     }
@@ -234,12 +238,6 @@ declare global {
         prototype: HTMLMtTildaTermElement;
         new (): HTMLMtTildaTermElement;
     };
-    interface HTMLTildaAccordeonBlockElement extends Components.TildaAccordeonBlock, HTMLStencilElement {
-    }
-    var HTMLTildaAccordeonBlockElement: {
-        prototype: HTMLTildaAccordeonBlockElement;
-        new (): HTMLTildaAccordeonBlockElement;
-    };
     interface HTMLElementTagNameMap {
         "el-test": HTMLElTestElement;
         "mt-block-title": HTMLMtBlockTitleElement;
@@ -257,13 +255,12 @@ declare global {
         "mt-switch-button": HTMLMtSwitchButtonElement;
         "mt-test": HTMLMtTestElement;
         "mt-tilda-accordeon": HTMLMtTildaAccordeonElement;
+        "mt-tilda-accordeon-block": HTMLMtTildaAccordeonBlockElement;
         "mt-tilda-accordeon-content": HTMLMtTildaAccordeonContentElement;
-        "mt-tilda-accordeon-header": HTMLMtTildaAccordeonHeaderElement;
         "mt-tilda-accordeon-item": HTMLMtTildaAccordeonItemElement;
         "mt-tilda-rec": HTMLMtTildaRecElement;
         "mt-tilda-short-policy": HTMLMtTildaShortPolicyElement;
         "mt-tilda-term": HTMLMtTildaTermElement;
-        "tilda-accordeon-block": HTMLTildaAccordeonBlockElement;
     }
 }
 declare namespace LocalJSX {
@@ -325,27 +322,28 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface MtTildaAccordeon {
+        "noShadow"?: boolean;
+    }
+    interface MtTildaAccordeonBlock {
     }
     interface MtTildaAccordeonContent {
-    }
-    interface MtTildaAccordeonHeader {
+        "content"?: string;
+        "header"?: string;
     }
     interface MtTildaAccordeonItem {
         "content"?: string;
         "header"?: string;
     }
     interface MtTildaRec {
+        "auto"?: boolean;
         "blockid"?: string;
-        "init"?: boolean;
         "recid"?: string;
+        "tildaBlock"?: InitBlock | InitBlock[];
     }
     interface MtTildaShortPolicy {
         "date"?: string;
         "footer"?: string;
-        "header"?: {
-            title: string;
-            company: string;
-        };
+        "header"?: { title: string; company: string; };
         "intro"?: string;
         "items"?: MtTildaShortPolicyItem[];
     }
@@ -354,8 +352,6 @@ declare namespace LocalJSX {
         "header"?: string;
         "intro"?: string;
         "items"?: MtTildaAccordeonItem[];
-    }
-    interface TildaAccordeonBlock {
     }
     interface IntrinsicElements {
         "el-test": ElTest;
@@ -374,13 +370,12 @@ declare namespace LocalJSX {
         "mt-switch-button": MtSwitchButton;
         "mt-test": MtTest;
         "mt-tilda-accordeon": MtTildaAccordeon;
+        "mt-tilda-accordeon-block": MtTildaAccordeonBlock;
         "mt-tilda-accordeon-content": MtTildaAccordeonContent;
-        "mt-tilda-accordeon-header": MtTildaAccordeonHeader;
         "mt-tilda-accordeon-item": MtTildaAccordeonItem;
         "mt-tilda-rec": MtTildaRec;
         "mt-tilda-short-policy": MtTildaShortPolicy;
         "mt-tilda-term": MtTildaTerm;
-        "tilda-accordeon-block": TildaAccordeonBlock;
     }
 }
 export { LocalJSX as JSX };
@@ -403,13 +398,12 @@ declare module "@stencil/core" {
             "mt-switch-button": LocalJSX.MtSwitchButton & JSXBase.HTMLAttributes<HTMLMtSwitchButtonElement>;
             "mt-test": LocalJSX.MtTest & JSXBase.HTMLAttributes<HTMLMtTestElement>;
             "mt-tilda-accordeon": LocalJSX.MtTildaAccordeon & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonElement>;
+            "mt-tilda-accordeon-block": LocalJSX.MtTildaAccordeonBlock & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonBlockElement>;
             "mt-tilda-accordeon-content": LocalJSX.MtTildaAccordeonContent & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonContentElement>;
-            "mt-tilda-accordeon-header": LocalJSX.MtTildaAccordeonHeader & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonHeaderElement>;
             "mt-tilda-accordeon-item": LocalJSX.MtTildaAccordeonItem & JSXBase.HTMLAttributes<HTMLMtTildaAccordeonItemElement>;
             "mt-tilda-rec": LocalJSX.MtTildaRec & JSXBase.HTMLAttributes<HTMLMtTildaRecElement>;
             "mt-tilda-short-policy": LocalJSX.MtTildaShortPolicy & JSXBase.HTMLAttributes<HTMLMtTildaShortPolicyElement>;
             "mt-tilda-term": LocalJSX.MtTildaTerm & JSXBase.HTMLAttributes<HTMLMtTildaTermElement>;
-            "tilda-accordeon-block": LocalJSX.TildaAccordeonBlock & JSXBase.HTMLAttributes<HTMLTildaAccordeonBlockElement>;
         }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
-    tag: 'tilda-accordeon-block',
+    tag: 'mt-tilda-accordeon-block',
     styleUrl: 'tilda-accordeon-block.scss',
     shadow: false,
     scoped: true

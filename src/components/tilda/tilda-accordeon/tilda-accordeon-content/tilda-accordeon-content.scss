@@ -2,6 +2,29 @@
     display: block;
 }
 
+.t668__header {
+    padding-left: 70px;
+}
+
+.lt-sm :host {
+    .t-name_xl {
+        font-size: 16px;
+    }
+
+    .t668__icon,
+    .t668__icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .t668__circle {
+        width: 36px;
+
+        /* padding: 8px => 20 + 16 */
+        height: 36px;
+    }
+}
+
 .t668__content {
     padding: 0 70px 50px 70px;
     margin-top: 20px;

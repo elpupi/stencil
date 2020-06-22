@@ -1,30 +1,75 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, h, Method } from '@stencil/core';
+import { ensureArray } from '@upradata/util/';
+import { findRec, initBlock, InitBlock } from '../util/init-block';
 
-declare const $: any;
 
 @Component({
     tag: 'mt-tilda-rec',
     shadow: false,
-    styles: 'mt-tilda-rec { display: block;}'
+    scoped: true,
+    styles: ':host { display: block;}'
 })
 export class MtTildaRec {
     @Prop() recid: string;
     @Prop() blockid: string;
-    @Prop() init: boolean = true;
+    @Prop() auto: boolean = true;
+    @Prop() tildaBlock?: InitBlock | InitBlock[] = [];
+    isInit = new WeakMap<InitBlock, boolean>();
 
-    componentWillLoad() {
-        const recid = this.recid.replace(/^rec/, '');
-        const funcName = `t${this.blockid}_init`;
 
-        try {
-            if (this.init) {
-                // console.log(`Calling ${funcName}(${recid})`);
-                window[ funcName ] && window[ funcName ](recid);
+    @Method()
+    async initBlock(force: boolean = false) {
+        let blocks: InitBlock[] = [];
+
+        if (this.blockid && this.recid) {
+            const blockids = this.blockid.split(',').map(b => b.trim());
+            const recids = this.recid.split(',').map(b => b.trim());
+
+            if (recids.length === 1)
+                blocks = blockids.map(blockid => ({ blockid, recid: this.recid }));
+            else {
+                if (blockids.length !== recids.length)
+                    console.error(`Error in MtTildaRec: blockid and recid must have the same size or recid must be only one`);
+                else
+                    blocks = blockids.map((blockid, i) => ({ blockid, recid: recids[ i ] }));
             }
-        } catch (e) {
-            console.error(`Error while calling the tilda init method: ${funcName}`, e.message, e);
+        }
+
+        blocks = blocks.concat(...ensureArray(this.tildaBlock));
+
+        for (let { blockid, recid, element } of blocks) {
+
+            if (!recid && element) {
+                const recEl = findRec(element);
+                if (recEl)
+                    recid = recEl.id;
+            }
+
+            if (recid && blockid) {
+                const initOpts = { blockid, recid };
+
+                if (!this.isInit.get(initOpts) || force) {
+                    const init = initBlock({ blockid, recid });
+
+                    if (init)
+                        this.isInit.set(initOpts, true);
+                }
+            } else
+                console.warn(`Could not find the html block with a #rec... id to initialize the tilda component with the name "${blockid}"`);
         }
     }
+
+
+    /* componentWillLoad() {
+        if (this.auto)
+            this.initBlock();
+    } */
+
+    componentDidLoad() {
+        if (this.auto)
+            this.initBlock();
+    }
+
 
     render() {
         return (
