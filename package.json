@@ -1,73 +1,78 @@
 {
-	"name": "@upradata/stencil-components",
-	"version": "1.0.2",
-	"description": "Collection Of Stencil Components",
-	"author": {
-		"name": "Thomas Milotti",
-		"email": "thomas.milotti@gmail.com",
-		"url": "https://github.com/milottit"
-	},
-	"repository": {
-		"url": "https://github.com/milottit/stencil.git"
-	},
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"es2015": "dist/esm/index.mjs",
-	"es2017": "dist/esm/index.mjs",
-	"types": "dist-prod/types/index.d.ts",
-	"collection": "dist/collection/collection-manifest.json",
-	"collection:main": "dist/collection/index.js",
-	"unpkg": "dist/upradata.js",
-	"files": [
-		"dist/",
-		"dist-prod/",
-		"loader/"
-	],
-	"scripts": {
-		"build": "stencil build --docs",
-		"start": "stencil build --dev --watch --serve --no-open",
-		"test": "stencil test --spec --e2e",
-		"test.watch": "stencil test --spec --e2e --watchAll",
-		"test:non-components": "npx jest --verbose false --config jest-ut.config.js",
-		"generate": "stencil generate",
-		"github-push": "npm run build && npm version patch && git push && git push --tags",
-		"npm-publish": "npm run build && npm publish --access public",
-		"watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
-	},
-	"devDependencies": {
-		"@stencil/core": "^1.13.0",
-		"@stencil/postcss": "^1.0.1",
-		"@stencil/sass": "^1.3.1",
-		"@types/autoprefixer": "^9.7.2",
-		"@types/jest": "^24.9.0",
-		"@types/node": "^14.0.1",
-		"@types/resize-observer-browser": "^0.1.3",
-		"ansi-colors": "^4.1.1",
-		"autoprefixer": "^9.7.6",
-		"csvtojson": "^2.0.10",
-		"dart-sass": "^1.25.0",
-		"esm": "^3.2.25",
-		"jest": "^24.9.0",
-		"jest-environment-node": "^26.0.1",
-		"nodemon": "^2.0.3",
-		"puppeteer": "^3.0.4",
-		"rollup-plugin-includepaths": "^0.2.3",
-		"sass-lint": "^1.13.1",
-		"ts-jest": "^24.3.0",
-		"tsconfig-paths": "^3.9.0",
-		"typescript": "^3.9.2"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"@duetds/components": "^4.1.1",
-		"rxjs": "^6.5.5"
-	},
-	"local": {
-		"dependencies": {
-			"flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
-			"@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
-			"@upradata/util": "link:/home/milottit/Libraries/Util/util@1.0.24",
-			"@upradata/browser-util": "link:/home/milottit/Libraries/Util/browser-util@1.0.21"
-		}
-	}
+    "name": "@upradata/stencil-components",
+    "version": "1.0.2",
+    "description": "Collection Of Stencil Components",
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
+    "repository": {
+        "url": "https://github.com/milottit/stencil.git"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "es2015": "dist/esm/index.mjs",
+    "es2017": "dist/esm/index.mjs",
+    "types": "dist-prod/types/index.d.ts",
+    "collection": "dist/collection/collection-manifest.json",
+    "collection:main": "dist/collection/index.js",
+    "unpkg": "dist/upradata.js",
+    "files": [
+        "dist/",
+        "dist-prod/",
+        "loader/"
+    ],
+    "scripts": {
+        "build": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
+        "build:docs": "stencil build --docs",
+        "start": "stencil build --dev --watch --serve --no-open",
+        "test": "stencil test --spec --e2e",
+        "test.watch": "stencil test --spec --e2e --watchAll",
+        "test:non-components": "npx jest --verbose false --config jest-ut.config.js",
+        "generate": "stencil generate",
+        "github-push": "npm run build && npm version patch && git push && git push --tags",
+        "npm-publish": "npm run build && npm publish --access public",
+        "watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^13.0.0",
+        "@stencil/core": "1.14.0",
+        "@stencil/postcss": "^1.0.1",
+        "@stencil/sass": "^1.3.1",
+        "@types/autoprefixer": "^9.7.2",
+        "@types/jest": "^24.9.0",
+        "@types/node": "^14.0.13",
+        "@types/resize-observer-browser": "^0.1.3",
+        "ansi-colors": "^4.1.1",
+        "autoprefixer": "^9.8.0",
+        "csvtojson": "^2.0.10",
+        "dart-sass": "^1.25.0",
+        "esm": "^3.2.25",
+        "jest": "^24.9.0",
+        "jest-environment-node": "^26.0.1",
+        "nodemon": "^2.0.4",
+        "puppeteer": "^3.0.4",
+        "rollup": "^2.17.1",
+        "rollup-plugin-includepaths": "^0.2.3",
+        "sass-lint": "^1.13.1",
+        "ts-jest": "^24.3.0",
+        "tsconfig-paths": "^3.9.0",
+        "typescript": "^3.9.5",
+        "typescript-mix": "^3.1.3"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@duetds/components": "^4.1.1",
+        "rxjs": "^6.5.5"
+    },
+    "local": {
+        "dependencies": {
+            "flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
+            "@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
+            "@upradata/util": "link:/home/milottit/Libraries/Util/util@1.0.24",
+            "@upradata/browser-util": "link:/home/milottit/Libraries/Util/browser-util@1.0.21",
+            "@upradata/decorator": "link:/home/milottit/Libraries/Util/decorators@1.0.1"
+        }
+    }
 }

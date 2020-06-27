@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Method, Element, forceUpdate } from '@stencil/core';
 import { MtTildaAccordeonItem } from '../tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item';
 
 
@@ -9,6 +9,7 @@ import { MtTildaAccordeonItem } from '../tilda-accordeon/tilda-accordeon-item/ti
     shadow: false,
 })
 export class MtTildaTerm {
+    @Element() element: HTMLElement;
     @Prop() header: string;
     @Prop() intro: string;
     @Prop() footer: string;
@@ -24,6 +25,11 @@ export class MtTildaTerm {
     @Method()
     async init(force?: boolean) {
         return this.accordeon.init(force);
+    }
+
+    @Method()
+    async forceRender() {
+        return forceUpdate(this.element);
     }
 
     render() {
@@ -45,7 +51,7 @@ export class MtTildaTerm {
                         </mt-tilda-accordeon>
                     </mt-tilda-accordeon-block>
 
-                    <mt-blog-block>
+                    <mt-blog-block class="footer">
                         {this.footer && <mt-block-title innerHTML={this.footer}></mt-block-title>}
                         <slot name="footer"></slot>
                         <slot></slot>

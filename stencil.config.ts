@@ -33,11 +33,13 @@ export const config: Config = {
             } */) ]
         })
     ],
-    commonjs: {
-        namedExports: {
-            '../../Util/util/node_modules/.pnpm/registry.npmjs.org/ts-util-is/1.1.3/node_modules/ts-util-is/dist/index.js': [ 'isUndefined', 'isNull' ]
-        }
-    },
+    // commonjs: {
+    // include: '/home/milottit/Libraries/Util/**/node_modules/**/*.js', // /Libraries\/Util\/(.*)\/node_modules/,
+    //     namedExports: {
+    //         // '../../Util/util/node_modules/.pnpm/ts-util-is@1.1.3/node_modules/ts-util-is/dist/index.js': [ 'isUndefined', 'isNull' ],
+    //         '../../Util/util/node_modules/.pnpm/registry.npmjs.org/colors/1.4.0/node_modules/colors/lib/colors.js': [ 'isUndefined', 'isNull' ],
+    //     }
+    // },
     globalStyle: 'src/global/global.scss',
     globalScript: 'src/global/global.ts',
     outputTargets: [

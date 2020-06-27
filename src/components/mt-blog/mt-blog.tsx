@@ -10,7 +10,7 @@ export class MtBlog {
 
     render() {
         return (
-            <Host>
+            <Host class="mt-blog">
                 <slot></slot>
             </Host>
         );

@@ -1,3 +1,7 @@
 :host {
-  display: block;
+    display: block;
+}
+
+.footer:empty {
+    display: none;
 }

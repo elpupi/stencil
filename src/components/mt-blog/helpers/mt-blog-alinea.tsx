@@ -12,9 +12,9 @@ export class MtBlogAlinea {
     render() {
         return (
             <Host class="mt-blog-p">
-                {this.letter && <span class="mt-alinea-letter">{this.letter}</span>}
+                {this.letter && <span class="mt-alinea-letter" innerHTML={`${this.letter}`}></span>}
                 <slot name="letter"></slot>
-                {this.description && <span class="mt-linea-description">{this.description}</span>}
+                {this.description && <span class="mt-linea-description" innerHTML={this.description}></span>}
                 <slot name="description"></slot>
             </Host>
         );

@@ -1,5 +1,6 @@
 @use "./mt-blog.mixin" as *;
 
+#allrecords .mt-blog, // to overwrite Tilda css
 .mt-blog {
     @include mt-blog();
 }

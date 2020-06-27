@@ -99,6 +99,7 @@ export namespace Components {
     interface MtTildaTerm {
         "addItem": (item: MtTildaAccordeonItem) => Promise<void>;
         "footer": string;
+        "forceRender": () => Promise<void>;
         "header": string;
         "init": (force?: boolean) => Promise<void>;
         "intro": string;

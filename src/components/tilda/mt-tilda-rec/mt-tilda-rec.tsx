@@ -14,7 +14,7 @@ export class MtTildaRec {
     @Prop() blockid: string;
     @Prop() auto: boolean = true;
     @Prop() tildaBlock?: InitBlock | InitBlock[] = [];
-    isInit = new WeakMap<InitBlock, boolean>();
+    isInit = new Map<string, boolean>();
 
 
     @Method()
@@ -48,11 +48,11 @@ export class MtTildaRec {
             if (recid && blockid) {
                 const initOpts = { blockid, recid };
 
-                if (!this.isInit.get(initOpts) || force) {
+                if (!this.isInit.get(JSON.stringify(initOpts)) || force) {
                     const init = initBlock({ blockid, recid });
 
                     if (init)
-                        this.isInit.set(initOpts, true);
+                        this.isInit.set(JSON.stringify(initOpts), true);
                 }
             } else
                 console.warn(`Could not find the html block with a #rec... id to initialize the tilda component with the name "${blockid}"`);
