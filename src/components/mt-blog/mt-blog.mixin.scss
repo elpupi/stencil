@@ -7,7 +7,8 @@
     line-height: 1.7;
     font-weight: 300;
 
-    strong {
+    strong,
+    b {
         font-weight: 600;
     }
 
@@ -16,6 +17,14 @@
         font-weight: inherit;
         border-bottom: 1px solid #3586fc;
         box-shadow: none;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    tr {
+        border-bottom: 1px solid #d0d0d0;
     }
 
     blockquote {
