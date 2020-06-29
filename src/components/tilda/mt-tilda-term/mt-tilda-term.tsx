@@ -14,6 +14,9 @@ export class MtTildaTerm {
     @Prop() intro: string;
     @Prop() footer: string;
     @Prop() items: MtTildaAccordeonItem[] = [];
+    @Prop() accordeonShadow: boolean = false;
+    @Prop() popup: boolean = false;
+
     private accordeon: HTMLMtTildaAccordeonElement;
 
 
@@ -42,8 +45,8 @@ export class MtTildaTerm {
                     {this.intro && <mt-blog-block innerHTML={this.intro}></mt-blog-block>}
                     <slot name="intro"></slot>
 
-                    <mt-tilda-accordeon-block >
-                        <mt-tilda-accordeon no-shadow ref={el => this.accordeon = el}>
+                    <mt-tilda-accordeon-block context={this.popup ? 'popup' : 'normal'} background={!this.popup}>
+                        <mt-tilda-accordeon shadow={this.popup || this.accordeonShadow} ref={el => this.accordeon = el}>
                             {this.items && this.items.map(item =>
                                 <mt-tilda-accordeon-item header={item.header} content={item.content}></mt-tilda-accordeon-item>
                             )}

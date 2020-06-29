@@ -28,6 +28,16 @@ Type: `Promise<void>`
 
 
 
+### `init() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ## Dependencies
 
@@ -38,8 +48,6 @@ Type: `Promise<void>`
 - [mt-blog-title](../../mt-blog/helpers)
 - [mt-tilda-accordeon](../tilda-accordeon)
 - [mt-tilda-accordeon-item](../tilda-accordeon/tilda-accordeon-item)
-- [mt-tilda-accordeon-header](../tilda-accordeon/tilda-accordeon-header)
-- [mt-tilda-accordeon-content](../tilda-accordeon/tilda-accordeon-content)
 - [mt-compact-list](../../list/compact-list)
 - [mt-list-item](../../list/compact-list/list-item)
 
@@ -51,11 +59,9 @@ graph TD;
   mt-tilda-short-policy --> mt-blog-title
   mt-tilda-short-policy --> mt-tilda-accordeon
   mt-tilda-short-policy --> mt-tilda-accordeon-item
-  mt-tilda-short-policy --> mt-tilda-accordeon-header
-  mt-tilda-short-policy --> mt-tilda-accordeon-content
   mt-tilda-short-policy --> mt-compact-list
   mt-tilda-short-policy --> mt-list-item
-  mt-tilda-accordeon-item --> mt-tilda-accordeon-header
+  mt-tilda-accordeon --> mt-tilda-rec
   mt-tilda-accordeon-item --> mt-tilda-accordeon-content
   mt-compact-list --> mt-list-item
   style mt-tilda-short-policy fill:#f9f,stroke:#333,stroke-width:4px

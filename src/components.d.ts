@@ -68,9 +68,11 @@ export namespace Components {
     }
     interface MtTildaAccordeon {
         "init": (force?: boolean) => Promise<void>;
-        "noShadow": boolean;
+        "shadow": boolean;
     }
     interface MtTildaAccordeonBlock {
+        "background": boolean;
+        "context": 'normal' | 'popup';
     }
     interface MtTildaAccordeonContent {
         "content": string;
@@ -97,6 +99,7 @@ export namespace Components {
         "items": MtTildaShortPolicyItem[];
     }
     interface MtTildaTerm {
+        "accordeonShadow": boolean;
         "addItem": (item: MtTildaAccordeonItem) => Promise<void>;
         "footer": string;
         "forceRender": () => Promise<void>;
@@ -104,6 +107,7 @@ export namespace Components {
         "init": (force?: boolean) => Promise<void>;
         "intro": string;
         "items": MtTildaAccordeonItem[];
+        "popup": boolean;
     }
 }
 declare global {
@@ -323,9 +327,11 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface MtTildaAccordeon {
-        "noShadow"?: boolean;
+        "shadow"?: boolean;
     }
     interface MtTildaAccordeonBlock {
+        "background"?: boolean;
+        "context"?: 'normal' | 'popup';
     }
     interface MtTildaAccordeonContent {
         "content"?: string;
@@ -349,10 +355,12 @@ declare namespace LocalJSX {
         "items"?: MtTildaShortPolicyItem[];
     }
     interface MtTildaTerm {
+        "accordeonShadow"?: boolean;
         "footer"?: string;
         "header"?: string;
         "intro"?: string;
         "items"?: MtTildaAccordeonItem[];
+        "popup"?: boolean;
     }
     interface IntrinsicElements {
         "el-test": ElTest;

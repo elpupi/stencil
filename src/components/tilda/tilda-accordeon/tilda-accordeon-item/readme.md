@@ -22,13 +22,11 @@
 
 ### Depends on
 
-- [mt-tilda-accordeon-header](../tilda-accordeon-header)
 - [mt-tilda-accordeon-content](../tilda-accordeon-content)
 
 ### Graph
 ```mermaid
 graph TD;
-  mt-tilda-accordeon-item --> mt-tilda-accordeon-header
   mt-tilda-accordeon-item --> mt-tilda-accordeon-content
   mt-tilda-short-policy --> mt-tilda-accordeon-item
   mt-tilda-term --> mt-tilda-accordeon-item

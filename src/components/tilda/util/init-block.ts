@@ -1,4 +1,4 @@
-import { guid } from '@upradata/util';
+import { guid } from '@upradata/browser-util';
 
 export interface InitBlock {
     blockid: string;

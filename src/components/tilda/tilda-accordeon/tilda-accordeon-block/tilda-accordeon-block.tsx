@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
     tag: 'mt-tilda-accordeon-block',
@@ -7,10 +7,12 @@ import { Component, Host, h } from '@stencil/core';
     scoped: true
 })
 export class MtTildaAccordeonBlock {
+    @Prop() context: 'normal' | 'popup' = 'normal';
+    @Prop() background: boolean = true;
 
     render() {
         return (
-            <Host>
+            <Host class={{ [ this.context ]: !!this.context, background: this.background }}>
                 <slot></slot>
             </Host>
         );

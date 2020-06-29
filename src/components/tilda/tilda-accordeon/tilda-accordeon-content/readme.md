@@ -5,20 +5,24 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property  | Attribute | Description | Type     | Default     |
+| --------- | --------- | ----------- | -------- | ----------- |
+| `content` | `content` |             | `string` | `undefined` |
+| `header`  | `header`  |             | `string` | `undefined` |
+
+
 ## Dependencies
 
 ### Used by
 
  - [mt-tilda-accordeon-item](../tilda-accordeon-item)
- - [mt-tilda-short-policy](../../mt-tilda-short-policy)
- - [mt-tilda-term](../../mt-tilda-term)
 
 ### Graph
 ```mermaid
 graph TD;
   mt-tilda-accordeon-item --> mt-tilda-accordeon-content
-  mt-tilda-short-policy --> mt-tilda-accordeon-content
-  mt-tilda-term --> mt-tilda-accordeon-content
   style mt-tilda-accordeon-content fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

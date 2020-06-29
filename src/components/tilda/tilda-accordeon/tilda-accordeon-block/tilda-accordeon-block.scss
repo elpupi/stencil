@@ -1,5 +1,23 @@
 :host {
     display: block;
-    padding: 150px 0;
-    background-color: #eee;
+
+    &.normal {
+        padding: 150px 0;
+    }
+
+    &.popup {
+        padding: 15px 100px;
+    }
+
+    &.background {
+        background-color: #eee;
+    }
+}
+
+.lt-md :host.popup {
+    padding: 15px 20px;
+}
+
+.lt-sm :host.popup {
+    padding: 15px 5px;
 }

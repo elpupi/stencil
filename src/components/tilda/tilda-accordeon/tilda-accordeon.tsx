@@ -11,7 +11,7 @@ import { getId, InitBlock } from '../util/init-block';
 export class MtTildaAccordeon implements ComponentInterface {
     tildaBlock: InitBlock = { recid: getId('mt-tilda-accordeon'), blockid: '668' };
     tildaRec: HTMLMtTildaRecElement;
-    @Prop() noShadow: boolean = false;
+    @Prop() shadow: boolean = true;
 
 
     @Method()
@@ -21,7 +21,7 @@ export class MtTildaAccordeon implements ComponentInterface {
 
     render() {
         return (
-            <Host class={{ 'no-shadow': this.noShadow }}>
+            <Host class={{ shadow: this.shadow }}>
                 <mt-tilda-rec recid={this.tildaBlock.recid} blockid={this.tildaBlock.blockid} ref={el => this.tildaRec = el}>
                     <div class={`t${this.tildaBlock.blockid}`}>
                         <div class="t-container" id="mt-item-list">

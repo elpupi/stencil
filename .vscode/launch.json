@@ -12,6 +12,19 @@
             "webRoot": "${workspaceFolder}/www",
             "sourceMaps": true,
             "smartStep": true,
+        },
+              {
+            "name": "stencil",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/@stencil/core/bin/stencil",
+            "args": [
+                "build", "--dev", "--watch", "--serve", "--no-open",
+            ],
+            "outFiles": [
+                "${workspaceFolder}/lib/**/*.js"
+            ],
+            "sourceMaps": true
         }
     ]
 }

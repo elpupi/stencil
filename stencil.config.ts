@@ -40,6 +40,15 @@ export const config: Config = {
     //         '../../Util/util/node_modules/.pnpm/registry.npmjs.org/colors/1.4.0/node_modules/colors/lib/colors.js': [ 'isUndefined', 'isNull' ],
     //     }
     // },
+    /* commonjs: {
+        include: [ /node_modules/, /lib-esm/ ],
+        namedExports: {
+            '../../Util/util/node_modules/.pnpm/ts-util-is@1.1.3/node_modules/ts-util-is/dist/index.js': [ 'isUndefined', 'isDefined', 'isNull' ],
+            '../../Util/util/lib-esm/is.js': [ 'isUndefined', 'isDefined', 'isNull' ],
+            '/home/milottit/Libraries/Util/util/lib-esm/is.js': [ 'isUndefined', 'isDefined', 'isNull' ],
+        },
+        transformMixedEsModules: false
+    } as any, */
     globalStyle: 'src/global/global.scss',
     globalScript: 'src/global/global.ts',
     outputTargets: [

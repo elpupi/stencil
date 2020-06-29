@@ -12,7 +12,7 @@ export class MtTildaAccordeonItem implements ComponentInterface {
 
     render() {
         return (
-            <Host class="t668__col t-col t-col_12 " style={{ marginBottom: '2px' }} >
+            <Host class="t668__col t-col t-col_12 " style={{ marginBottom: '2px' }}>
                 <div class="t668__accordion">
                     <div class="t668__wrapper">
                         <mt-tilda-accordeon-content header={this.header} content={this.content}>
@@ -22,7 +22,7 @@ export class MtTildaAccordeonItem implements ComponentInterface {
                         </mt-tilda-accordeon-content>
                     </div>
                 </div>
-            </Host >
+            </Host>
         );
     }
 

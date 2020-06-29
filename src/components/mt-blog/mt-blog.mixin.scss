@@ -7,6 +7,33 @@
     line-height: 1.7;
     font-weight: 300;
 
+    @at-root {
+        .lt-md & {
+            font-size: 15px;
+
+            blockquote.mt-tag {
+                font-size: 14px;
+            }
+        }
+
+        .lt-sm & {
+            font-size: 14px;
+
+            blockquote.mt-tag {
+                font-size: 12px;
+            }
+
+            em {
+                font-size: 14px;
+            }
+
+            blockquote {
+                font-size: 14px;
+                margin: 20px 0;
+            }
+        }
+    }
+
     strong,
     b {
         font-weight: 600;
@@ -101,26 +128,5 @@
         #{$selector} {
             margin-top: 10px;
         }
-    }
-}
-
-.lt-sm :host {
-    blockquote.mt-tag {
-        font-size: 12px;
-    }
-
-    em {
-        font-size: 14px;
-    }
-
-    blockquote {
-        font-size: 14px;
-        margin: 20px 0;
-    }
-}
-
-.lt-md :host {
-    blockquote.mt-tag {
-        font-size: 14px;
     }
 }

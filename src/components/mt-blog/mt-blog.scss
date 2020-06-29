@@ -1,6 +1,7 @@
 @use "./mt-blog.mixin" as *;
 
-#allrecords mt-blog.mt-blog, // to overwrite Tilda css
-mt-blog {
+mt-blog,
+#allrecords mt-blog.mt-blog // to overwrite Tilda css
+{
     @include mt-blog();
 }
