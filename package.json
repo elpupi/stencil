@@ -23,7 +23,8 @@
         "loader/"
     ],
     "scripts": {
-        "build": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
+        "build:old": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
+        "build:prod": "stencil build --prod",
         "build:docs": "stencil build --docs",
         "start": "stencil build --dev --watch --serve --no-open",
         "test": "stencil test --spec --e2e",

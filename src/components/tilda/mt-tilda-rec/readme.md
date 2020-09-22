@@ -13,6 +13,7 @@
 | `blockid`    | `blockid` |             | `string`                   | `undefined` |
 | `recid`      | `recid`   |             | `string`                   | `undefined` |
 | `tildaBlock` | --        |             | `InitBlock \| InitBlock[]` | `[]`        |
+| `waitFor`    | --        |             | `() => Promise<void>`      | `undefined` |
 
 
 ## Methods
