@@ -5,6 +5,14 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property     | Attribute    | Description | Type                  | Default    |
+| ------------ | ------------ | ----------- | --------------------- | ---------- |
+| `background` | `background` |             | `boolean`             | `true`     |
+| `context`    | `context`    |             | `"normal" \| "popup"` | `'normal'` |
+
+
 ## Dependencies
 
 ### Used by

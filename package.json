@@ -10,14 +10,14 @@
     "repository": {
         "url": "https://github.com/milottit/stencil.git"
     },
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
+    "main": "dist/index.cjs.js",
+    "module": "dist/index.js",
     "es2015": "dist/esm/index.mjs",
     "es2017": "dist/esm/index.mjs",
     "types": "dist/types/index.d.ts",
     "collection": "dist/collection/collection-manifest.json",
     "collection:main": "dist/collection/index.js",
-    "unpkg": "dist/upradata.js",
+    "unpkg": "dist/upradata/upradata.js",
     "files": [
         "dist/",
         "loader/"
@@ -35,35 +35,35 @@
         "watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^13.0.0",
-        "@stencil/core": "1.15.0",
+        "@rollup/plugin-commonjs": "^15.1.0",
+        "@stencil/core": "2.0.3",
         "@stencil/postcss": "^1.0.1",
         "@stencil/sass": "^1.3.2",
         "@types/autoprefixer": "^9.7.2",
-        "@types/jest": "^26.0.3",
-        "@types/node": "^14.0.14",
+        "@types/jest": "^26.0.14",
+        "@types/node": "^14.11.2",
         "@types/resize-observer-browser": "^0.1.3",
         "ansi-colors": "^4.1.1",
-        "autoprefixer": "^9.8.4",
+        "autoprefixer": "^9.8.6",
         "csvtojson": "^2.0.10",
         "dart-sass": "^1.25.0",
         "esm": "^3.2.25",
-        "jest": "^26.1.0",
-        "jest-environment-node": "^26.1.0",
+        "jest": "^26.4.2",
+        "jest-environment-node": "^26.3.0",
         "nodemon": "^2.0.4",
-        "puppeteer": "^3.3.0",
-        "rollup": "^2.18.1",
-        "rollup-plugin-includepaths": "^0.2.3",
+        "puppeteer": "^5.3.1",
+        "rollup": "^2.28.1",
+        "rollup-plugin-includepaths": "^0.2.4",
         "sass-lint": "^1.13.1",
-        "ts-jest": "^26.1.1",
+        "ts-jest": "^26.4.0",
         "tsconfig-paths": "^3.9.0",
-        "typescript": "^3.9.5",
+        "typescript": "^4.0.3",
         "typescript-mix": "^3.1.3"
     },
     "license": "MIT",
     "dependencies": {
-        "@duetds/components": "^4.4.1",
-        "rxjs": "^6.5.5"
+        "@duetds/components": "^4.10.8",
+        "rxjs": "^6.6.3"
     },
     "local": {
         "dependencies": {

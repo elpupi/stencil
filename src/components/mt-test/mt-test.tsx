@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Watch, Element } from '@stencil/core';
-import { services$ } from '../../services';
+import { servicesPromise$ } from '@upradata/browser-util';
+import { MtModulesServices } from '../../services';
 
 @Component({
     tag: 'mt-test',
@@ -16,7 +17,7 @@ export class MtTest {
 
     @Watch('width')
     widthChanged() {
-        services$.then(({ responsive }) => {
+        servicesPromise$<MtModulesServices>().then(({ responsive }) => {
             responsive.responsiveProp.add<string>(this.element, 'width', this.width, (prop, value, bp) => {
                 console.log({ prop, value, bp });
             });

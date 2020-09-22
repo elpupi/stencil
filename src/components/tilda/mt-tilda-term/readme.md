@@ -14,6 +14,7 @@
 | `header`          | `header`           |             | `string`                 | `undefined` |
 | `intro`           | `intro`            |             | `string`                 | `undefined` |
 | `items`           | --                 |             | `MtTildaAccordeonItem[]` | `[]`        |
+| `popup`           | `popup`            |             | `boolean`                | `false`     |
 
 
 ## Methods

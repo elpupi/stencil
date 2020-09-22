@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Watch, Element, State } from '@stencil/core';
-import { services$ } from '../../services';
+import { servicesPromise$ } from '@upradata/browser-util';
+import { MtModulesServices } from '../../services';
 
 type CSSStyle = { [ K in keyof CSSStyleDeclaration ]: CSSStyleDeclaration[ K ] extends string ? CSSStyleDeclaration[ K ] : never };
 
@@ -24,7 +25,7 @@ export class MtGrid {
     @Watch('maxWidth')
     @Watch('gridTemplateColumns')
     async propChanged(_newV, _oldV, propName: string) {
-        const { responsive } = await services$;
+        const { responsive } = await servicesPromise$<MtModulesServices>();
 
         responsive.responsiveProp.add<string>(this.element, propName, this[ propName ], (prop, value, _bp) => {
             this.style = { ... this.style, [ prop ]: value };

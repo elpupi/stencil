@@ -1,0 +1,18 @@
+/* import { ReplaySubject } from 'rxjs';
+import { MtModulesServicesConfig, MtModulesServices } from './types';
+import { loadServices as load } from '@upradata/browser-util';
+import { Function1 } from '@upradata/util';
+
+
+const loaded$ = new ReplaySubject<MtModulesServices>(1);
+
+export const loadServices = (config: Partial<MtModulesServicesConfig>) => load(config).then((loadedServices: MtModulesServices) => {
+    resolve(loadedServices);
+    loaded$.next(loadedServices);
+});
+
+
+let resolve: Function1<MtModulesServices> = undefined;
+export const services$ = new Promise<MtModulesServices>((res, _rej) => resolve = res);
+export const servicesObs$ = loaded$.asObservable();
+ */

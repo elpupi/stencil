@@ -1,18 +1,15 @@
-import { ResponsiveServices, ResponsiveServicesConfig } from '../responsive/types';
-import { BaseService } from '../util';
-import { ServicesConfig, ServiceConfig } from '@upradata/browser-util';
+import { ModuleResponsiveServices, ModuleResponsiveServicesConfig } from '../responsive/types';
+import { ModulesServicesConfig, ModuleServicesConfig, ModulesServices } from '@upradata/browser-util';
+import { Service } from './service';
 
-export type Service = BaseService | any;
-
-
-export interface MtServices {
-    responsive: ResponsiveServices;
+export interface MtModulesServices extends ModulesServices<Service> {
+    responsive: ModuleResponsiveServices;
 }
 
 
-export class MtServicesConfig extends ServicesConfig<MtServices>{
+export class MtModulesServicesConfig extends ModulesServicesConfig<MtModulesServices, Service>{
 
-    services: {
-        responsive: ServiceConfig<ResponsiveServicesConfig, ResponsiveServices>;
+    modulesServices: {
+        responsive: ModuleServicesConfig<ModuleResponsiveServices, ModuleResponsiveServicesConfig>;
     };
 }

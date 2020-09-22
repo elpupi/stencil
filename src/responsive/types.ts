@@ -4,8 +4,10 @@ import { ResponsiveProp } from './responsive-prop.service';
 import { LAYOUT_BREAKPOINTS } from './responsive-breakpoints';
 import { BreakpointObserver } from './breakpoint-observer.service';
 import { BreakPoint } from './breakpoints';
+import { ModuleServices } from '@upradata/browser-util';
+import { Service } from '../services/service';
 
-export interface ResponsiveServices {
+export interface ModuleResponsiveServices extends ModuleServices<Service> {
     isMobile: boolean;
     breakpoints: BreakPoint[];
     mediaQuery: MediaQuery;
@@ -15,6 +17,6 @@ export interface ResponsiveServices {
 }
 
 
-export class ResponsiveServicesConfig {
+export class ModuleResponsiveServicesConfig {
     breakpoints: BreakPoint[] = LAYOUT_BREAKPOINTS;
 }

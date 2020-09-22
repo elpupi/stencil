@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { postcss } from '@stencil/postcss';
 import autoprefixer from 'autoprefixer';
+import { OutputTargetCopy } from '@stencil/core/internal';
 
 /* import includePaths from 'rollup-plugin-includepaths';
 
@@ -18,7 +19,7 @@ export const config: Config = {
     namespace: 'upradata',
     taskQueue: 'async',
     excludeUnusedDependencies: true,
-    buildEs5: false,
+    // buildEs5: false,
     plugins: [
         // includePaths(includePathOptions),
         sass(),
@@ -54,26 +55,31 @@ export const config: Config = {
     outputTargets: [
         {
             type: 'dist',
-            esmLoaderPath: '../loader'
+            esmLoaderPath: '../loader',
+            copy: [
+                { src: 'fonts/*.woff2', dest: 'static/fonts', warn: true }
+            ]
         },
         {
             type: 'docs-readme'
         },
         {
             type: 'www',
-            serviceWorker: null // disable service workers
+            serviceWorker: null, // disable service workers
+            copy: [
+                { src: 'fonts/*.woff2', dest: 'static/fonts', warn: true }
+            ]
         }
-    ],
-    copy: [
-        { src: 'fonts/*.woff2', dest: 'static/fonts', warn: true }
     ]
 };
 
 const isDev = process.argv.some(arg => arg === '--dev');
 
 if (isDev) {
-    config.copy.push(
-        { src: 'test-components/*', dest: 'static/test/html', warn: true },
-        { src: 'global/tilda*.css', dest: 'static/test/css', warn: true },
-    );
+    for (const target of config.outputTargets.filter(target => (target as OutputTargetCopy).copy)) {
+        (target as OutputTargetCopy).copy.push(
+            { src: 'test-components/*', dest: 'static/test/html', warn: true },
+            { src: 'global/tilda*.css', dest: 'static/test/css', warn: true },
+        );
+    }
 }

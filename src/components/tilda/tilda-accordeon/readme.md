@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type      | Default |
-| ---------- | ----------- | ----------- | --------- | ------- |
-| `noShadow` | `no-shadow` |             | `boolean` | `false` |
+| Property | Attribute | Description | Type      | Default |
+| -------- | --------- | ----------- | --------- | ------- |
+| `shadow` | `shadow`  |             | `boolean` | `true`  |
 
 
 ## Methods
