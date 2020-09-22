@@ -16,8 +16,8 @@ export class MtTildaAccordeonItem implements ComponentInterface {
                 <div class="t668__accordion">
                     <div class="t668__wrapper">
                         <mt-tilda-accordeon-content header={this.header} content={this.content}>
-                            <slot name="header"></slot>
-                            <slot name="content"></slot>
+                            <div slot="header"><slot name="header"></slot></div>
+                            <div slot="content"><slot name="content"></slot></div>
                             <slot></slot>
                         </mt-tilda-accordeon-content>
                     </div>

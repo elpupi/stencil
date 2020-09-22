@@ -34,11 +34,11 @@ export const initBlock = (options: Omit<InitBlock, 'element'>) => {
     }
 };
 
-export const getId = (prefix: string = '') => {
+export const generateUniqueRecId = (prefix: string = '') => {
     let id: string = undefined;
 
     while (!id || document.getElementById(id)) {
-        id = `rec-${prefix}-${guid()}`.replace(/--/g, '-');
+        id = `rec-${prefix}-${guid().substr(0, 6)}`.replace(/--/g, '-');
     }
 
     return id;

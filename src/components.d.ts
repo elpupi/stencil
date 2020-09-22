@@ -88,6 +88,7 @@ export namespace Components {
         "initBlock": (force?: boolean) => Promise<void>;
         "recid": string;
         "tildaBlock"?: InitBlock | InitBlock[];
+        "waitFor": () => Promise<void>;
     }
     interface MtTildaShortPolicy {
         "addItem": (item: MtTildaShortPolicyItem) => Promise<void>;
@@ -346,6 +347,7 @@ declare namespace LocalJSX {
         "blockid"?: string;
         "recid"?: string;
         "tildaBlock"?: InitBlock | InitBlock[];
+        "waitFor"?: () => Promise<void>;
     }
     interface MtTildaShortPolicy {
         "date"?: string;
