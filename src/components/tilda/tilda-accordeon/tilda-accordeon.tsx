@@ -1,4 +1,5 @@
 import { Component, ComponentInterface, h, Host, Method, Prop, Element } from '@stencil/core';
+import { listToArray, isElement } from '../../../util';
 import { generateUniqueRecId, InitBlock } from '../util/init-block';
 
 
@@ -32,7 +33,7 @@ export class MtTildaAccordeon implements ComponentInterface {
             observer = new MutationObserver((mutationsList, _observer) => {
                 const newNodes = mutationsList.filter(m => m.type === 'childList').map(m => m.addedNodes);
                 const hasHeader = newNodes.some(nodeList =>
-                    [ ...nodeList ].some(node => node.nodeType === Node.ELEMENT_NODE && [ ...(node as Element).classList ].find(c => c === 't668__header'))
+                    listToArray(nodeList).some(node => isElement(node) && listToArray(node.classList).find(c => c === 't668__header'))
                 );
 
                 if (hasHeader)
