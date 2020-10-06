@@ -30,6 +30,11 @@ export class MtTildaAccordeon implements ComponentInterface {
         let observer: MutationObserver = undefined;
 
         return new Promise((res, _rej) => {
+            // if bug fixed or if in case it is working randomly
+            // class .t668__header is the tilda header of each accordeon entry
+            if (this.el.querySelector('.t668__header'))
+                return res();
+
             observer = new MutationObserver((mutationsList, _observer) => {
                 const newNodes = mutationsList.filter(m => m.type === 'childList').map(m => m.addedNodes);
                 const hasHeader = newNodes.some(nodeList =>
@@ -41,7 +46,7 @@ export class MtTildaAccordeon implements ComponentInterface {
             });
 
             observer.observe(this.el, { childList: true, subtree: true });
-        }).then(() => observer.disconnect());
+        }).then(() => observer && observer.disconnect());
     }
 
     render() {
