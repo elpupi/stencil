@@ -1,4 +1,5 @@
 import { VNodeData, VNode, JSX as LocalJSX, JSXBase } from '@stencil/core/internal';
+export * from './components'; // Do not know why but dist/custom-elements/index.d.ts is referencing this file and not ./components.d.ts
 
 /* declare global {
     export namespace h {
