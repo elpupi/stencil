@@ -1,5 +1,4 @@
 @use "./list";
-@use "../../bower_components/SassyLists/dist/SassyLists" as sasslist;
 
 @function distribute-selectors($operator, $list-of-selectors) {
     $selector: "";
