@@ -1,4 +1,4 @@
-async function addComponents(components) {
+export const addComponents = async (components) => {
     const pages = components.map(p => `/static/test/html/${p}.html`);
 
     for (const page of pages) {
@@ -18,14 +18,15 @@ async function addComponents(components) {
         else
             window.addEventListener('DOMContentLoaded', event => addHtml(html, document.body));
     }
-}
+};
 
-function addHtml(html, container) {
+
+const addHtml = (html, container) => {
     const template = document.createElement('template');
     template.innerHTML = html;
 
     // scripts are not executed from fetch. So we recreate them
-    const scripts = [...template.content.querySelectorAll('script')];
+    const scripts = [ ...template.content.querySelectorAll('script') ];
 
     if (scripts.length > 0) {
         const createdScripts = buildScripts(scripts.map(s => s.textContent));
@@ -37,12 +38,13 @@ function addHtml(html, container) {
     }
 
     container.appendChild(template.content.cloneNode(true));
-}
+};
 
-function buildScripts(scriptsContent) {
+
+const buildScripts = (scriptsContent) => {
     return scriptsContent.map(scriptContent => {
         const script = document.createElement('script');
         script.innerHTML = scriptContent;
         return script;
     });
-}
+};

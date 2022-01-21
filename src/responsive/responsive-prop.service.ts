@@ -1,9 +1,9 @@
-import { distinctUntilChanged, takeUntil } from 'rxjs/internal/operators';
+// import { distinctUntilChanged, takeUntil } from 'rxjs/internal/operators';
 import { MediaQuery } from './media-query.service';
 import { BaseService } from '../util';
 import { BreakPoint, bpPrioritySort } from './breakpoints';
 import { isDefined } from '@upradata/util';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 
 interface ResponsiveProperty {

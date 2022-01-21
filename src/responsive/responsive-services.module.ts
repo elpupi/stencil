@@ -4,12 +4,11 @@ import { BreakpointObserver } from './breakpoint-observer.service';
 import { MediaQuery } from './media-query.service';
 import { AddResponsiveClasses } from './add-responsive-classes.service';
 import { ResponsiveProp } from './responsive-prop.service';
-import { Service } from '../services/service';
 import { assignRecursive } from '@upradata/util';
 import { LoadServices } from '@upradata/browser-util';
 
 
-export const loadServices: LoadServices<ModuleResponsiveServicesConfig, ModuleResponsiveServices, Service> = async servicesConfig => {
+export const loadServices: LoadServices<ModuleResponsiveServicesConfig, ModuleResponsiveServices> = async servicesConfig => {
     const config = assignRecursive(new ModuleResponsiveServicesConfig(), servicesConfig);
 
     const isMobile = isMobileService();

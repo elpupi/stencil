@@ -29,7 +29,7 @@ export class MtTildaAccordeon implements ComponentInterface {
 
         let observer: MutationObserver = undefined;
 
-        return new Promise((res, _rej) => {
+        return new Promise<void>((res, _rej) => {
             // if bug fixed or if in case it is working randomly
             // class .t668__header is the tilda header of each accordeon entry
             if (this.el.querySelector('.t668__header'))
