@@ -1,0 +1,77 @@
+<div class="buttons" style="display: flex; flex-direction: column; justify-content: center; margin: 50px 0;">
+    <span id="btn-popup" style="display: flex; justify-content: center; margin: 10px 0;">
+        <button style="border-radius: 5px; padding: 7px 12px">open popup</button>
+    </span>
+
+    <span id="btn-load-animation" style="display: flex; justify-content: center; margin: 10px 0;">
+        <button style="border-radius: 5px; padding: 7px 12px">open loading animation</button>
+    </span>
+</div>
+
+<template id="popup-content">
+    <p style="padding: 150px 0; display: flex; justify-content: center; ">And here comes a popup :)</p>
+</template>
+
+<script>
+    (async () => {
+        await customElements.whenDefined('mt-services');
+        const mtServices = document.querySelector('mt-services');
+        const services = await mtServices.services();
+
+        console.log({ services, mt, isSame: mt.services === services })
+
+        const popupContent = document.getElementById('popup-content').content;
+
+        const buttons = {
+            popup: document.getElementById('btn-popup'),
+            loadingAnimation: document.getElementById('btn-load-animation')
+        }
+
+        buttons.popup.addEventListener('click', () => {
+            const popup = services.tilda.popup;
+
+            popup.append(popupContent.cloneNode(true));
+            popup.show();
+        })
+
+        let timeoutId;
+
+        buttons.loadingAnimation.addEventListener('click', () => {
+            const loadingAnimationPopup = services.tilda.loadingAnimationPopup;
+
+            loadingAnimationPopup.startLoadingAnimation({
+                loadingMessage: 'Loading. Be patient for 3 seconds',
+                errorMessage: `<p>An error occured. Please, contact me to get the information you wish.</p>`,
+                autoShow: true
+            });
+
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+                loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
+            }, 3000);
+        })
+    })();
+</script>
+
+
+
+<div id="recpopup" class="r t-rec" style="opacity: 1;" data-animationappear="off" data-record-type="868">
+    <!-- t868 -->
+    <div class="t868 ">
+        <div class="t-popup" data-tooltip-hook="#popup:embedcode">
+            <div class="t-popup__close">
+                <div class="t-popup__close-wrapper"> <svg class="t-popup__close-icon" width="23px" height="23px" viewBox="0 0 23 23"
+                         version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">
+                            <rect transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) "
+                                  x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                            <rect transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) "
+                                  x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
+                        </g>
+                    </svg> </div>
+            </div>
+            <div class="t-popup__container t-width t-width_10"> </div>
+        </div>
+    </div>
+</div>

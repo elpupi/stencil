@@ -1,14 +1,17 @@
-import { ModuleResponsiveServices, ModuleResponsiveServicesConfig } from '../responsive/types';
-import { ModulesServicesOpts, ModuleServicesConfig, ModulesServices } from '@upradata/browser-util';
-import { Service } from './service';
-
-export type MtModulesServices = ModulesServices<Service> & {
-    responsive: ModuleResponsiveServices;
-};
+import { ModulesServicesOptions, ModulesServices, ModulesServicesConfig } from '@upradata/browser-util';
+import { TildaModuleServices, TildaModuleServicesOpts } from './tilda';
+import { ResponsiveModuleServices, ResponsiveModuleServicesOpts } from '../responsive/types';
 
 
-export type MtModulesServicesOpts = ModulesServicesOpts<MtModulesServices, Service> & {
-    modulesServices: {
-        responsive: ModuleServicesConfig<ModuleResponsiveServices, ModuleResponsiveServicesConfig>;
-    };
-};
+export type MtModulesServices = ModulesServices<{
+    responsive: ResponsiveModuleServices;
+    tilda: TildaModuleServices;
+}>;
+
+
+export type MtModulesServicesOptions = ModulesServicesOptions<MtModulesServices, {
+    responsive: ResponsiveModuleServicesOpts;
+    tilda: TildaModuleServicesOpts;
+}>;
+
+export type MtModulesServicesConfig = ModulesServicesConfig<MtModulesServices, MtModulesServicesOptions>;

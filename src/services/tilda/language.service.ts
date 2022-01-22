@@ -182,7 +182,6 @@ export class LanguageService {
                 loadingMessage: `Loading "${language.name}" translation. Be patient while the network is responding`,
                 errorMessage: `<p>An error occured. We could not load the "${language.name}" translation of the website. Please, contact <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue.</p>`,
                 autoShow: true,
-                autoClose: true,
                 delay: 500
             });
 
@@ -328,7 +327,7 @@ export class LanguageService {
         const mobileAndDesktopLangLinks = this.langLinks.filter(a => a.textContent.trim().toLowerCase() === this.getSavedLang().lang);
         mobileAndDesktopLangLinks.forEach(a => a.classList.add(activeLinkClass));
 
-        this.loadingAnimationPopup.stopLoadingAnimation();
+        this.loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
     }
 
     private disable() {

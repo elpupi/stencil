@@ -28,5 +28,5 @@ export const onLoad = (func: () => any) => {
     if (document.readyState === 'complete')
         func();
     else
-        document.addEventListener('load', func);
+        window.addEventListener('load', func);
 };

@@ -83,6 +83,7 @@ if (isDev) {
         (target as OutputTargetCopy).copy.push(
             { src: 'test-components/*', dest: 'static/test/html', warn: true },
             { src: 'global/tilda*.css', dest: 'static/test/css', warn: true },
+            { src: 'fonts/*', dest: 'static/fonts', warn: true },
         );
     }
 }

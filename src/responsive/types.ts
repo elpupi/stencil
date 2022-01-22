@@ -7,7 +7,7 @@ import { BreakPoint } from './breakpoints';
 import { ModuleServices } from '@upradata/browser-util';
 import { Service } from '../services/service';
 
-export interface ModuleResponsiveServices extends ModuleServices<Service> {
+export interface ResponsiveModuleServices extends ModuleServices<Service> {
     isMobile: boolean;
     breakpoints: BreakPoint[];
     mediaQuery: MediaQuery;
@@ -17,6 +17,6 @@ export interface ModuleResponsiveServices extends ModuleServices<Service> {
 }
 
 
-export class ModuleResponsiveServicesConfig {
-    breakpoints: BreakPoint[] = LAYOUT_BREAKPOINTS;
+export class ResponsiveModuleServicesOpts {
+    breakpoints?: BreakPoint[] = LAYOUT_BREAKPOINTS;
 }

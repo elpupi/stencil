@@ -32,7 +32,7 @@ export class LoadingAnimationPopup {
         this.p.setAttribute('style', 'padding: 10%; text-align: center;');
     }
 
-    startLoadingAnimation(options: LoadingAnimationPopupOpts & { delay?: number; autoShow?: boolean; } = {}) {
+    startLoadingAnimation(options: Omit<LoadingAnimationPopupOpts, 'autoClose'> & { delay?: number; } = {}) {
         const { delay = 0, autoShow, ...restOpts } = options;
         const { loadingMessage, errorMessage } = Object.assign({}, this.options, restOpts);
 
@@ -42,24 +42,24 @@ export class LoadingAnimationPopup {
                 loadingTextInterval: undefined as number
             });
 
-            let id = makeId();
+
+            if (this.isRunning)
+                this.stopLoadingAnimation({ autoClose: false });
+
+            this.isRunning = true;
+            this.errorMessage = errorMessage;
+
+            const id = makeId();
 
             this.stopAnimation = () => {
                 if (id.startTimeout)
                     clearTimeout(id.startTimeout);
                 if (id.loadingTextInterval)
                     clearInterval(id.loadingTextInterval);
-
-                id = makeId();
             };
 
-            if (this.isRunning)
-                this.stopLoadingAnimation();
-
-            this.isRunning = true;
-            this.errorMessage = errorMessage;
-
             id.startTimeout = window.setTimeout(() => {
+
                 if (!this.isRunning) {
                     // animation already stopped
                     res();
@@ -81,6 +81,7 @@ export class LoadingAnimationPopup {
                 const len = loadingText.length;
 
                 id.loadingTextInterval = window.setInterval(() => {
+
                     if (i === 3) {
                         p.textContent = loadingText;
                         i = 0;
@@ -91,8 +92,11 @@ export class LoadingAnimationPopup {
 
                 }, 500);
 
-                if (autoShow || this.options.autoShow)
-                    this.popup.showPopup();
+                if (autoShow || this.options.autoShow) {
+                    // if the popup is closed manually
+                    this.popup.onClose(() => this.stopLoadingAnimation({ autoClose: false }));
+                    this.popup.show();
+                }
 
                 res();
             }, delay);
@@ -107,16 +111,16 @@ export class LoadingAnimationPopup {
             this.popup.remove(this.p);
             this.p = undefined;
 
+            this.isRunning = false;
+
             if (options.autoClose || options.autoClose === undefined && this.options.autoClose)
                 this.popup.closePopup();
         }
-
-        this.isRunning = false;
     }
 
     error(errorMessage?: string) {
         this.stopLoadingAnimation({ autoClose: false });
-        this.popup.showPopup();
+        this.popup.show();
 
         const errorDiv = document.createElement('div');
         errorDiv.innerHTML = errorMessage || this.errorMessage;

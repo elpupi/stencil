@@ -1,10 +1,9 @@
-import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, State, Method } from '@stencil/core';
 import { loadServices, servicesLoaded$ } from '@upradata/browser-util';
 import { BreakPoint, LAYOUT_BREAKPOINTS/* , isMobile, MediaQuery, BreakpointObserver, AddResponsiveClasses, ResponsiveProp */ } from '../../responsive';
-import { MtModulesServicesOpts } from '../../services';
+import { MtModulesServicesConfig } from '../../services';
 import { EVENTS } from '../../util/custom-events';
-import { MtModuleServicesOpts } from '../../services/tilda/types';
-
+import { TildaModuleServicesOpts } from '../../services/tilda/types';
 
 // import { MTServices } from './mt';
 
@@ -15,10 +14,12 @@ import { MtModuleServicesOpts } from '../../services/tilda/types';
     shadow: true,
 })
 export class MtServices {
+    static isLoaded: boolean = false;
+
     private _breakpoints: BreakPoint[] = LAYOUT_BREAKPOINTS;
     @Prop({ attribute: 'breakpoints' }) breakpoints: BreakPoint[] | string;
-    private _tildaServicesOptions: MtModuleServicesOpts;
-    @Prop({ attribute: 'tilda-options' }) tildaServicesOptions: MtModuleServicesOpts | string;
+    private _tildaServicesOptions: TildaModuleServicesOpts;
+    @Prop({ attribute: 'tilda-options' }) tildaServicesOptions: TildaModuleServicesOpts | string;
     @Prop() responsive: boolean = true;
     @Prop() tilda: boolean = true;
 
@@ -31,7 +32,7 @@ export class MtServices {
 
 
     @Watch('tildaServicesOptions')
-    watchTildaServicesOptions(newValue: MtModuleServicesOpts | string) {
+    watchTildaServicesOptions(newValue: TildaModuleServicesOpts | string) {
         if (newValue)
             this._tildaServicesOptions = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     }
@@ -39,13 +40,26 @@ export class MtServices {
 
     @State() isLoaded: boolean = false;
 
+
+    @Method()
+    async services() {
+        return servicesLoaded$();
+    }
+
     componentWillLoad() {
+
+        if (MtServices.isLoaded)
+            return;
+
+        MtServices.isLoaded = true;
+
         this.watchBreakpoints(this.breakpoints);
         this.watchTildaServicesOptions(this.tildaServicesOptions);
 
         // import('../../services/load-services').then(({ loadServices }) => {
-        const config: MtModulesServicesOpts = {
-            modulesServices: {
+
+        const config: MtModulesServicesConfig = {
+            config: {
                 responsive: {
                     module: import('../../responsive/responsive-services.module'),
                     config: { breakpoints: this._breakpoints }

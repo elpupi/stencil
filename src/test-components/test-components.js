@@ -1,4 +1,4 @@
-export const addComponents = async (components) => {
+export const addComponents = async components => {
     const pages = components.map(p => `/static/test/html/${p}.html`);
 
     for (const page of pages) {

@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { BreakPoint } from "./responsive";
-import { MtModuleServicesOpts } from "./services/tilda/types";
+import { TildaModuleServicesOpts } from "./services/tilda/types";
 import { InitBlock } from "./components/tilda/util/init-block";
 import { MtTildaShortPolicyItem } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
 import { MtTildaAccordeonItem } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
@@ -57,8 +57,9 @@ export namespace Components {
     interface MtServices {
         "breakpoints": BreakPoint[] | string;
         "responsive": boolean;
+        "services": () => Promise<unknown>;
         "tilda": boolean;
-        "tildaServicesOptions": MtModuleServicesOpts | string;
+        "tildaServicesOptions": TildaModuleServicesOpts | string;
     }
     interface MtSwitchButton {
         "leftText": string;
@@ -320,7 +321,7 @@ declare namespace LocalJSX {
         "breakpoints"?: BreakPoint[] | string;
         "responsive"?: boolean;
         "tilda"?: boolean;
-        "tildaServicesOptions"?: MtModuleServicesOpts | string;
+        "tildaServicesOptions"?: TildaModuleServicesOpts | string;
     }
     interface MtSwitchButton {
         "leftText"?: string;

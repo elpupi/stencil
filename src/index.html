@@ -26,7 +26,7 @@
     <script src="https://static.tildacdn.com/js/tilda-animation-1.0.min.js" charset="utf-8"></script>
     <script src="https://static.tildacdn.com/js/tilda-menusub-1.0.min.js" charset="utf-8"></script>
 
-    <link rel="stylesheet" type="text/css" href="/static/test/css/tilda.fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/static/fonts/font.css" />
 
     <script type="module" src="/build/upradata.esm.js"></script>
     <script nomodule src="/build/upradata.js"></script>
@@ -41,7 +41,7 @@
     <script type="module">
         import { addComponents } from './static/test/html/test-components.js';
 
-        addComponents([ 'mt-switch-button', 'mt-compact-list', 'mt-blog', 'mt-term', 'mt-test' ]); // from test-components
+        addComponents([ 'mt-services', 'mt-switch-button', 'mt-compact-list', 'mt-blog', 'mt-term', 'mt-test' ]); // from test-components
     </script>
 </head>
 
@@ -53,16 +53,13 @@
     </style>
 
     <mt-services
-                 tilda-options='{"popup":{"recid":"167383744","linkId":"#popup:embedcode"},"loadingAnimationPopup":{},"language":{"api":{"url":"api/i18n/","domain":"localhost","devPort":8080},"includedPages":["home","pricing","aboutus","page-home.html","page-pricing.html","page-aboutus.html"],"excludedPages":[],"selector":{"langLinksDesktop":"[id^=\"nav\"] .t228__right_langs_lang a","langLinksMobile":"[id^=\"nav\"] .t282__lang a"},"defaultLanguage":"en","languages":[{"lang":"fr","name":"french"},{"lang":"en","name":"english"}],"activeLinkClass":"mt-lang-link-active","disableLinkClass":"mt-lang-link-disable"}}'>
+                 tilda-options='{"popup":{"recid":"popup","linkId":"#popup:embedcode"},"loadingAnimationPopup":{},"language":{"api":{"url":"api/i18n/","domain":"localhost","devPort":8080},"includedPages":["home","pricing","aboutus","page-home.html","page-pricing.html","page-aboutus.html"],"excludedPages":[],"selector":{"langLinksDesktop":"[id^=\"nav\"] .t228__right_langs_lang a","langLinksMobile":"[id^=\"nav\"] .t282__lang a"},"defaultLanguage":"en","languages":[{"lang":"fr","name":"french"},{"lang":"en","name":"english"}],"activeLinkClass":"mt-lang-link-active","disableLinkClass":"mt-lang-link-disable"}}'>
 
         <p style="margin: 50px 0; display: flex; justify-content: center;">Services loaded</p>
+
     </mt-services>
+
 
 </body>
 
 </html>
-<!--     
-    popup: PopupOptions;
-    loadingAnimationPopup: Partial<LoadingAnimationPopupOptions>;
-    language: LanguageServiceOptions;
--->

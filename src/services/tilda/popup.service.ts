@@ -15,6 +15,9 @@ export class PopupOptions {
     }
 }
 
+export type CloseHandler = () => void | Promise<void>;
+
+
 export class Popup {
     options: PopupOptions;
     rec: JQuery<HTMLElement>;
@@ -22,10 +25,15 @@ export class Popup {
     popupContainer: JQuery<HTMLElement>;
     customCodeHTML: string; // Code inside Tilda Popup Block that can be inserted in the online editor
     isOpen: boolean = false;
+    private onCloseHandlers: CloseHandler[] = [];
 
     constructor(options: PopupOptions) {
         this.options = new PopupOptions(options);
         onLoad(() => this.init());
+    }
+
+    onClose(handler: CloseHandler) {
+        this.onCloseHandlers.push(handler);
     }
 
     get recId() {
@@ -35,7 +43,12 @@ export class Popup {
     init() {
         this.rec = $(`#${this.recId}`);
 
-        if (this.rec.get(0) && !this.popup) {
+        if (!this.rec.get(0)) {
+            console.error(`The rec block with id="${this.recId}" does not exit and it is need in Tilda`);
+            return;
+        }
+
+        if (!this.popup) {
             this.popup = this.rec.find('.t-popup');
             this.popupContainer = this.rec.find('.t-popup__container');
 
@@ -54,24 +67,28 @@ export class Popup {
     }
 
     append(element: HTMLElement) {
-        this.popupContainer.get(0).appendChild(element);
+        this.popupContainer?.get(0).appendChild(element);
     }
 
     remove(element: HTMLElement) {
-        const popupContainer = this.popupContainer.get(0);
+        const popupContainer = this.popupContainer?.get(0);
+
+        if (!popupContainer)
+            return;
 
         if ([ ...popupContainer.childNodes ].find(n => n === element))
             popupContainer.removeChild(element);
     }
 
     clear() {
-        this.popupContainer.get(0).innerHTML = ''; // get(0) to access Dom Element from JQuery
+        if (this.popupContainer)
+            this.popupContainer.get(0).innerHTML = ''; // get(0) to access Dom Element from JQuery
     }
 
-    showPopup() {
+    show() {
         // t868_showPopup(recid, customCodeHTML); almost copy/paste
 
-        if (this.isOpen)
+        if (this.isOpen || !this.popupContainer)
             return;
 
         this.popupContainer.append(this.customCodeHTML);
@@ -116,6 +133,8 @@ export class Popup {
                 this.popup.not('.t-popup_show').css('display', 'none');
             }, 300);
 
+            this.onCloseHandlers.forEach(handler => handler());
+            this.onCloseHandlers = [];
             this.isOpen = false;
         }
     }
