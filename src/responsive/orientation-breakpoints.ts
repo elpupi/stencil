@@ -41,5 +41,4 @@ export const ORIENTATION_BREAKPOINTS: BreakPoint[] = [
     { alias: 'web-portrait' as BreakpointAlias, priority: 2200, mediaQuery: OrientationMQ.WEB_PORTRAIT, overlapping: true }
 ];
 
-/* console.log(ORIENTATION_BREAKPOINTS.sort((l, r) => l.priority - r.priority));
-1 === 1; */
+/* console.log(ORIENTATION_BREAKPOINTS.sort((l, r) => l.priority - r.priority)); */

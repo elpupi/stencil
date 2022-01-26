@@ -6,7 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { BreakPoint } from "./responsive";
-import { TildaModuleServicesOpts } from "./services/tilda/types";
+import { MtModulesServicesConfig, MtModulesServicesOpts, TermsModuleServicesOpts, TildaModuleServicesOpts } from "./services";
+import { BooleanAttribute } from "./util";
 import { InitBlock } from "./components/tilda/util/init-block";
 import { MtTildaShortPolicyItem } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
 import { MtTildaAccordeonItem } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
@@ -56,9 +57,14 @@ export namespace Components {
     }
     interface MtServices {
         "breakpoints": BreakPoint[] | string;
-        "responsive": boolean;
-        "services": () => Promise<unknown>;
-        "tilda": boolean;
+        "disabled": BooleanAttribute;
+        "initServices": (options: MtModulesServicesOpts) => Promise<void>;
+        "responsive": BooleanAttribute;
+        "services": () => Promise<{ responsive: import("/home/milottit/Libraries/Tilda/stencil-components/src/responsive/types").ResponsiveModuleServices; tilda: { popup: import("/home/milottit/Libraries/Tilda/stencil-components/src/services/index").Popup; loadingAnimationPopup: import("/home/milottit/Libraries/Tilda/stencil-components/src/services/index").LoadingAnimationPopup; language: import("/home/milottit/Libraries/Tilda/stencil-components/src/services/index").LanguageService; }; terms: { police: import("/home/milottit/Libraries/Tilda/stencil-components/src/services/index").Policy; policeShort: import("/home/milottit/Libraries/Tilda/stencil-components/src/services/index").PolicyShort; terms: import("/home/milottit/Libraries/Tilda/stencil-components/src/services/index").Terms; }; }>;
+        "setServicesOptions": (options: MtModulesServicesOpts) => Promise<void>;
+        "terms": BooleanAttribute;
+        "termsServicesOptions": TermsModuleServicesOpts | string;
+        "tilda": BooleanAttribute;
         "tildaServicesOptions": TildaModuleServicesOpts | string;
     }
     interface MtSwitchButton {
@@ -319,8 +325,11 @@ declare namespace LocalJSX {
     }
     interface MtServices {
         "breakpoints"?: BreakPoint[] | string;
-        "responsive"?: boolean;
-        "tilda"?: boolean;
+        "disabled"?: BooleanAttribute;
+        "responsive"?: BooleanAttribute;
+        "terms"?: BooleanAttribute;
+        "termsServicesOptions"?: TermsModuleServicesOpts | string;
+        "tilda"?: BooleanAttribute;
         "tildaServicesOptions"?: TildaModuleServicesOpts | string;
     }
     interface MtSwitchButton {

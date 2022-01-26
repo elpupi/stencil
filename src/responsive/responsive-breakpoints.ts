@@ -1,7 +1,6 @@
 import { ORIENTATION_BREAKPOINTS } from './orientation-breakpoints';
 import { BREAKPOINTS } from './range-breakpoints';
-import { BreakPoint, BreakpointAlias } from './breakpoints';
-export * from './breakpoints';
+import type { BreakPoint, BreakpointAlias } from './breakpoints';
 
 export const LAYOUT_BREAKPOINTS = [
     ...BREAKPOINTS,

@@ -1,9 +1,10 @@
 import { BreakpointObserver, BreakpointState } from './breakpoint-observer.service';
-import { BreakPoint, BreakpointAlias, BreakpointAliasJs } from './responsive-breakpoints';
 import { ReplaySubject, Observable } from 'rxjs';
 import { takeUntil, shareReplay, debounceTime, filter } from 'rxjs/operators';
 import { camelize } from '@upradata/util';
 import { BaseService } from '../util';
+import { BreakPoint, BreakpointAlias, BreakpointAliasJs } from './breakpoints';
+
 
 export interface MediaQueryMatch<AliasCss = BreakpointAlias, AliasJs = BreakpointAliasJs> extends BreakpointState {
     bpName: AliasJs;

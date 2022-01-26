@@ -16,6 +16,44 @@
     (async () => {
         await customElements.whenDefined('mt-services');
         const mtServices = document.querySelector('mt-services');
+
+        const servicesConfig = {
+            tilda: {
+                popup: { recid: 'popup' },
+                loadingAnimationPopup: {},
+                language: {
+                    api: {
+                        url: 'api/i18n/',
+                        domain: 'localhost', // 'https://server.upradata.com',
+                        devPort: 8080
+                    },
+                    includedPages: [ 'home', 'pricing', 'aboutus', 'page-home.html', 'page-pricing.html', 'page-aboutus.html' ],
+                    excludedPages: [],
+                    selector: {
+                        langLinksDesktop: '[id^="nav"] .t228__right_langs_lang a',
+                        langLinksMobile: '[id^="nav"] .t282__lang a'
+                    },
+                    defaultLanguage: 'en',
+                    languages: [ { lang: 'fr', name: 'french' }, { lang: 'en', name: 'english' } ],
+                    activeLinkClass: 'mt-lang-link-active',
+                    disableLinkClass: 'mt-lang-link-disable'
+                }
+            },
+            responsive: {
+                // default
+                // breakpoints: LAYOUT_BREAKPOINTS 
+            }
+        };
+
+
+        await mtServices.initServices(servicesConfig);
+
+        /* 
+            // The 2 alternatives are the same. Just this one will really set the internal state options to servicesConfig
+            await mtServices.setServicesOptions(servicesConfig)
+            mtServices.disabled = false;
+        */
+
         const services = await mtServices.services();
 
         console.log({ services, mt, isSame: mt.services === services })

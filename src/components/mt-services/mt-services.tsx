@@ -1,9 +1,9 @@
 import { Component, Host, h, Prop, Watch, State, Method } from '@stencil/core';
 import { loadServices, servicesLoaded$ } from '@upradata/browser-util';
 import { BreakPoint, LAYOUT_BREAKPOINTS/* , isMobile, MediaQuery, BreakpointObserver, AddResponsiveClasses, ResponsiveProp */ } from '../../responsive';
-import { MtModulesServicesConfig } from '../../services';
+import { MtModulesServicesConfig, MtModulesServicesOpts, servicesLoaded, TermsModuleServicesOpts, TildaModuleServicesOpts } from '../../services';
 import { EVENTS } from '../../util/custom-events';
-import { TildaModuleServicesOpts } from '../../services/tilda/types';
+import { BooleanAttribute, toBoolean, toObject } from '../../util';
 
 // import { MTServices } from './mt';
 
@@ -16,45 +16,60 @@ import { TildaModuleServicesOpts } from '../../services/tilda/types';
 export class MtServices {
     static isLoaded: boolean = false;
 
-    private _breakpoints: BreakPoint[] = LAYOUT_BREAKPOINTS;
-    @Prop({ attribute: 'breakpoints' }) breakpoints: BreakPoint[] | string;
-    private _tildaServicesOptions: TildaModuleServicesOpts;
+    @Prop({ attribute: 'breakpoints' }) breakpoints: BreakPoint[] | string = LAYOUT_BREAKPOINTS;
     @Prop({ attribute: 'tilda-options' }) tildaServicesOptions: TildaModuleServicesOpts | string;
-    @Prop() responsive: boolean = true;
-    @Prop() tilda: boolean = true;
-
-
-    @Watch('breakpoints')
-    watchBreakpoints(newValue: BreakPoint[] | string) {
-        if (newValue)
-            this._breakpoints = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
-    }
-
-
-    @Watch('tildaServicesOptions')
-    watchTildaServicesOptions(newValue: TildaModuleServicesOpts | string) {
-        if (newValue)
-            this._tildaServicesOptions = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
-    }
-
-
+    @Prop({ attribute: 'terms-options' }) termsServicesOptions: TermsModuleServicesOpts | string;
+    @Prop() responsive: BooleanAttribute = true;
+    @Prop() tilda: BooleanAttribute = true;
+    @Prop() terms: BooleanAttribute = true;
+    @Prop() disabled: BooleanAttribute = false;
     @State() isLoaded: boolean = false;
+
+
+    get servicesOptions(): MtModulesServicesOpts {
+        return {
+            tilda: toObject(this.tildaServicesOptions),
+            terms: toObject(this.termsServicesOptions),
+            responsive: { breakpoints: toObject(this.breakpoints) }
+        };
+    }
+
+
+    @Watch('disabled')
+    watchDisabled(newValue: BooleanAttribute) {
+        if (!toBoolean(newValue))
+            this.initServices(this.servicesOptions);
+    }
 
 
     @Method()
     async services() {
-        return servicesLoaded$();
+        return servicesLoaded();
+    }
+
+
+    @Method()
+    async setServicesOptions(options: MtModulesServicesOpts) {
+        if (options.responsive.breakpoints)
+            this.breakpoints = options.responsive.breakpoints;
+
+        if (options.tilda)
+            this.tildaServicesOptions = options.tilda;
     }
 
     componentWillLoad() {
+        if (!toBoolean(this.disabled))
+            this.initServices(this.servicesOptions);
+    }
+
+
+    @Method()
+    async initServices(options: MtModulesServicesOpts) {
 
         if (MtServices.isLoaded)
             return;
 
         MtServices.isLoaded = true;
-
-        this.watchBreakpoints(this.breakpoints);
-        this.watchTildaServicesOptions(this.tildaServicesOptions);
 
         // import('../../services/load-services').then(({ loadServices }) => {
 
@@ -62,15 +77,19 @@ export class MtServices {
             config: {
                 responsive: {
                     module: import('../../responsive/responsive-services.module'),
-                    config: { breakpoints: this._breakpoints }
+                    config: options.responsive
                 },
                 tilda: {
                     module: import('../../services/tilda/tilda-services.module'),
-                    config: this._tildaServicesOptions
+                    config: options.tilda
+                },
+                terms: {
+                    module: import('../../services/terms/terms-services.module'),
+                    config: options.terms
                 }
             },
             windowGlobal: 'mt',
-            include: { responsive: this.responsive, tilda: this.tilda },
+            include: { responsive: toBoolean(this.responsive), tilda: toBoolean(this.tilda), terms: toBoolean(this.terms) },
             exclude: undefined,
             dispatchEvents: true,
             servicesLoadedEventName: EVENTS.SERVICES_LOADED,
@@ -79,9 +98,15 @@ export class MtServices {
 
         loadServices(config);
 
-        servicesLoaded$().then(() => this.isLoaded = true);
+        await servicesLoaded$();
+        this.isLoaded = true;
         // });
     }
+
+    /* componentWillRender() {
+        // A promise can be returned, that can be used to wait for the upcoming render.
+        return this.initServices(this._servicesOptions);
+    } */
 
     render() {
         return (

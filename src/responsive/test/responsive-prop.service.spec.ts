@@ -1,5 +1,7 @@
 import { ResponsiveProp } from '../responsive-prop.service';
-import { LAYOUT_BREAKPOINTS, findBpByAlias } from '../responsive-breakpoints';
+import { findBpByAlias, LAYOUT_BREAKPOINTS } from '../responsive-breakpoints';
+
+
 
 const bp = findBpByAlias;
 

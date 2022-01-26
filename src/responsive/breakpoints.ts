@@ -1,3 +1,5 @@
+import type { KebabCase } from '@upradata/util';
+
 export interface BreakPoint<Alias = string, Prefix = string> {
     mediaQuery: string;
     overlapping?: boolean;  // ranges
@@ -20,18 +22,7 @@ export const BREAKPOINT_MILESTONE: { alias: string, width: number; }[] = [
 
 
 // I will use it in MediaQueryService to get the good key for the breakpoints
-export type BREAKPOINTS_ALIAS_NAMES = {
-    xs, sm, premd, md, lg, big, xl, prehuge, huge,
-    'lt-sm', 'lt-premd', 'lt-md', 'lt-lg', 'lt-big', 'lt-xl', 'lt-prehuge', 'lt-huge',
-    'lte-sm', 'lte-premd', 'lte-md', 'lte-lg', 'lte-big', 'lte-xl', 'lte-prehuge', 'lte-huge',
-    'gt-sm', 'gt-premd', 'gt-md', 'gt-lg', 'gt-big', 'gt-xl', 'gt-prehuge', 'gt-huge',
-    'gte-sm', 'gte-premd', 'gte-md', 'gte-lg', 'gte-big', 'gte-xl', 'gte-prehuge', 'gte-huge',
-    'handset', 'handset-landscape', 'handset-portrait',
-    'tablet', 'tablet-landscape', 'tablet-portrait',
-    'web', 'web-landscape', 'web-portrait';
-};
-
-export type BREAKPOINTS_ALIAS_NAMES_CAMELIZE = {
+type BREAKPOINTS_ALIAS_NAMES_CAMELIZE = {
     xs, sm, premd, md, lg, big, xl, prehuge, huge,
     ltXs, ltSm, ltPremd, ltMd, ltLg, ltBig, ltXl, ltPrehuge, ltHuge,
     lteXs, lteSm, ltePremd, lteMd, lteLg, lteBig, lteXl, ltePrehuge, lteHuge,
@@ -42,8 +33,10 @@ export type BREAKPOINTS_ALIAS_NAMES_CAMELIZE = {
     web, webLandscape, webPortrait;
 };
 
-export type BreakpointAlias = keyof BREAKPOINTS_ALIAS_NAMES;
+
 export type BreakpointAliasJs = keyof BREAKPOINTS_ALIAS_NAMES_CAMELIZE;
+export type BreakpointAlias = KebabCase<BreakpointAliasJs>;
+
 
 export function findBpMileStoneByAlias(alias: string) {
     return BREAKPOINT_MILESTONE.find(breakpoint => breakpoint.alias === alias);

@@ -7,7 +7,7 @@ declare function t868_resizePopup(recid: string): void;
 
 export class PopupOptions {
     recid: string;
-    linkId: string;
+    // linkId: string;
 
     constructor(options: PopupOptions) {
         Object.assign(this, options);

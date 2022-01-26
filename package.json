@@ -1,5 +1,5 @@
 {
-	"name": "@upradata/stencil-components",
+	"name": "@upradata/tilda-stencil-components",
 	"version": "1.0.5",
 	"description": "Collection Of Stencil Components",
 	"author": {
@@ -20,7 +20,8 @@
 	"unpkg": "dist/upradata/upradata.js",
 	"files": [
 		"dist/",
-		"loader/"
+		"loader/",
+		"lib"
 	],
 	"scripts": {
 		"build:old": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
@@ -75,7 +76,8 @@
 			"@upradata/tilda-tools": "link:/home/milottit/Libraries/Tilda/tools@2.0.1"
 		},
 		"usedBy": {
-			"@upradata/tilda-services-components": "/home/milottit/Libraries/Tilda/services-components"
+			"@upradata/tilda-services-components": "/home/milottit/Libraries/Tilda/services-components",
+			"@upradata/tilda-tools": "/home/milottit/Libraries/Tilda/tools"
 		}
 	}
 }
