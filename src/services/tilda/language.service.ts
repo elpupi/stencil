@@ -1,6 +1,7 @@
 import type { TextData } from '@upradata/tilda-tools/lib-esm/src/i18n/text-data/types';
 import { NodeTextData, textDataExtra } from '@upradata/tilda-tools/lib-esm/src/i18n/text-data/text-data-extra';
 import { UpdateDataReturn, textData } from '@upradata/tilda-tools/lib-esm/src/i18n/text-data/text-data';
+import { delayedPromise } from '@upradata/util/lib-esm/promise';
 import { LoadingAnimationPopup, LoadingAnimationPopupOptions } from './loading-animation-popup.service';
 import { Api } from '../api';
 import { onLoad } from './helpers';
@@ -14,6 +15,12 @@ const te = textDataExtra({ dom: window });
 const rowToString = (row: TextData) => {
     return `{ rootId: ${row.rootId}, path: ${row.path}, text: ${row.text} }`;
 };
+
+
+type AjaxErrorCallback = (jqXHR: JQuery.jqXHR, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string) => any;
+type AjaxSuccessCallback<T> = (data: T, textStatus: JQuery.Ajax.SuccessTextStatus, jqXHR: JQuery.jqXHR) => any;
+
+
 
 export class LanguageServiceOptions {
     api: Api;
@@ -51,7 +58,7 @@ export class LanguageService {
     private langLinks: Element[];
     private domain: string;
     private loadingLang: string;
-    private defaultLangExtraRowsById: DefaultLangExtraNodes = {};
+    private defaultLangExtraRowsById$ = delayedPromise<DefaultLangExtraNodes>();
 
     constructor(options: LanguageServiceOptions, private loadingAnimationPopup: LoadingAnimationPopup) {
         this.options = new LanguageServiceOptions(options);
@@ -88,7 +95,7 @@ export class LanguageService {
     }
 
     init() {
-        const { includedPages, excludedPages } = this.options;
+        const { includedPages, excludedPages, defaultLanguage } = this.options;
 
         if (
             includedPages.length > 0 && includedPages.indexOf(this.pageName) === -1 || // we translate only the allowed pages
@@ -115,10 +122,15 @@ export class LanguageService {
         // window.addEventListener('popstate', event => this.handleHashChange());
         // window.addEventListener('hashchange', event => this.handleHashChange(), false); on click
 
+        this.sendAjaxResuest(this.getTranslationUrl(defaultLanguage), {
+            success: (translationRows: TextData[]) => this.generateDefaultLangExtraRowsById(translationRows),
+            fail: (...args) => this.onAjaxError(...args)
+        });
+
         if (location.hash)
             this.handleHashChange();
         else {
-            if (activeLang !== this.options.defaultLanguage)
+            if (activeLang !== defaultLanguage)
                 this.loadPage(activeLang);
         }
     }
@@ -141,6 +153,19 @@ export class LanguageService {
         return window.location.pathname.slice(1) || 'home';
     }
 
+    private getTranslationUrl(lang: string) {
+        const pageName = this.pageName;
+
+        if (pageName.endsWith('.html')) {
+            const nameMatch = pageName.match(/-(.*)\.html/);
+            const name = nameMatch ? nameMatch[ 1 ] : pageName.match(/(.*)\.html/)[ 1 ];
+
+            return `${this.domain}${pageName}?page=${name}&lang=${lang}`;
+        }
+
+        return `${this.domain}${pageName}-${lang}`;
+    };
+
     private loadPage(lang: string) {
         try {
 
@@ -148,32 +173,11 @@ export class LanguageService {
 
             this.loadingLang = lang;
 
-            /* const foundLang = languages.find(l => l.lang === lang);
-            const language = foundLang ? foundLang.name : lang; */
             const language = languages.find(l => l.lang === lang);
+
             if (!language)
                 return;
 
-            // reload the page (having the default language).
-            // No need to catch the text from the server service and populate the page
-            /* if (lang === defaultLanguage) {
-                this.loadingAnimation.startLoadingAnimation({ delay: 500 }).then(() => {
-                    localStorage.setItem('language', lang);
-                    window.location.href = location.origin + location.pathname;
-                });
-            } else { */
-            const getPageUrl = () => {
-                const pageName = this.pageName;
-
-                if (pageName.endsWith('.html')) {
-                    const nameMatch = pageName.match(/-(.*)\.html/);
-                    const name = nameMatch ? nameMatch[ 1 ] : pageName.match(/(.*)\.html/)[ 1 ];
-
-                    return `${this.domain}${pageName}?page=${name}&lang=${lang}`;
-                }
-
-                return `${this.domain}${pageName}-${lang}`;
-            };
 
             this.loadingAnimationPopup.startLoadingAnimation({
                 loadingMessage: `Loading "${language.name}" translation. Be patient while the network is responding`,
@@ -182,12 +186,11 @@ export class LanguageService {
                 delay: 500
             });
 
-            $.ajax(this.ajaxSettings({ url: getPageUrl() }))
-                // strangely, Jquery it is not working if we pass this.onSucces.bind(this)
-                .done((...args: [ data: any, textStatus: JQuery.Ajax.SuccessTextStatus, v: JQuery.jqXHR<any> ]) => this.onSuccess(...args))
-                .fail((...args: [ jqXHR: JQuery.jqXHR<any>, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string ]) => this.onError(...args));
+            this.sendAjaxResuest(this.getTranslationUrl(lang), {
+                success: (...args) => this.onAjaxTranslationSuccess(...args),
+                fail: (...args) => this.onAjaxError(...args)
+            });
 
-            // }
         } catch (e) {
             console.error(e);
             // https://michalzalecki.com/why-using-localStorage-directly-is-a-bad-idea/
@@ -196,15 +199,23 @@ export class LanguageService {
     }
 
 
-    private onError(_jqXHR: JQuery.jqXHR, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string) {
+    private sendAjaxResuest(url: string, callbacks: { success: AjaxSuccessCallback<TextData[]>; fail: AjaxErrorCallback; }) {
+        $.ajax(this.ajaxSettings({ url }))
+            // strangely, Jquery it is not working if we pass this.onSucces.bind(this)
+            .done((...args: [ data: any, textStatus: JQuery.Ajax.SuccessTextStatus, v: JQuery.jqXHR<any> ]) => callbacks.success(...args))
+            .fail((...args: [ jqXHR: JQuery.jqXHR<any>, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string ]) => callbacks.fail(...args));
+    }
+
+
+    private onAjaxError(_jqXHR: JQuery.jqXHR, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string) {
         this.loadingAnimationPopup.error();
         console.error('Error occured: ', { textStatus, errorThrown });
     }
 
-    private async onSuccess(textList: TextData[], _textStatus: JQuery.Ajax.SuccessTextStatus, _jqXHR: JQuery.jqXHR) {
+    private async onAjaxTranslationSuccess(translationRows: TextData[], _textStatus: JQuery.Ajax.SuccessTextStatus, _jqXHR: JQuery.jqXHR) {
 
         try {
-            const rowsWithExtraField = await this.updateTextData(textList);
+            const rowsWithExtraField = await this.updateTextData(translationRows);
             await this.updateTextDataExtra(rowsWithExtraField);
         }
         catch (e) {
@@ -219,7 +230,7 @@ export class LanguageService {
     }
 
 
-    private async updateTextData(textList: TextData[]) {
+    private async updateTextData(translationRows: TextData[]) {
 
         const updateTextContent = (textEl: Text, textData: TextData): UpdateDataReturn => {
             const { error } = t.updateText(textEl, t.getText(textData));
@@ -230,11 +241,16 @@ export class LanguageService {
             return { code: 'success' };
         };
 
-        const update = async (rowsWithExtraField: Promise<TextData[]>, textData: TextData) => {
-            const extras = await rowsWithExtraField;
+        const update = async (extraRows: TextData[], nextTextData: IteratorResult<TextData>) => {
+            const { value, done } = nextTextData;
+
+            if (done)
+                return extraRows;
+
+            const textData = value as TextData;
 
             if (textData.extra)
-                return extras.concat(textData);
+                return update(extraRows.concat(textData), ittranslationRows.next());
 
             await t.updateTextData(textData, { updateText: updateTextContent }).then(({ code, error }) => {
                 switch (code) {
@@ -244,28 +260,24 @@ export class LanguageService {
                 }
             }).catch(e => console.error(textData, e instanceof Error ? e : new Error(e)));
 
-            return extras;
+            return update(extraRows, ittranslationRows.next());;
         };
 
-        const rowsWithExtraField = await textList.reduce(update, Promise.resolve<TextData[]>([]));
+        const ittranslationRows = translationRows[ Symbol.iterator ]();
+        const rowsWithExtraField = update([], ittranslationRows.next());
+
         return rowsWithExtraField;
     }
 
-    private updateTextDataExtra(rowsWithExtraField: TextData[]): Promise<void> {
+    private async updateTextDataExtra(rowsWithExtraField: TextData[]): Promise<void> {
         const { defaultLanguage } = this.options;
-
 
         try {
 
-            this.regenerateDefaultLangExtraNodes();
+            await this.regenerateDefaultLangExtraNodes();
 
-            if (this.loadingLang === defaultLanguage) {
-                this.defaultLangExtraRowsById = {};
+            if (this.loadingLang === defaultLanguage)
                 return;
-            }
-
-            const needComputeDefaultExtraNodes = Object.values(this.defaultLangExtraRowsById).length === 0;
-
 
             const onError = (row: TextData, error: Error) => {
                 console.error(`Problem getting extra TextData Dom nodes: ${rowToString(row)}\nbecause ==> ${error.message}`);
@@ -274,44 +286,52 @@ export class LanguageService {
             };
 
             const rowsById = te.generateRowsById(rowsWithExtraField, { onError });
-
-            if (needComputeDefaultExtraNodes)
-                this.generateDefaultLangExtraRowsById(rowsById);
-
-            return te.updateAndreconstructPhrase(rowsById, { onError }).then(() => { });
+            await te.updateAndreconstructPhrase(rowsById, { onError });
 
         } catch (e) {
             console.error('Error while handling extra text', e);
         }
     }
 
-    private generateDefaultLangExtraRowsById(extraRowsById: Record<string, NodeTextData[]>) {
+    private generateDefaultLangExtraRowsById(translationRows: TextData[]) {
+        const onError = (row: TextData, error: Error) => {
+            console.error(`Problem getting extra TextData Dom nodes: ${rowToString(row)}\nbecause ==> ${error.message}`);
+            if (error.stack)
+                console.log(error.stack);
+        };
+
+        const rowsWithExtraById = te.generateRowsById(translationRows.filter(row => !!row.extra), { onError });
+
         // keep references to original node for regenerateDefaultLangExtraNodes
         // for default language, order is  always 1,2,3,4, ...
 
-        this.defaultLangExtraRowsById = Object.entries(extraRowsById).reduce((defaultLangExtraNodes, [ id, rows ]) => {
-            // we retrieve the common ancestor needed in regenerateDefaultLangExtraNodes
-            const nodes = rows.map(data => data.node);
-            const ancestor = te.commonParent(nodes);
+        this.defaultLangExtraRowsById$.resolve(
+            Object.entries(rowsWithExtraById).reduce((defaultLangExtraNodes, [ id, rows ]) => {
+                // we retrieve the common ancestor needed in regenerateDefaultLangExtraNodes
+                const nodes = rows.map(data => data.node);
+                const ancestor = te.commonParent(nodes);
 
-            const clones = rows.map(({ textData, node, options }) => ({
-                textData: { ...textData, text: node.textContent }, // default language text
-                options,
-                node: te.getChildOfTo(node, ancestor).cloneNode(true) as HTMLElement
-            }));
+                const clones = rows.map(({ textData, node, options }) => ({
+                    textData: textData,
+                    options,
+                    node: te.getChildOfTo(node, ancestor).cloneNode(true) as HTMLElement
+                }));
 
-            defaultLangExtraNodes[ id ] = { nodeTextDataList: clones, parent: ancestor };
-            return defaultLangExtraNodes;
+                defaultLangExtraNodes[ id ] = { nodeTextDataList: clones, parent: ancestor };
+                return defaultLangExtraNodes;
 
-        }, {} as DefaultLangExtraNodes);
+            }, {} as DefaultLangExtraNodes)
+        );
     }
 
-    private regenerateDefaultLangExtraNodes() {
+    private async regenerateDefaultLangExtraNodes() {
         // inject back the original extra nodes
         // right after receiving new text to keep the order of the default language as a reference
         // to rearrange the other languages extra afterwards
 
-        for (const defaultLangRows of Object.values(this.defaultLangExtraRowsById)) {
+        const defaultLangExtraRowsById = await this.defaultLangExtraRowsById$.promise;
+
+        for (const defaultLangRows of Object.values(defaultLangExtraRowsById)) {
             defaultLangRows.parent.innerHTML = '';
 
             for (const { node, textData, options } of defaultLangRows.nodeTextDataList) {
