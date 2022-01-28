@@ -1,83 +1,84 @@
 {
-	"name": "@upradata/tilda-stencil-components",
-	"version": "1.0.5",
-	"description": "Collection Of Stencil Components",
-	"author": {
-		"name": "Thomas Milotti",
-		"email": "thomas.milotti@gmail.com",
-		"url": "https://github.com/milottit"
-	},
-	"repository": {
-		"url": "https://github.com/milottit/stencil.git"
-	},
-	"main": "dist/index.cjs.js",
-	"module": "dist/custom-elements/index.js",
-	"es2015": "dist/esm/index.mjs",
-	"es2017": "dist/esm/index.mjs",
-	"types": "dist/types/index.d.ts",
-	"collection": "dist/collection/collection-manifest.json",
-	"collection:main": "dist/collection/index.js",
-	"unpkg": "dist/upradata/upradata.js",
-	"files": [
-		"dist/",
-		"loader/",
-		"lib"
-	],
-	"scripts": {
-		"build:old": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
-		"build:prod": "stencil build --prod",
-		"build:docs": "stencil build --docs",
-		"start": "stencil build --dev --watch --serve --no-open",
-		"test": "stencil test --spec --e2e",
-		"test.watch": "stencil test --spec --e2e --watchAll",
-		"test:non-components": "npx jest --verbose false --config jest-ut.config.js",
-		"generate": "stencil generate",
-		"github-push": "npm run build && npm version patch && git push && git push --tags",
-		"npm-publish": "npm run build && npm publish --access public",
-		"watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
-	},
-	"devDependencies": {
-		"@stencil/core": "2.12.1",
-		"@stencil/postcss": "^2.1.0",
-		"@stencil/sass": "^1.5.2",
-		"@types/jest": "^27.4.0",
-		"@types/jquery": "^3.5.13",
-		"@types/node": "^17.0.9",
-		"@types/resize-observer-browser": "^0.1.6",
-		"ansi-colors": "^4.1.1",
-		"autoprefixer": "^10.4.2",
-		"csvtojson": "^2.0.10",
-		"esm": "^3.2.25",
-		"jest": "^27.4.7",
-		"jest-environment-node": "^27.4.6",
-		"nodemon": "^2.0.15",
-		"postcss": "^8.4.5",
-		"puppeteer": "^13.1.1",
-		"rollup": "^2.64.0",
-		"rollup-plugin-includepaths": "^0.2.4",
-		"sass": "^1.48.0",
-		"sass-lint": "^1.13.1",
-		"ts-jest": "^27.1.3",
-		"tsconfig-paths": "^3.12.0",
-		"typescript": "^4.5.4",
-		"typescript-mix": "^3.1.3"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"@duetds/components": "^4.33.2",
-		"rxjs": "^7.5.2"
-	},
-	"local": {
-		"dependencies": {
-			"@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
-			"@upradata/util": "link:/home/milottit/Libraries/Upra-Data/util@14.0.0",
-			"@upradata/browser-util": "link:/home/milottit/Libraries/Upra-Data/browser-util@11.2.17",
-			"@upradata/decorator": "link:/home/milottit/Libraries/Upra-Data/decorators@2.0.3",
-			"@upradata/tilda-tools": "link:/home/milottit/Libraries/Tilda/tools@2.0.1"
-		},
-		"usedBy": {
-			"@upradata/tilda-services-components": "/home/milottit/Libraries/Tilda/services-components",
-			"@upradata/tilda-tools": "/home/milottit/Libraries/Tilda/tools"
-		}
-	}
+    "name": "@upradata/tilda-stencil-components",
+    "version": "2.0.0",
+    "description": "Collection Of Stencil Components",
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
+    "repository": {
+        "url": "https://github.com/milottit/stencil.git"
+    },
+    "main": "dist/index.cjs.js",
+    "module": "dist/custom-elements/index.js",
+    "es2015": "dist/esm/index.mjs",
+    "es2017": "dist/esm/index.mjs",
+    "types": "dist/types/index.d.ts",
+    "collection": "dist/collection/collection-manifest.json",
+    "collection:main": "dist/collection/index.js",
+    "unpkg": "dist/upradata/upradata.js",
+    "files": [
+        "dist/",
+        "loader/",
+        "lib"
+    ],
+    "scripts": {
+        "build:old": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
+        "build:prod": "stencil build --prod",
+        "build:docs": "stencil build --docs",
+        "start": "stencil build --dev --watch --serve --no-open",
+        "test": "stencil test --spec --e2e",
+        "test.watch": "stencil test --spec --e2e --watchAll",
+        "test:non-components": "npx jest --verbose false --config jest-ut.config.js",
+        "generate": "stencil generate",
+        "github-push": "npm run build && npm version patch && git push && git push --tags",
+        "npm-publish": "npm run build && npm publish --access public",
+        "watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
+    },
+    "devDependencies": {
+        "@stencil/core": "2.12.1",
+        "@stencil/postcss": "^2.1.0",
+        "@stencil/sass": "^1.5.2",
+        "@types/jest": "^27.4.0",
+        "@types/jquery": "^3.5.13",
+        "@types/node": "^17.0.9",
+        "@types/resize-observer-browser": "^0.1.6",
+        "ansi-colors": "^4.1.1",
+        "autoprefixer": "^10.4.2",
+        "csvtojson": "^2.0.10",
+        "esm": "^3.2.25",
+        "jest": "^27.4.7",
+        "jest-environment-node": "^27.4.6",
+        "nodemon": "^2.0.15",
+        "postcss": "^8.4.5",
+        "puppeteer": "^13.1.1",
+        "rollup": "^2.64.0",
+        "rollup-plugin-includepaths": "^0.2.4",
+        "sass": "^1.48.0",
+        "sass-lint": "^1.13.1",
+        "ts-jest": "^27.1.3",
+        "tsconfig-paths": "^3.12.0",
+        "typescript": "^4.5.4",
+        "typescript-mix": "^3.1.3"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@duetds/components": "^4.33.2",
+        "rxjs": "^7.5.2"
+    },
+    "local": {
+        "dependencies": {
+            "@upradata/stencil-flex": "link:/home/milottit/Libraries/Stencil/flex@0.0.1",
+            "@upradata/util": "link:/home/milottit/Libraries/Upra-Data/util@14.0.0",
+            "@upradata/browser-util": "link:/home/milottit/Libraries/Upra-Data/browser-util@11.2.17",
+            "@upradata/decorator": "link:/home/milottit/Libraries/Upra-Data/decorators@2.0.3",
+            "@upradata/tilda-tools": "link:/home/milottit/Libraries/Tilda/tools@2.0.1"
+        },
+        "usedBy": {
+            "@upradata/tilda-services-components": "/home/milottit/Libraries/Tilda/services-components",
+            "@upradata/tilda-tools": "/home/milottit/Libraries/Tilda/tools",
+            "@upradata/website": "/home/milottit/Projects/UpraDataWebsite-Tilda-new-version"
+        }
+    }
 }
