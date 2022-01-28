@@ -1,6 +1,6 @@
 {
     "name": "@upradata/tilda-stencil-components",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Collection Of Stencil Components",
     "author": {
         "name": "Thomas Milotti",
@@ -11,7 +11,7 @@
         "url": "https://github.com/milottit/stencil.git"
     },
     "main": "dist/index.cjs.js",
-    "module": "dist/custom-elements/index.js",
+    "module": "dist/index.js",
     "es2015": "dist/esm/index.mjs",
     "es2017": "dist/esm/index.mjs",
     "types": "dist/types/index.d.ts",
@@ -64,7 +64,6 @@
     },
     "license": "MIT",
     "dependencies": {
-        "@duetds/components": "^4.33.2",
         "rxjs": "^7.5.2"
     },
     "local": {
