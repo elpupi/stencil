@@ -1,6 +1,6 @@
 {
     "name": "@upradata/tilda-stencil-components",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "Collection Of Stencil Components",
     "author": {
         "name": "Thomas Milotti",
@@ -27,6 +27,7 @@
         "build:old": "stencil build && cp src/components.d.ts dist/types/index.d.ts && rm dist-prod && cp -r dist dist-prod",
         "build:prod": "stencil build --prod",
         "build:docs": "stencil build --docs",
+        "tsc:build": "tsc -p tsconfig.lib.json",
         "start": "stencil build --dev --watch --serve --no-open",
         "test": "stencil test --spec --e2e",
         "test.watch": "stencil test --spec --e2e --watchAll",

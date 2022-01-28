@@ -36,7 +36,7 @@ export class Popup {
     }
 
     get recId() {
-        return `rec${this.options.recid}`;
+        return `rec${this.options.recid.replace(/^rec/, '')}`;
     }
 
     init() {

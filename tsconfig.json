@@ -5,13 +5,13 @@
         "declaration": false,
         "experimentalDecorators": true,
         "lib": [
-            "dom",
-            "es2017",
-            "DOM.Iterable"
+            "DOM",
+            "DOM.Iterable",
+            "es2017"
         ],
         "moduleResolution": "node",
-        "module": "esnext",
-        "target": "es2017",
+        "module": "ESNext",
+        "target": "ES2017",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "jsx": "react",
