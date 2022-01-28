@@ -52,6 +52,11 @@ export const config: Config = {
     } as any, */
     globalStyle: 'src/global/global.scss',
     globalScript: 'src/global/global.ts',
+    hashFileNames: true,
+    preamble: 'Built by Upra-Data.\nCopyright © Upra-Data SARL',
+    hashedFileNameLength: 8,
+    invisiblePrehydration: true,
+    buildEs5: 'prod',
     outputTargets: [
         {
             type: 'dist',

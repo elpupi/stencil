@@ -7,7 +7,6 @@ declare function t868_resizePopup(recid: string): void;
 
 export class PopupOptions {
     recid: string;
-    // linkId: string;
 
     constructor(options: PopupOptions) {
         Object.assign(this, options);
@@ -44,7 +43,7 @@ export class Popup {
         this.rec = $(`#${this.recId}`);
 
         if (!this.rec.get(0)) {
-            console.error(`The rec block with id="${this.recId}" does not exit and it is need in Tilda`);
+            console.error(`The rec block with id="${this.recId}" does not exist and it is need in Tilda`);
             return;
         }
 
@@ -64,6 +63,21 @@ export class Popup {
 
             this.customCodeHTML = t868__readCustomCode(this.rec);
         }
+
+        this.initHook();
+    }
+
+    private initHook() {
+        const hook = this.popup.attr('data-tooltip-hook');
+
+        if (hook) {
+            // $('.r').on('click', `a[href="${hook}"]`, _event => this.show());
+            document.querySelectorAll(`a[href="#${hook}"]`).forEach(el => el.addEventListener('click', event => {
+                this.show($(el).attr('data-message'));
+                event.preventDefault();
+            }));
+        }
+
     }
 
     append(element: HTMLElement) {
@@ -85,7 +99,15 @@ export class Popup {
             this.popupContainer.get(0).innerHTML = ''; // get(0) to access Dom Element from JQuery
     }
 
-    show() {
+    show(message?: string) {
+        if (message) {
+            const p = document.createElement('p');
+            p.textContent = message;
+            p.setAttribute('style', 'padding: 10%; text-align: center;');
+
+            this.popupContainer?.get(0).appendChild(p);
+        }
+
         // t868_showPopup(recid, customCodeHTML); almost copy/paste
 
         if (this.isOpen || !this.popupContainer)

@@ -1,15 +1,25 @@
-<div class="buttons" style="display: flex; flex-direction: column; justify-content: center; margin: 50px 0;">
-    <span id="btn-popup" style="display: flex; justify-content: center; margin: 10px 0;">
+<style>
+    .center {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+
+<div class="buttons" class="center" style="flex-direction: column; margin: 50px 0;">
+    <span id="btn-popup" class="center" style="margin: 10px 0;">
         <button style="border-radius: 5px; padding: 7px 12px">open popup</button>
     </span>
 
-    <span id="btn-load-animation" style="display: flex; justify-content: center; margin: 10px 0;">
+    <span id="btn-load-animation" class="center" style="margin: 10px 0;">
         <button style="border-radius: 5px; padding: 7px 12px">open loading animation</button>
     </span>
+
+    <a class="center" href="#mt:popup" style="margin: 10px 0;" data-message="Coucou tout le monde via a link :)">open the popup link</a>
 </div>
 
 <template id="popup-content">
-    <p style="padding: 150px 0; display: flex; justify-content: center; ">And here comes a popup :)</p>
+    <p class="center" style="padding: 150px 0;">And here comes a popup :)</p>
 </template>
 
 <script>
@@ -27,7 +37,7 @@
                         domain: 'localhost', // 'https://server.upradata.com',
                         devPort: 8080
                     },
-                    includedPages: [ 'home', 'pricing', 'aboutus', 'page-home.html', 'page-pricing.html', 'page-aboutus.html' ],
+                    includedPages: [ 'nothing', 'here' ],
                     excludedPages: [],
                     selector: {
                         langLinksDesktop: '[id^="nav"] .t228__right_langs_lang a',
@@ -42,6 +52,44 @@
             responsive: {
                 // default
                 // breakpoints: LAYOUT_BREAKPOINTS 
+            },
+            terms: {
+                /* common: {
+                    api: {
+                        domain: 'https://server.upradata.com',
+                        devPort: 8080
+                    },
+                },
+                terms: {
+                    navId: '#nav167382939',
+                    htmlCodeId: '#rec167382941',
+                    api: { url: 'api/legal/' },
+                    popupMessages: {
+                        loadingMessage: targetName => `Loading the "${targetName}" document. Be patient while the network is responding`,
+                        errorMessage: targetName => `<p>An error occured. We could not load the "${targetName}" document. Please, contact
+                        <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue and get the "${targetName}" requested.</p>`
+                    }
+                },
+                police: {
+                    api: {
+                        url: 'api/legal/upradata-policy'
+                    },
+                    htmlCodeId: '#rec167382994',
+                    loadingAnimation: {
+                        loadingMessage: `Loading the fully detailed digital.upradata.com "Privacy Policy". Be patient while the network is responding`,
+                        errorMessage: `<p>An error occured. We could not load the digital.upradata.com "Privacy Policy" document. Please, contact <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue and get the document requested.</p>`
+                    },
+                },
+                policeShort: {
+                    api: {
+                        url: 'api/legal/upradata-policy-short',
+                    },
+                    popupLinkId: '#popup:upradata-short-policy',
+                    loadingAnimation: {
+                        loadingMessage: `Loading digital.upradata.com "Privacy Policy". Be patient while the network is responding`,
+                        errorMessage: `<p>An error occured. We could not load digital.upradata.com "Privacy Policy". Please, contact <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue.</p>`
+                    },
+                } */
             }
         };
 
@@ -94,22 +142,4 @@
 
 
 
-<div id="recpopup" class="r t-rec" style="opacity: 1;" data-animationappear="off" data-record-type="868">
-    <!-- t868 -->
-    <div class="t868 ">
-        <div class="t-popup" data-tooltip-hook="#popup:embedcode">
-            <div class="t-popup__close">
-                <div class="t-popup__close-wrapper"> <svg class="t-popup__close-icon" width="23px" height="23px" viewBox="0 0 23 23"
-                         version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">
-                            <rect transform="translate(11.313708, 11.313708) rotate(-45.000000) translate(-11.313708, -11.313708) "
-                                  x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
-                            <rect transform="translate(11.313708, 11.313708) rotate(-315.000000) translate(-11.313708, -11.313708) "
-                                  x="10.3137085" y="-3.6862915" width="2" height="30"></rect>
-                        </g>
-                    </svg> </div>
-            </div>
-            <div class="t-popup__container t-width t-width_10"> </div>
-        </div>
-    </div>
-</div>
+<mt-popup recid="recpopup" hookid="mt:popup"></mt-popup>

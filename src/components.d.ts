@@ -53,6 +53,10 @@ export namespace Components {
         "description": string;
         "header": string;
     }
+    interface MtPopup {
+        "hookid": string;
+        "recid": string;
+    }
     interface MtResponsive {
     }
     interface MtServices {
@@ -188,6 +192,12 @@ declare global {
         prototype: HTMLMtListItemElement;
         new (): HTMLMtListItemElement;
     };
+    interface HTMLMtPopupElement extends Components.MtPopup, HTMLStencilElement {
+    }
+    var HTMLMtPopupElement: {
+        prototype: HTMLMtPopupElement;
+        new (): HTMLMtPopupElement;
+    };
     interface HTMLMtResponsiveElement extends Components.MtResponsive, HTMLStencilElement {
     }
     var HTMLMtResponsiveElement: {
@@ -266,6 +276,7 @@ declare global {
         "mt-compact-list": HTMLMtCompactListElement;
         "mt-grid": HTMLMtGridElement;
         "mt-list-item": HTMLMtListItemElement;
+        "mt-popup": HTMLMtPopupElement;
         "mt-responsive": HTMLMtResponsiveElement;
         "mt-services": HTMLMtServicesElement;
         "mt-switch-button": HTMLMtSwitchButtonElement;
@@ -320,6 +331,10 @@ declare namespace LocalJSX {
     interface MtListItem {
         "description"?: string;
         "header"?: string;
+    }
+    interface MtPopup {
+        "hookid"?: string;
+        "recid"?: string;
     }
     interface MtResponsive {
     }
@@ -391,6 +406,7 @@ declare namespace LocalJSX {
         "mt-compact-list": MtCompactList;
         "mt-grid": MtGrid;
         "mt-list-item": MtListItem;
+        "mt-popup": MtPopup;
         "mt-responsive": MtResponsive;
         "mt-services": MtServices;
         "mt-switch-button": MtSwitchButton;
@@ -419,6 +435,7 @@ declare module "@stencil/core" {
             "mt-compact-list": LocalJSX.MtCompactList & JSXBase.HTMLAttributes<HTMLMtCompactListElement>;
             "mt-grid": LocalJSX.MtGrid & JSXBase.HTMLAttributes<HTMLMtGridElement>;
             "mt-list-item": LocalJSX.MtListItem & JSXBase.HTMLAttributes<HTMLMtListItemElement>;
+            "mt-popup": LocalJSX.MtPopup & JSXBase.HTMLAttributes<HTMLMtPopupElement>;
             "mt-responsive": LocalJSX.MtResponsive & JSXBase.HTMLAttributes<HTMLMtResponsiveElement>;
             "mt-services": LocalJSX.MtServices & JSXBase.HTMLAttributes<HTMLMtServicesElement>;
             "mt-switch-button": LocalJSX.MtSwitchButton & JSXBase.HTMLAttributes<HTMLMtSwitchButtonElement>;

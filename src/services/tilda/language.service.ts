@@ -98,8 +98,8 @@ export class LanguageService {
         const { includedPages, excludedPages, defaultLanguage } = this.options;
 
         if (
-            includedPages.length > 0 && includedPages.indexOf(this.pageName) === -1 || // we translate only the allowed pages
-            excludedPages.length > 0 && excludedPages.indexOf(this.pageName) !== -1 // we do not translate excluded pages
+            !includedPages.includes(this.pageName) || // we translate only the allowed pages
+            excludedPages.includes(this.pageName) // we do not translate excluded pages
         ) {
             this.disable();
             return;
@@ -123,7 +123,8 @@ export class LanguageService {
         // window.addEventListener('hashchange', event => this.handleHashChange(), false); on click
 
         this.sendAjaxResuest(this.getTranslationUrl(defaultLanguage), {
-            success: (translationRows: TextData[]) => this.generateDefaultLangExtraRowsById(translationRows),
+            success: translationRows => this.generateDefaultLangExtraRowsById(translationRows),
+            // Jquery ajax does not work with function binding
             fail: (...args) => this.onAjaxError(...args)
         });
 

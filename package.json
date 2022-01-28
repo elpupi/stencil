@@ -1,6 +1,6 @@
 {
     "name": "@upradata/tilda-stencil-components",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Collection Of Stencil Components",
     "author": {
         "name": "Thomas Milotti",
@@ -17,7 +17,7 @@
     "types": "dist/types/index.d.ts",
     "collection": "dist/collection/collection-manifest.json",
     "collection:main": "dist/collection/index.js",
-    "unpkg": "dist/upradata/index.esm.js",
+    "unpkg": "dist/upradata/upradata.esm.js",
     "files": [
         "dist/",
         "loader/",

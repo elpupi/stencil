@@ -5,7 +5,7 @@ import { TermsModuleServices, TermsModuleServicesOptions, TermsModuleServicesOpt
 
 
 export const loadServices: LoadServices<TermsModuleServicesOpts, TermsModuleServices> = options => {
-    const { common } = options;
+    const common = options?.common;
 
     const api = <Name extends keyof TermsModuleServices>(serviceName: Name) => {
         const a = { ...(options[ serviceName ] as TermsModuleServicesOptions[ Name ])?.api, ...common.api } as Api;
