@@ -173,16 +173,13 @@ export class LanguageService {
             const { languages } = this.options;
 
             this.loadingLang = lang;
-
             const language = languages.find(l => l.lang === lang);
 
             if (!language)
                 return;
 
-
             this.loadingAnimationPopup.startLoadingAnimation({
                 loadingMessage: `Loading "${language.name}" translation. Be patient while the network is responding`,
-                errorMessage: `<p>An error occured. We could not load the "${language.name}" translation of the website. Please, contact <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue.</p>`,
                 autoShow: true,
                 delay: 500
             });
@@ -209,7 +206,14 @@ export class LanguageService {
 
 
     private onAjaxError(_jqXHR: JQuery.jqXHR, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string) {
-        this.loadingAnimationPopup.error();
+        const language = this.options.languages.find(l => l.lang === this.loadingLang);
+
+        this.loadingAnimationPopup.error(`
+        <p>
+            An error occured. We could not load the "${language.name}" translation of the website.
+            Please, contact <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue.
+        </p>`);
+
         console.error('Error occured: ', { textStatus, errorThrown });
     }
 

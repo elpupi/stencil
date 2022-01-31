@@ -123,7 +123,7 @@ export class LoadingAnimationPopup {
         this.popup.show();
 
         const errorDiv = document.createElement('div');
-        errorDiv.innerHTML = errorMessage || this.errorMessage;
+        errorDiv.innerHTML = errorMessage || this.errorMessage || 'Error encountered!';
         errorDiv.setAttribute('style', 'padding: 10%; text-align: center;');
 
         this.popup.append(errorDiv);
