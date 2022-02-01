@@ -8,7 +8,7 @@ import { t668_init } from './tilda-init';
     tag: 'mt-tilda-accordeon',
     styleUrl: 'tilda-accordeon.scss',
     shadow: false,
-    scoped: true
+    scoped: false
 })
 export class MtTildaAccordeon implements ComponentInterface {
     tildaBlock: InitBlock = { recid: generateUniqueRecId('mt-tilda-accordeon'), blockid: '668' };
