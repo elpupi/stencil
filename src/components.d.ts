@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { BreakPoint } from "./responsive";
 import { MtModulesServicesConfig, MtModulesServicesOpts, TermsModuleServicesOpts, TildaModuleServicesOpts } from "./services";
 import { BooleanAttribute } from "./util";
-import { InitBlock } from "./components/tilda/util/init-block";
+import { GetInitBlockFunc, InitBlock } from "./components/tilda/util/init-block";
 import { MtTildaShortPolicyItem } from "./components/tilda/mt-tilda-short-policy/mt-tilda-short-policy";
 import { MtTildaAccordeonItem } from "./components/tilda/tilda-accordeon/tilda-accordeon-item/tilda-accordeon-item";
 export namespace Components {
@@ -99,6 +99,7 @@ export namespace Components {
     interface MtTildaRec {
         "auto": boolean;
         "blockid": string;
+        "getInitBlock": GetInitBlockFunc;
         "initBlock": (force?: boolean) => Promise<void>;
         "recid": string;
         "tildaBlock"?: InitBlock | InitBlock[];
@@ -375,6 +376,7 @@ declare namespace LocalJSX {
     interface MtTildaRec {
         "auto"?: boolean;
         "blockid"?: string;
+        "getInitBlock"?: GetInitBlockFunc;
         "recid"?: string;
         "tildaBlock"?: InitBlock | InitBlock[];
         "waitFor"?: () => Promise<void>;

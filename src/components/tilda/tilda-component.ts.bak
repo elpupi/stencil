@@ -1,5 +1,5 @@
 import { ensureArray } from '@upradata/util';
-import { initBlock, findRec, InitBlock } from './util/init-block';
+import { runInitBlock, findRec, InitBlock } from './util/init-block';
 
 
 export class TildaComponent {
@@ -20,7 +20,7 @@ export class TildaComponent {
             }
 
             if (recid && blockid) {
-                this.isInit = initBlock({ blockid, recid });
+                this.isInit = runInitBlock({ blockid, recid });
             } else
                 console.warn(`Could not find the html block with a #rec... id to initialize the tilda component with the name "${blockid}"`);
         }

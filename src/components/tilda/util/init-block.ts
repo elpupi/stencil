@@ -20,16 +20,33 @@ export const findRec = (element: Element) => {
 };
 
 
-export const initBlock = (options: Omit<InitBlock, 'element'>) => {
+export type InitBlockFunc = (recid: string) => void;
+export type GetInitBlockFunc = (blockid: string) => InitBlockFunc;
+
+export const getInitBlockFunc: GetInitBlockFunc = blockid => {
+    const funcName = `t${blockid}_init`;
+
+    if (!window[ funcName ])
+        console.warn(`Could not find "${funcName}" tilda init method ("blockid:" ${blockid})`);
+
+    return window[ funcName ];
+};
+
+export const runInitBlock = (options: { recid: string; initBlock: InitBlockFunc; }) => {
     const recid = (options.recid || 'rec').replace(/^rec/, '');
-    const funcName = `t${options.blockid}_init`;
+    const errorMsg = `Could not initialize the tilda recid: "${recid}" block`;
+
+    if (!options.initBlock) {
+        console.warn(`${errorMsg} because the initBlock function is "undefined"`);
+        return false;
+    }
 
     try {
         // console.log(`Calling ${funcName}(${recid})`);
-        window[ funcName ] && window[ funcName ](recid);
+        options.initBlock?.(recid);
         return true;
     } catch (e) {
-        console.warn(`Error while calling the tilda init method: ${funcName}("recid:" ${recid})`, e.message, e);
+        console.warn(errorMsg, e.message, e);
         return false;
     }
 };

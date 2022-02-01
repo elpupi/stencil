@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property     | Attribute | Description | Type                       | Default     |
-| ------------ | --------- | ----------- | -------------------------- | ----------- |
-| `auto`       | `auto`    |             | `boolean`                  | `true`      |
-| `blockid`    | `blockid` |             | `string`                   | `undefined` |
-| `recid`      | `recid`   |             | `string`                   | `undefined` |
-| `tildaBlock` | --        |             | `InitBlock \| InitBlock[]` | `[]`        |
-| `waitFor`    | --        |             | `() => Promise<void>`      | `undefined` |
+| Property       | Attribute | Description | Type                                 | Default     |
+| -------------- | --------- | ----------- | ------------------------------------ | ----------- |
+| `auto`         | `auto`    |             | `boolean`                            | `true`      |
+| `blockid`      | `blockid` |             | `string`                             | `undefined` |
+| `getInitBlock` | --        |             | `(blockid: string) => InitBlockFunc` | `undefined` |
+| `recid`        | `recid`   |             | `string`                             | `undefined` |
+| `tildaBlock`   | --        |             | `InitBlock \| InitBlock[]`           | `[]`        |
+| `waitFor`      | --        |             | `() => Promise<void>`                | `undefined` |
 
 
 ## Methods

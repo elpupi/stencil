@@ -1,6 +1,7 @@
 import { Component, ComponentInterface, h, Host, Method, Prop, Element } from '@stencil/core';
-import { listToArray, isElement } from '../../../util';
+import { isElement } from '../../../util';
 import { generateUniqueRecId, InitBlock } from '../util/init-block';
+import { t668_init } from './tilda-init';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class MtTildaAccordeon implements ComponentInterface {
             observer = new MutationObserver((mutationsList, _observer) => {
                 const newNodes = mutationsList.filter(m => m.type === 'childList').map(m => m.addedNodes);
                 const hasHeader = newNodes.some(nodeList =>
-                    listToArray(nodeList).some(node => isElement(node) && listToArray(node.classList).find(c => c === 't668__header'))
+                    [ ...nodeList ].some(node => isElement(node) && [ ...node.classList ].find(c => c === 't668__header'))
                 );
 
                 if (hasHeader)
@@ -46,18 +47,25 @@ export class MtTildaAccordeon implements ComponentInterface {
             });
 
             observer.observe(this.el, { childList: true, subtree: true });
-        }).then(() => observer && observer.disconnect());
+        }).then(() => observer?.disconnect());
     }
 
     render() {
         return (
             <Host class={{ shadow: this.shadow }}>
-                <mt-tilda-rec recid={this.tildaBlock.recid} blockid={this.tildaBlock.blockid} waitFor={this.waitFor.bind(this)} ref={el => this.tildaRec = el}>
+                <mt-tilda-rec
+                    recid={this.tildaBlock.recid}
+                    blockid={this.tildaBlock.blockid}
+                    waitFor={this.waitFor.bind(this)}
+                    getInitBlock={() => t668_init}
+                    ref={el => this.tildaRec = el}>
+
                     <div class={`t${this.tildaBlock.blockid}`}>
                         <div class="t-container" id="mt-item-list">
                             <slot></slot>
                         </div>
                     </div>
+
                 </mt-tilda-rec>
             </Host>
         );

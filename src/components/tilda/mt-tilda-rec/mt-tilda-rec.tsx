@@ -1,6 +1,6 @@
 import { Component, Host, Prop, h, Method } from '@stencil/core';
 import { ensureArray } from '@upradata/util/';
-import { findRec as findUpRec, initBlock, InitBlock } from '../util/init-block';
+import { findRec as findUpRec, runInitBlock, InitBlock, GetInitBlockFunc, getInitBlockFunc } from '../util/init-block';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class MtTildaRec {
     @Prop() waitFor: () => Promise<void>;
     @Prop() auto: boolean = true;
     @Prop() tildaBlock?: InitBlock | InitBlock[] = [];
+    @Prop() getInitBlock: GetInitBlockFunc = undefined;
     isBlockInitiated = new Map<string, boolean>();
     /* @Element() el: Element; */
 
@@ -62,7 +63,8 @@ export class MtTildaRec {
                 const initOpts = { blockid, recid };
 
                 if (!this.isBlockInitiated.get(JSON.stringify(initOpts)) || force) {
-                    const init = initBlock({ blockid, recid });
+                    const initBlockFunc = this.getInitBlock?.(blockid) ?? getInitBlockFunc(blockid);
+                    const init = runInitBlock({ recid, initBlock: initBlockFunc });
 
                     if (init)
                         this.isBlockInitiated.set(JSON.stringify(initOpts), true);

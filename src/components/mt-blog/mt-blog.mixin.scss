@@ -1,4 +1,4 @@
-@use "./helpers/mt-blog-mixin" as *;
+@use "./helpers/mt-blog-mixin"as *;
 @use "../../scss-utils/mt";
 
 @mixin mt-blog() {
@@ -40,6 +40,7 @@
     }
 
     a {
+        text-decoration: none;
         color: #db2828;
         font-weight: inherit;
         border-bottom: 1px solid #3586fc;
@@ -68,7 +69,7 @@
         }
     }
 
-    p + p {
+    p+p {
         margin-top: 20px;
     }
 
@@ -101,11 +102,8 @@
     }
 
     @at-root {
-        $selector: mt.distribute-selectors(
-            "+",
-            ("mt-blog *", ".mt-blog *")
-                (
-                    mt-blog-subsection,
+        $selector: mt.distribute-selectors("+",
+                ("mt-blog *", ".mt-blog *") (mt-blog-subsection,
                     ".mt-blog-subsection",
                     " .mt-subsection",
                     mt-blog-alinea,
@@ -113,17 +111,14 @@
                     ".mt-alinea",
                     ".mt-blog-p",
                     ".mt-p"
-                )
-        );
+                ));
 
         #{$selector} {
             margin-top: 20px;
         }
 
-        $selector: mt.distribute-selectors(
-            "+",
-            ("mt-blog *", ".mt-blog *") (mt-blog-section, ".mt-blog-section", " .mt-section")
-        );
+        $selector: mt.distribute-selectors("+",
+            ("mt-blog *", ".mt-blog *") (mt-blog-section, ".mt-blog-section", " .mt-section"));
 
         #{$selector} {
             margin-top: 10px;
