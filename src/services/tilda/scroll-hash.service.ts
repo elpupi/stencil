@@ -1,18 +1,18 @@
 export const loadScrollHashService = () => {
-    $(window).ready(() => {
-        const links = $('a[href^="#rec"]').toArray().concat($('a[href^="/#rec"]').toArray());
+    $(() => {
+        const links = $('a[href^="#rec"]').toArray();
 
-        for (const anchor of links) {
-            $(anchor).off('click'); // we remove previous click handler from jquery to replace with a better solution
+        for (const link of links) {
+            $(link).off('click'); // we remove previous click handler from jquery to replace with a better solution
 
-            anchor.addEventListener('click', e => {
+            link.addEventListener('click', e => {
                 e.preventDefault();
 
-                const id = anchor.getAttribute('href').replace(/^\//, '');
-                const target = document.querySelector(id);
+                const targetHref = link.getAttribute('href');
+                const target = document.querySelector(targetHref);
 
                 if (!target) {
-                    console.warn(`the link with href="${anchor.getAttribute('href')}" has no targets node with id="${id}"`);
+                    console.warn(`the link with href="${link.getAttribute('href')}" has no targets node with id="${targetHref}"`);
                     return;
                 }
 
@@ -28,7 +28,17 @@ export const loadScrollHashService = () => {
 
             // because Tilda set a jQuery click event on the button that will override ours
             // So we add ours and delete the addEventListener listener. (TO ENHANCE WITH A BETTER SOLUTION)
-            anchor.addEventListener = () => { };
+            // now we prevent Tilda to add 'click' event if it is done afterwards
+            const oldListener = link.addEventListener.bind(link);
+
+            link.addEventListener = (...args: Parameters<Element[ 'addEventListener' ]>): ReturnType<Element[ 'addEventListener' ]> => {
+                if (args[ 0 ] === 'click') {
+                    // skip
+                } else {
+                    return oldListener(...args);
+                }
+            };
+            // link.addEventListener = () => { };
         }
     });
 };
