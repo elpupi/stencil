@@ -367,8 +367,12 @@ export class LanguageService {
 
         this.langLinks.forEach(a => a.classList.remove(activeLinkClass));
 
-        const mobileAndDesktopLangLinks = this.langLinks.filter(a => a.textContent.trim().toLowerCase() === this.getSavedLang().lang);
-        mobileAndDesktopLangLinks.forEach(a => a.classList.add(disableLinkClass));
+        this.langLinks.forEach(a => {
+            a.classList.add(disableLinkClass);
+
+            if (a.textContent.trim().toLowerCase() === this.getSavedLang().lang)
+                a.classList.add('default-lang');
+        });
 
         this.langLinks.forEach(a => a.addEventListener('click', e => e.preventDefault()));
     }

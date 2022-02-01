@@ -4,7 +4,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
     tag: 'mt-popup',
     styleUrl: 'mt-popup.scss',
     shadow: false,
-    scoped: true
+    scoped: false
 })
 export class MtPopup {
     @Prop() recid: string = '';
