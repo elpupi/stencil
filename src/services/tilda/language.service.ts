@@ -122,11 +122,7 @@ export class LanguageService {
         // window.addEventListener('popstate', event => this.handleHashChange());
         // window.addEventListener('hashchange', event => this.handleHashChange(), false); on click
 
-        this.sendAjaxResuest(this.getTranslationUrl(defaultLanguage), {
-            success: translationRows => this.generateDefaultLangExtraRowsById(translationRows),
-            // Jquery ajax does not work with function binding
-            fail: (...args) => this.onAjaxError(...args)
-        });
+        this.loadTranslation(defaultLanguage, this.generateDefaultLangExtraRowsById.bind(this));
 
         if (location.hash)
             this.handleHashChange();
@@ -167,7 +163,7 @@ export class LanguageService {
         return `${this.domain}${pageName}-${lang}`;
     };
 
-    private loadPage(lang: string) {
+    private loadTranslation(lang: string, onSuccess: AjaxSuccessCallback<TextData[]>) {
         try {
 
             const { languages } = this.options;
@@ -184,9 +180,9 @@ export class LanguageService {
                 delay: 500
             });
 
-            this.sendAjaxResuest(this.getTranslationUrl(lang), {
-                success: (...args) => this.onAjaxTranslationSuccess(...args),
-                fail: (...args) => this.onAjaxError(...args)
+            this.sendAjaxRequest(this.getTranslationUrl(lang), {
+                success: onSuccess,
+                fail: this.onAjaxError.bind(this)
             });
 
         } catch (e) {
@@ -196,8 +192,12 @@ export class LanguageService {
         }
     }
 
+    private loadPage(lang: string) {
+        this.loadTranslation(lang, this.onAjaxTranslationSuccess.bind(this));
+    }
 
-    private sendAjaxResuest(url: string, callbacks: { success: AjaxSuccessCallback<TextData[]>; fail: AjaxErrorCallback; }) {
+
+    private sendAjaxRequest(url: string, callbacks: { success: AjaxSuccessCallback<TextData[]>; fail: AjaxErrorCallback; }) {
         $.ajax(this.ajaxSettings({ url }))
             // strangely, Jquery it is not working if we pass this.onSucces.bind(this)
             .done((...args: [ data: any, textStatus: JQuery.Ajax.SuccessTextStatus, v: JQuery.jqXHR<any> ]) => callbacks.success(...args))
@@ -350,9 +350,7 @@ export class LanguageService {
     private updateCssMenuLanguage() {
         const { activeLinkClass, defaultLanguage } = this.options;
 
-        // const mobileAndDesktopActiveLinks = [ ...document.querySelectorAll(`.${activeLinkClass}`) ];
-        // mobileAndDesktopActiveLinks.forEach(a => a.classList.remove(activeLinkClass));
-        this.langLinks.forEach(a => a.classList.remove(activeLinkClass)); // enough
+        this.langLinks.forEach(a => a.classList.remove(activeLinkClass));
 
         const lang = this.getSavedLang()?.lang || defaultLanguage;
 
