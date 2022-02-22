@@ -122,7 +122,7 @@ export class LanguageService {
         // window.addEventListener('popstate', event => this.handleHashChange());
         // window.addEventListener('hashchange', event => this.handleHashChange(), false); on click
 
-        this.loadTranslation(defaultLanguage, this.generateDefaultLangExtraRowsById.bind(this));
+        this.loadTranslation(defaultLanguage, { onSuccess: this.onAjaxDefaultTranslationSuccess.bind(this), loadingAnimation: false });
 
         if (location.hash)
             this.handleHashChange();
@@ -163,7 +163,7 @@ export class LanguageService {
         return `${this.domain}${pageName}-${lang}`;
     };
 
-    private loadTranslation(lang: string, onSuccess: AjaxSuccessCallback<TextData[]>) {
+    private loadTranslation(lang: string, options: { onSuccess: AjaxSuccessCallback<TextData[]>; loadingAnimation: boolean; }) {
         try {
 
             const { languages } = this.options;
@@ -174,14 +174,16 @@ export class LanguageService {
             if (!language)
                 return;
 
-            this.loadingAnimationPopup.startLoadingAnimation({
-                loadingMessage: `Loading "${language.name}" translation. Be patient while the network is responding`,
-                autoShow: true,
-                delay: 500
-            });
+            if (options.loadingAnimation) {
+                this.loadingAnimationPopup.startLoadingAnimation({
+                    loadingMessage: `Loading "${language.name}" translation. Be patient while the network is responding`,
+                    autoShow: true,
+                    delay: 500
+                });
+            }
 
             this.sendAjaxRequest(this.getTranslationUrl(lang), {
-                success: onSuccess,
+                success: options.onSuccess,
                 fail: this.onAjaxError.bind(this)
             });
 
@@ -193,7 +195,7 @@ export class LanguageService {
     }
 
     private loadPage(lang: string) {
-        this.loadTranslation(lang, this.onAjaxTranslationSuccess.bind(this));
+        this.loadTranslation(lang, { onSuccess: this.onAjaxTranslationSuccess.bind(this), loadingAnimation: true });
     }
 
 
@@ -217,6 +219,19 @@ export class LanguageService {
         console.error('Error occured: ', { textStatus, errorThrown });
     }
 
+
+    private async onAjaxDefaultTranslationSuccess(translationRows: TextData[], _textStatus: JQuery.Ajax.SuccessTextStatus, _jqXHR: JQuery.jqXHR) {
+        try {
+            this.generateDefaultLangExtraRowsById(translationRows);
+        }
+        catch (e) {
+            // this.loadingAnimation.onError();
+            console.error(e);
+        }
+
+        this.loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
+    }
+
     private async onAjaxTranslationSuccess(translationRows: TextData[], _textStatus: JQuery.Ajax.SuccessTextStatus, _jqXHR: JQuery.jqXHR) {
 
         try {
@@ -232,6 +247,7 @@ export class LanguageService {
         this.loadingLang = undefined;
 
         this.updateCssMenuLanguage();
+        this.loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
     }
 
 
@@ -356,8 +372,6 @@ export class LanguageService {
 
         const mobileAndDesktopLangLinks = this.langLinks.filter(a => a.textContent.trim().toLowerCase() === lang);
         mobileAndDesktopLangLinks.forEach(a => a.classList.add(activeLinkClass));
-
-        this.loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
     }
 
     private disable() {
