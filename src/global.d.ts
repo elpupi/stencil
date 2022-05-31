@@ -8,3 +8,8 @@ declare global {
     }
 }
  */
+
+/* declare interface Window {
+    readonly [ "Infinity" ]: never;
+    readonly [ "NaN" ]: never;
+} */

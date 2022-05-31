@@ -89,9 +89,8 @@ export class LanguageService {
     }
 
     private getSavedLang() {
-        const savedLang = localStorage.getItem('language');
+        const savedLang = localStorage.getItem('language') || this.options.defaultLanguage;
         return this.options.languages.find(l => l.lang === savedLang);
-
     }
 
     init() {
@@ -105,7 +104,7 @@ export class LanguageService {
             return;
         }
 
-        const activeLang = this.getSavedLang()?.lang ?? this.options.defaultLanguage;
+        const activeLang = this.getSavedLang().lang;
 
         this.updateCssMenuLanguage();
 
@@ -140,7 +139,7 @@ export class LanguageService {
     }
 
     private handleChangeLang(lang: string) {
-        if (this.getSavedLang()?.lang === lang) // already translated
+        if (this.getSavedLang().lang === lang) // already translated
             return;
 
         this.loadPage(lang);
@@ -364,11 +363,11 @@ export class LanguageService {
     }
 
     private updateCssMenuLanguage() {
-        const { activeLinkClass, defaultLanguage } = this.options;
+        const { activeLinkClass } = this.options;
 
         this.langLinks.forEach(a => a.classList.remove(activeLinkClass));
 
-        const lang = this.getSavedLang()?.lang || defaultLanguage;
+        const lang = this.getSavedLang().lang;
 
         const mobileAndDesktopLangLinks = this.langLinks.filter(a => a.textContent.trim().toLowerCase() === lang);
         mobileAndDesktopLangLinks.forEach(a => a.classList.add(activeLinkClass));

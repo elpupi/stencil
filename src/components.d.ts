@@ -126,6 +126,10 @@ export namespace Components {
         "popup": boolean;
     }
 }
+export interface MtSwitchButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMtSwitchButtonElement;
+}
 declare global {
     interface HTMLElTestElement extends Components.ElTest, HTMLStencilElement {
     }
@@ -350,7 +354,7 @@ declare namespace LocalJSX {
     }
     interface MtSwitchButton {
         "leftText"?: string;
-        "onSwitch-change"?: (event: CustomEvent<boolean>) => void;
+        "onSwitch-change"?: (event: MtSwitchButtonCustomEvent<boolean>) => void;
         "rightText"?: string;
     }
     interface MtTest {
