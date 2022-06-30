@@ -30,10 +30,6 @@ export class MtTildaAccordeonContent implements ComponentInterface {
             </Host>
         );
     }
-
-    componentDidLoad() {
-        1 === 1;
-    }
 }
 
 const AccordeonHeader = (args: { header?: string; }) => (

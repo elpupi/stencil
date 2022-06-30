@@ -1,8 +1,8 @@
 import { onLoad } from './helpers';
 
-declare function t868__readCustomCode(rec: JQuery<HTMLElement>): string;
-declare function t868_setHeight(recid: string): void;
-declare function t868_resizePopup(recid: string): void;
+declare function t868__readCustomCode(rec: HTMLElement): string;
+declare function t868_setHeight(rec: HTMLElement): void;
+declare function t868_resizePopup(rec: HTMLElement): void;
 
 
 export class PopupOptions {
@@ -61,7 +61,7 @@ export class Popup {
 
             document.body.insertAdjacentHTML('afterbegin', css); // fix mobile css that is overflowing the window
 
-            this.customCodeHTML = t868__readCustomCode(this.rec);
+            this.customCodeHTML = t868__readCustomCode(this.rec.get(0));
         }
 
         this.initHook();
@@ -116,7 +116,7 @@ export class Popup {
         this.popupContainer.append(this.customCodeHTML);
 
         this.popup.css('display', 'block');
-        t868_setHeight(this.options.recid);
+        t868_setHeight(this.rec.get(0));
         // setTimeout(function () {
         this.popup.find('.t-popup__container').addClass('t-popup__container-animated');
         this.popup.addClass('t-popup_show');
@@ -136,7 +136,7 @@ export class Popup {
             this.closePopup();
         });
 
-        t868_resizePopup(this.options.recid);
+        t868_resizePopup(this.rec.get(0));
 
         this.isOpen = true;
     }
