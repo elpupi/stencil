@@ -34,7 +34,7 @@
         "test.watch": "stencil test --spec --e2e --watchAll",
         "test:non-components": "npx jest --verbose false --config jest-ut.config.js",
         "generate": "stencil generate",
-        "github-push": "npm run build && npm version patch && git push && git push --tags",
+        "github-push": "npm run build && npm version patch && git pushall && git pushall-tags",
         "npm-publish": "npm run build && npm publish --access public",
         "watch:static": "nodemon --watch src/fonts --watch src/test-components --delay 100 --exec 'python -v' caca.py"
     },
