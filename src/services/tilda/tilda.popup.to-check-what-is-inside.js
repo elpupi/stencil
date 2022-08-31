@@ -1,3 +1,5 @@
+// in tilda-blocks-page${pageId}.min.js
+
 function t868_initPopup(recid) {
     var rec = document.getElementById('rec' + recid);
     if (!rec)
@@ -119,6 +121,8 @@ function t868_setHeight(rec) {
         parent.style.height = height;
     });
 }
+
+// DOES NOT EXIST ANYMORE => changed with t_popup__resizePopup tilda-popup-1.0.min.js
 function t868_resizePopup(rec) {
     var popupContainer = rec.querySelector('.t-popup__container');
     var paddingTop = parseInt(popupContainer.style.paddingTop, 10) || 0;
@@ -130,4 +134,17 @@ function t868_resizePopup(rec) {
     } else {
         popupContainer.classList.remove('t-popup__container-static');
     }
+}
+
+ // tilda-popup-1.0.min.js
+function t_popup__resizePopup(t) {
+    var e, o, p = document.getElementById("rec" + t);
+    !p || (e = p.querySelector(".t-popup__container")) && (o = getComputedStyle(e, null),
+        t = parseInt(o.paddingTop) || 0,
+        o = parseInt(o.paddingBottom) || 0,
+        t = e.clientHeight - (t + o),
+        o = 120,
+        364 !== (p = Number(p.getAttribute("data-record-type"))) && 365 !== p || (o = 30),
+        868 !== p && 331 !== p && 358 !== p && 1013 !== p && 746 !== p || (o = 0),
+        t > window.innerHeight - o ? e.classList.add("t-popup__container-static") : e.classList.remove("t-popup__container-static"));
 }

@@ -2,7 +2,7 @@ import { onLoad } from './helpers';
 
 declare function t868__readCustomCode(rec: HTMLElement): string;
 declare function t868_setHeight(rec: HTMLElement): void;
-declare function t868_resizePopup(rec: HTMLElement): void;
+declare function t_popup__resizePopup(recId: string): void;
 
 
 export class PopupOptions {
@@ -136,7 +136,7 @@ export class Popup {
             this.closePopup();
         });
 
-        t868_resizePopup(this.rec.get(0));
+        t_popup__resizePopup(this.recId);
 
         this.isOpen = true;
     }
