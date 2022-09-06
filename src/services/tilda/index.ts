@@ -5,4 +5,6 @@ export * from './load-services.event';
 export * from './loading-animation-popup.service';
 export * from './popup.service';
 export * from './scroll-hash.service';
+export * from './tilda-services.module';
+export * from './tilda-zero-block.service';
 export * from './types';

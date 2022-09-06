@@ -13,8 +13,8 @@ export type MtModulesServices = ModulesServices<{
 
 export type MtModulesServicesOpts = {
     responsive?: ResponsiveModuleServicesOpts;
-    tilda: TildaModuleServicesOpts;
-    terms: TermsModuleServicesOpts;
+    tilda?: TildaModuleServicesOpts;
+    terms?: TermsModuleServicesOpts;
 };
 
 export type MtModulesServicesConfigOptions = ModulesServicesConfOptions<MtModulesServices, MtModulesServicesOpts>;

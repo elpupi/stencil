@@ -17,6 +17,10 @@ export const loadServices: LoadServices<TildaModuleServicesOpts, TildaModuleServ
     return {
         popup,
         loadingAnimationPopup,
-        language: new LanguageService(servicesConfig.language, loadingAnimationPopup)
+        language: new LanguageService(servicesConfig.language, loadingAnimationPopup),
+        get zeroBlock() {
+            if (servicesConfig.zeroBlock)
+                return import('./tilda-zero-block.service');
+        }
     };
 };

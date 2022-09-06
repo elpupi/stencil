@@ -65,7 +65,8 @@ export class LanguageService {
 
         const { api, defaultLanguage, selector } = this.options;
 
-        this.domain = location.href.includes('192.168.0') || location.href.includes('localhost') ? `http://localhost:${api.devPort}/${api.url}` : `${api.domain}/${api.url}`;
+        const isLocal = [ '192.168', '127.0.0.1', 'localhost', 'treasure' ].some(prefix => location.href.includes(prefix));
+        this.domain = isLocal ? `http://localhost:${api.devPort}/${api.url}` : `${api.domain}/${api.url}`;
 
         this.options.defaultLanguage = defaultLanguage || this.langLinks[ 0 ].textContent.toLowerCase();
 

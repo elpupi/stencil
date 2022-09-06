@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Watch, State, Method } from '@stencil/core';
-import { loadServices, servicesLoaded$ } from '@upradata/browser-util';
+import { loadServices } from '@upradata/browser-util';
 import { BreakPoint, LAYOUT_BREAKPOINTS/* , isMobile, MediaQuery, BreakpointObserver, AddResponsiveClasses, ResponsiveProp */ } from '../../responsive';
-import { MtModulesServicesConfig, MtModulesServicesOpts, servicesLoaded, TermsModuleServicesOpts, TildaModuleServicesOpts } from '../../services';
+import { MtModulesServices, MtModulesServicesConfig, MtModulesServicesOpts, servicesLoaded, TermsModuleServicesOpts, TildaModuleServicesOpts } from '../../services';
 import { EVENTS } from '../../util/custom-events';
 import { BooleanAttribute, toBoolean, toObject } from '../../util';
 
@@ -64,7 +64,7 @@ export class MtServices {
 
 
     @Method()
-    async initServices(options: MtModulesServicesOpts) {
+    async initServices(options: MtModulesServicesOpts): Promise<MtModulesServices> {
 
         if (MtServices.isLoaded)
             return;
@@ -76,15 +76,15 @@ export class MtServices {
         const config: MtModulesServicesConfig = {
             config: {
                 responsive: {
-                    module: import('../../responsive/responsive-services.module'),
+                    lazyModule: () => import('../../responsive/responsive-services.module'),
                     config: options.responsive
                 },
                 tilda: {
-                    module: import('../../services/tilda/tilda-services.module'),
+                    lazyModule: () => import('../../services/tilda/tilda-services.module'),
                     config: options.tilda
                 },
                 terms: {
-                    module: import('../../services/terms/terms-services.module'),
+                    lazyModule: () => import('../../services/terms/terms-services.module'),
                     config: options.terms
                 }
             },
@@ -98,8 +98,10 @@ export class MtServices {
 
         loadServices(config);
 
-        await servicesLoaded$();
+        const services = await servicesLoaded();
         this.isLoaded = true;
+
+        return services;
         // });
     }
 
