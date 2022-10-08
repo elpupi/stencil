@@ -51,15 +51,37 @@ export class Popup {
             this.popup = this.rec.find('.t-popup');
             this.popupContainer = this.rec.find('.t-popup__container');
 
+            // fix mobile css that is overflowing the window
+            // fix max-height popup
+            // + add nice scrollbar => https://ishadeed.com/article/custom-scrollbars-css/
             const css = `
                 <style>
+                    .t-popup__container {
+                        max-height: 95vh;
+                        overflow: auto;
+                    }
+
                     .mt-is-mobile .t-popup .t-popup__container {
                         max-height: 95vh;
                         margin-top: 0px;
                     }
+                    
+                    .t-popup__container::-webkit-scrollbar-thumb {
+                        border: 4px solid transparent;
+                        border-radius: 100px;
+                        background-color: #c2c2c2;
+                        background-clip: content-box;
+                    }
+                    .t-popup__container::-webkit-scrollbar-track {
+                        background-color: #ffffff;
+                        /* border-radius: 100px; */
+                    }
+                    .t-popup__container::-webkit-scrollbar {
+                        width: 15px;
+                    }
                 </style>`;
 
-            document.body.insertAdjacentHTML('afterbegin', css); // fix mobile css that is overflowing the window
+            document.body.insertAdjacentHTML('afterbegin', css);
 
             this.customCodeHTML = t868__readCustomCode(this.rec.get(0));
         }
