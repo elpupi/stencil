@@ -60,7 +60,7 @@ export class LanguageService {
     private loadingLang: string;
     private defaultLangExtraRowsById$ = delayedPromise<DefaultLangExtraNodes>();
 
-    constructor(options: LanguageServiceOptions, private loadingAnimationPopup: LoadingAnimationPopup) {
+    constructor(options: LanguageServiceOptions, private loadingAnimationPopup?: LoadingAnimationPopup) {
         this.options = new LanguageServiceOptions(options);
 
         const { api, defaultLanguage, selector } = this.options;
@@ -175,11 +175,17 @@ export class LanguageService {
                 return;
 
             if (options.loadingAnimation) {
-                this.loadingAnimationPopup.startLoadingAnimation({
-                    loadingMessage: `Loading "${language.name}" translation. Be patient while the network is responding`,
-                    autoShow: true,
-                    delay: 500
-                });
+                const loadingMessage = `Loading "${language.name}" translation. Be patient while the network is responding`;
+
+                if (this.loadingAnimationPopup) {
+                    this.loadingAnimationPopup.startLoadingAnimation({
+                        loadingMessage,
+                        autoShow: true,
+                        delay: 500
+                    });
+                } else {
+                    console.log(loadingMessage);
+                }
             }
 
             this.sendAjaxRequest(this.getTranslationUrl(lang), {
@@ -210,13 +216,14 @@ export class LanguageService {
     private onAjaxError(_jqXHR: JQuery.jqXHR, textStatus: JQuery.Ajax.ErrorTextStatus, errorThrown: string) {
         const language = this.options.languages.find(l => l.lang === this.loadingLang);
 
-        this.loadingAnimationPopup.error(`
+        this.loadingAnimationPopup?.error(`
         <p>
             An error occured. We could not load the "${language.name}" translation of the website.
             Please, contact <a href="mailto:bug@upradata.com">bug@upradata.com</a> to help us fix the issue.
         </p>`);
 
-        console.error('Error occured: ', { textStatus, errorThrown });
+
+        console.error(`Error occured for language "${language.name}": `, { textStatus, errorThrown });
     }
 
 
@@ -229,7 +236,7 @@ export class LanguageService {
             console.error(e);
         }
 
-        this.loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
+        this.loadingAnimationPopup?.stopLoadingAnimation({ autoClose: true });
     }
 
     private async onAjaxTranslationSuccess(translationRows: TextData[], _textStatus: JQuery.Ajax.SuccessTextStatus, _jqXHR: JQuery.jqXHR) {
@@ -247,7 +254,7 @@ export class LanguageService {
         this.loadingLang = undefined;
 
         this.updateCssMenuLanguage();
-        this.loadingAnimationPopup.stopLoadingAnimation({ autoClose: true });
+        this.loadingAnimationPopup?.stopLoadingAnimation({ autoClose: true });
     }
 
 

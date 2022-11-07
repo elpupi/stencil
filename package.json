@@ -70,15 +70,16 @@
     "license": "MIT",
     "local": {
         "dependencies": {
-            "@upradata/util": "link:/home/milottit/Libraries/Upra-Data/util@16.0.2",
-            "@upradata/browser-util": "link:/home/milottit/Libraries/Upra-Data/browser-util@11.2.19",
+            "@upradata/util": "link:/home/milottit/Libraries/Upra-Data/util@16.0.3",
+            "@upradata/browser-util": "link:/home/milottit/Libraries/Upra-Data/browser-util@11.2.23",
             "@upradata/decorator": "link:/home/milottit/Libraries/Upra-Data/decorators@2.0.3",
             "@upradata/tilda-tools": "link:/home/milottit/Libraries/Tilda/tools@6.0.1"
         },
         "usedBy": {
             "@upradata/tilda-services-components": "/home/milottit/Libraries/Tilda/services-components",
             "@upradata/tilda-tools": "/home/milottit/Libraries/Tilda/tools",
-            "@upradata/website": "/home/milottit/Projects/upradata-website"
+            "@upradata/website": "/home/milottit/Projects/upradata-website",
+            "@upradata/carla-apartments-website": "/home/milottit/Projects/UpraData/Clients/Carla-Colombi"
         }
     }
 }
