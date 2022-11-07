@@ -1,10 +1,12 @@
+export type OnListenerOptions = { element: HTMLElement; componentElts: HTMLElement[]; };
+
 export type OnZeroBlockMouseHoverOptions = {
     componentCssName?: string;
     componentElements?: HTMLElement[];
     elementHoverCssName?: string;
     componentHoverCssName?: string;
-    onEnter?: () => void;
-    onLeave?: () => void;
+    onEnter?: (options: OnListenerOptions) => void;
+    onLeave?: (options: OnListenerOptions) => void;
 };
 
 
@@ -37,7 +39,7 @@ export const onZeroBlockMouseHover = (elements: HTMLElement[], options: OnZeroBl
             if (!element.classList.contains(elementHoverCssName)) {
                 componentElts.forEach(el => el.classList.add(componentHoverCssName));
                 element.classList.add(elementHoverCssName);
-                onEnter?.();
+                onEnter?.({ element, componentElts });
             }
         });
 
@@ -53,7 +55,7 @@ export const onZeroBlockMouseHover = (elements: HTMLElement[], options: OnZeroBl
                     if (!isHoverComponentElmt || elts.filter(el => el !== element).some(el => el === hoveredZeroBlockElmt))
                         element.classList.remove(elementHoverCssName);
                     if (!isHoverComponentElmt)
-                        onLeave?.();
+                        onLeave?.({ element, componentElts });
                 }
             });
         };
